@@ -1,6 +1,6 @@
 
 import React from 'react'
-import TestUtils, {
+import {
   renderIntoDocument
 } from 'react-addons-test-utils'
 import Perf from 'react-addons-perf'
@@ -13,9 +13,9 @@ describe('Perf', () => {
   let root
 
   it('should not throw', () => {
-      expect(() => {
-        root = renderIntoDocument(<Root />)
-      }).toNotThrow()
+    expect(() => {
+      root = renderIntoDocument(<Root />)
+    }).toNotThrow()
   })
 
   describe('wasted', () => {
@@ -46,5 +46,4 @@ describe('Perf', () => {
     })
   })
 })
-
 
