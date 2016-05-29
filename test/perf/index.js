@@ -27,11 +27,13 @@ describe('Perf', () => {
       Array.from({ length })
         .map((a, b) => b)
         .forEach(i => {
-          root.setState({
-            label: 'Hello ' + i,
-            name: 'name ' + i,
-            m: i % 4
-          })
+          if (i % 2) {
+            root.setState({
+              label: 'Hello ' + i,
+              name: 'name ' + i,
+              m: i % 4
+            })
+          }
         })
       done()
     })
@@ -40,7 +42,6 @@ describe('Perf', () => {
       Perf.stop()
       Perf.printWasted()
       results = Perf.getLastMeasurements()
-      console.log(results[0])
       expect(results).toExist()
     })
   })
