@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -14,24 +13,19 @@ const Overlay = ({
   box,
   onDismiss,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { zIndex, scale, colors, borderRadius } = theme
 
-  const cx = classnames('Overlay', className)
-
   const innerStyle = {
     padding: scale[3],
     backgroundColor: colors.white,
-    borderRadius,
-    ...subStyles.box
+    borderRadius
   }
 
-  const sx = {
+  const styles = {
     root: {
       position: 'fixed',
       top: 0,
@@ -43,7 +37,6 @@ const Overlay = ({
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      ...subStyles.background
     },
     dismiss: {
       position: 'fixed',
@@ -53,27 +46,23 @@ const Overlay = ({
       left: 0,
       backgroundColor: dark ? colors.black : colors.white,
       opacity: 0.875,
-      ...subStyles.dismiss
     },
     inner: {
       position: 'relative',
       zIndex: zIndex[1],
       minWidth: 320,
       width: fullWidth ? '100%' : null,
-      ...style,
       ...(box ? innerStyle : {})
     }
   }
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
-      <div style={sx.dismiss}
+    <div {...sx(styles.root)}>
+      <div {...sx(styles.dismiss)}
         onClick={onDismiss} />
       <div
         {...props}
-        style={sx.inner}
+        {...sx(styles.inner)}
         children={children} />
     </div>
   )

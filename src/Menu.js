@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,17 +7,13 @@ import withRebass from './withRebass'
  */
 
 const Menu = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme
 
-  const cx = classnames('Menu', className)
-
-  const sx = {
+  const style = {
     display: 'flex',
     flexDirection: 'column',
     minWidth: 128,
@@ -30,14 +25,13 @@ const Menu = ({
     borderRadius,
     color: colors.black,
     backgroundColor: colors.white,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

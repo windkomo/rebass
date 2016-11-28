@@ -9,10 +9,10 @@ import withRebass from './withRebass'
 const Close = ({
   baseRef,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const sx = {
+  const style = {
     fontSize: '1.5em',
     lineHeight: 1,
     fontWeight: 'bold',
@@ -28,7 +28,7 @@ const Close = ({
   return (
     <button
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
       ref={baseRef}
       title='Close'
       children='×' />

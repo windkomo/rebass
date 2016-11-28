@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /** List component that accepts any child component item types */
@@ -9,29 +8,24 @@ const List = ({
   ordered,
   reset,
   flush,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   children,
   ...props
 }) => {
   const { scale } = theme
   const Comp = ordered ? 'ol' : 'ul'
-  const cx = classnames('List', className)
 
   flush = flush || reset
 
-  const sx = {
+  const styles = {
     root: {
       paddingLeft: flush ? 0 : scale[2],
       margin: 0,
       listStyle: reset ? 'none' : null,
-      ...style
     },
     item: {
       marginBottom: scale[1],
-      ...subStyles.item
     }
   }
 
@@ -40,14 +34,13 @@ const List = ({
       return child
     }
 
-    return <li style={sx.item}>{child}</li>
+    return <li {...sx(styles.item)}>{child}</li>
   })
 
   return (
     <Comp
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...sx(styles.root)}>
       {wrappedChildren}
     </Comp>
   )

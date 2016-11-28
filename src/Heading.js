@@ -12,7 +12,6 @@ const Heading = ({
   big,
   alt,
   center,
-  style,
   theme,
   sx,
   ...props
@@ -28,7 +27,7 @@ const Heading = ({
     fontSize *= 2
   }
 
-  const styles = {
+  const style = {
     fontSize,
     fontWeight: bold,
     lineHeight: 1.25,
@@ -39,7 +38,7 @@ const Heading = ({
   return (
     <Comp
       {...props}
-      {...sx(styles, style)}
+      {...sx(style)}
     />
   )
 }

@@ -1,7 +1,6 @@
 
 import React from 'react'
 import withRebass from './withRebass'
-import classnames from 'classnames'
 import {
   Button,
   ButtonOutline,
@@ -14,22 +13,13 @@ import {
  */
 
 const Group = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const cx = classnames('Group', className)
-
-  const sx = {
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-      ...style
-    },
-    child: {
-    }
+  const style = {
+    display: 'flex',
+    alignItems: 'center',
   }
 
   const children = React.Children.map(props.children, (child, i) => {
@@ -66,8 +56,7 @@ const Group = ({
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}
+      {...sx(style)}
       children={children}
     />
   )

@@ -1,23 +1,18 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 const TabItem = ({
   is = 'a',
   active,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, fontSizes, bold, colors } = theme
   const Comp = is
 
-  const cx = classnames('TabItem', className)
-
-  const sx = {
+  const style = {
     fontWeight: bold,
     fontSize: fontSizes[5],
     paddingTop: scale[1],
@@ -28,19 +23,16 @@ const TabItem = ({
     borderBottomStyle: 'solid',
     borderBottomColor: 'transparent',
     cursor: 'pointer',
-    ...style,
     ...(active ? {
       color: colors.primary,
       borderBottomColor: colors.primary,
-      ...subStyles.active
     } : {})
   }
 
   return (
     <Comp
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)} />
   )
 }
 

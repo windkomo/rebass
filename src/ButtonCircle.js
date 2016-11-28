@@ -9,8 +9,7 @@ import Button from './Button'
 
 const ButtonCircle = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => (
   <Button {...props} circle />

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -12,20 +11,15 @@ const Stat = ({
   label,
   unit,
   topLabel,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, bold, scale } = theme
 
-  const cx = classnames('Stat', className)
-
-  const sx = {
+  const styles = {
     root: {
       display: 'inline-block',
-      ...style
     },
     value: {
       fontSize: fontSizes[0],
@@ -34,31 +28,27 @@ const Stat = ({
       lineHeight: 1,
       marginTop: topLabel ? scale[1] / 2 : null,
       marginBottom: topLabel ? null : scale[1] / 2,
-      ...subStyles.value
     },
     unit: {
       fontSize: fontSizes[3],
-      ...subStyles.unit
     },
     label: {
       fontSize: fontSizes[6],
       fontWeight: bold,
       lineHeight: 1,
-      ...subStyles.label
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
-      {topLabel && <div style={sx.label}>{label}</div>}
-      <div style={sx.value}>
+      {...sx(styles.root)}>
+      {topLabel && <div {...sx(styles.label)}>{label}</div>}
+      <div {...sx(styles.value)}>
         {value}
-        {unit && <span style={sx.unit}>{unit}</span>}
+        {unit && <span {...sx(styles.unit)}>{unit}</span>}
       </div>
-      {!topLabel && <div style={sx.label}>{label}</div>}
+      {!topLabel && <div {...sx(styles.label)}>{label}</div>}
     </div>
   )
 }

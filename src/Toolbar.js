@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,17 +7,13 @@ import withRebass from './withRebass'
  */
 
 const Toolbar = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors } = theme
 
-  const cx = classnames('Toolbar', className)
-
-  const sx = {
+  const style = {
     display: 'flex',
     alignItems: 'center',
     minHeight: 48,
@@ -26,15 +21,12 @@ const Toolbar = ({
     paddingRight: scale[1],
     color: colors.white,
     backgroundColor: colors.black,
-    ...style.fill,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)} />
   )
 }
 

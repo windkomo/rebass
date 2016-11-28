@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -12,19 +11,16 @@ const NavItem = ({
   active,
   baseRef,
   is,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, scale, bold } = theme
 
-  const cx = classnames('NavItem', className)
+  // To do: handle active styles
+  const activeStyle = active ? {} : {}
 
-  const activeStyle = active ? subStyles.active : {}
-
-  const sx = {
+  const style = {
     fontSize: small ? fontSizes[6] : fontSizes[5],
     fontWeight: bold,
     lineHeight: '1rem',
@@ -38,7 +34,6 @@ const NavItem = ({
     paddingRight: scale[1],
     color: 'inherit',
     cursor: 'pointer',
-    ...style,
     ...activeStyle
   }
 
@@ -47,9 +42,9 @@ const NavItem = ({
   return (
     <Comp
       {...props}
+      {...sx(style)}
       ref={baseRef}
-      className={cx}
-      style={sx} />
+    />
   )
 }
 

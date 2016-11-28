@@ -10,8 +10,7 @@ const Banner = ({
   align,
   backgroundImage,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }, { rebass }) => {
   const { scale, colors, fontSizes } = theme
@@ -24,7 +23,7 @@ const Banner = ({
 
   const alignItems = alignment[align]
 
-  const sx = {
+  const style = {
     fontSize: fontSizes[1],
     display: 'flex',
     flexDirection: 'column',
@@ -44,7 +43,7 @@ const Banner = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

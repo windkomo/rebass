@@ -12,13 +12,12 @@ const DotIndicator = ({
   onClick,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale } = theme
 
-  const sx = {
+  const styles = {
     root: {
       display: 'inline-flex'
     },
@@ -35,7 +34,6 @@ const DotIndicator = ({
       backgroundColor: 'transparent',
       border: 0,
       cursor: 'pointer',
-      ...subStyles.button
     },
     dot: {
       width: scale[1],
@@ -43,7 +41,6 @@ const DotIndicator = ({
       margin: 'auto',
       backgroundColor: 'currentcolor',
       borderRadius: 99999,
-      ...subStyles.dot
     }
   }
 
@@ -59,15 +56,15 @@ const DotIndicator = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx.roo)}>
+      {...sx(styles.roo)}>
       {dots.map((d) => (
         <button
           key={d}
-          {...transformStyle({}, sx.button, {
+          {...sx(styles.button, {
             opacity: d !== active ? 0.375 : 0.875
           })}
           onClick={handleClick(d)}>
-          <div {...transformStyle({}, sx.dot)} />
+          <div {...sx(styles.dot)} />
         </button>
       ))}
     </div>

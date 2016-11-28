@@ -4,9 +4,7 @@ import classnames from 'classnames'
 import cxs from 'cxs'
 
 const defaultStyleTransform = (style, props = {}) => {
-  console.log('props', props)
-  const sx = assign({}, style)
-  const cx = cxs(sx)
+  const cx = cxs(style)
   const className = classnames(cx, props.className)
 
   return {
@@ -18,7 +16,7 @@ const createStyleTransform = (theme, props) => {
   const transformStyle = theme.transformStyle || defaultStyleTransform
 
   return (...args) => {
-    const style = assign({}, ...args)
+    const style = assign({}, ...args, props.style)
     return transformStyle(style, props)
   }
 }

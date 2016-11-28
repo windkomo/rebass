@@ -9,13 +9,12 @@ import withRebass from './withRebass'
 const Card = ({
   width,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }, { rebass }) => {
   const { scale, borderColor, borderRadius } = theme
 
-  const sx = {
+  const style = {
     width,
     padding: scale[1],
     marginBottom: scale[2],
@@ -29,7 +28,7 @@ const Card = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

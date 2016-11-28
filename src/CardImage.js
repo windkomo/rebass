@@ -10,13 +10,12 @@ const CardImage = ({
   src,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale } = theme
 
-  const sx = {
+  const style = {
     display: 'block',
     width: `calc(100% + ${2 * scale[1]}px)`,
     maxWidth: 'none',
@@ -28,7 +27,7 @@ const CardImage = ({
   return (
     <img
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
       src={src}
     />
   )

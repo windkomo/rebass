@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 import Text from './Text'
@@ -20,41 +19,24 @@ const Input = ({
   autoOff,
   baseRef,
   ref,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderColor } = theme
 
   const invalid = props.invalid || props['aria-invalid']
 
-  const cx = classnames('Input', className, {
-    'isInvalid': invalid,
-    'isDisabled': props.disabled,
-    'isReadonly': props.readOnly
-  })
-
-  const {
-    borderRadius = theme.borderRadius,
-    color,
-    backgroundColor,
-    ...rootStyle
-  } = style
-
-  const sx = {
+  const styles = {
     root: {
       display: horizontal ? 'flex' : null,
       alignItems: horizontal ? 'baseline' : null,
       marginBottom: scale[2],
       color: invalid ? colors.error : null,
-      ...rootStyle
     },
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subStyles.label
     },
     input: {
       fontFamily: 'inherit',
@@ -76,12 +58,9 @@ const Input = ({
       boxShadow: 'none',
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...style.fill,
-      ...subStyles.input
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subStyles.message
     }
   }
 
@@ -93,26 +72,26 @@ const Input = ({
   } : {}
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
+    <div {...sx(styles.root)}>
       <Label
+        {...sx(styles.label)}
         htmlFor={name}
         hide={hideLabel}
-        style={sx.label}
         children={label} />
       <input
         {...props}
         {...autoProps}
+        {...sx(styles.input)}
         ref={baseRef}
         type={type}
         name={name}
-        style={sx.input} />
+      />
       {message && (
         <Text
+          {...sx(styles.message)}
           small
-          style={sx.message}
-          children={message} />
+          children={message}
+        />
       )}
     </div>
   )

@@ -9,8 +9,10 @@ class ThemeProvider extends React.Component {
   }
 
   render () {
+    const { theme, ...props } = this.props
+
     return (
-      <div {...this.props} />
+      <div {...props} />
     )
   }
 }

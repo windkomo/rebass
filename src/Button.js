@@ -12,8 +12,7 @@ const Button = ({
   size,
   baseRef,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { fontSizes, bold, scale, colors, borderRadius } = theme
@@ -25,7 +24,7 @@ const Button = ({
   const padx = theme.circle ? 0 : scale[2]
   const pady = big ? scale[2] : scale[1]
 
-  const sx = {
+  const style = {
     fontFamily: 'inherit',
     fontSize: fontSizes[5],
     fontWeight: bold,
@@ -49,7 +48,7 @@ const Button = ({
   return (
     <Comp
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
       ref={baseRef}
       href={href}
     />

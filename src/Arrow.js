@@ -8,11 +8,10 @@ const Arrow = ({
   direction,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
-  const sx = {
+  const style = {
     display: 'inline-block',
     width: 0,
     height: 0,
@@ -28,7 +27,7 @@ const Arrow = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

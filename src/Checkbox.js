@@ -15,15 +15,14 @@ const Checkbox = ({
   stacked,
   baseRef,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderRadius } = theme
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const sx = {
+  const stylesx = {
     root: {
       position: 'relative',
       display: 'flex',
@@ -37,7 +36,6 @@ const Checkbox = ({
       position: 'absolute',
       zIndex: -1,
       opacity: 0,
-      ...subStyles.input
     },
     box: {
       display: 'flex',
@@ -58,7 +56,6 @@ const Checkbox = ({
       borderStyle: 'solid',
       borderWidth: 2,
       transition: 'background-color .1s ease-out',
-      ...subStyles.box
     },
     icon: {
       display: checked ? null : 'none',
@@ -66,24 +63,21 @@ const Checkbox = ({
       height: '75%',
       marginTop: 1,
       fill: 'currentcolor',
-      ...subStyles.icon
     }
   }
 
   return (
-    <Label
-      {...transformStyle(props, sx.root)}>
+    <Label {...sx(styles.root)}>
       <input
         {...props}
         ref={baseRef}
         name={name}
         type='checkbox'
         checked={checked}
-        {...transformStyle({}, sx.input)} />
-      <div {...transformStyle({}, sx.box)}>
-        <svg
-          viewBox='0 0 32 32'
-          {...transformStyle({}, sx.icon)}>
+        {...sx(styles.input)} />
+      <div {...sx(styles.box)}>
+        <svg viewBox='0 0 32 32'
+          {...sx(styles.icon)}>
           <path d='M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z' />
         </svg>
       </div>

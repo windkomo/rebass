@@ -4,8 +4,7 @@ import withRebass from './withRebass'
 
 const Base = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => (
   <div {...props} />

@@ -14,13 +14,12 @@ const DropdownMenu = ({
   children,
   onDismiss,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { zIndex } = theme
 
-  const sx = {
+  const styles = {
     root: {
       display: open ? null : 'none',
       position: 'absolute',
@@ -37,28 +36,20 @@ const DropdownMenu = ({
       right: 0,
       bottom: 0,
       left: 0,
-      ...subStyles.overlay
     },
     content: {
       position: 'relative',
       zIndex: zIndex[1],
-      ...subStyles.content
-    },
-    Menu: {
-      ...subStyles.Menu
     }
   }
 
   return (
-    <div
-      {...props}
-      {...transformStyle(props, sx.root)}>
+    <div {...props} {...sx(styles.root)}>
       <div
-        {...transformStyle({}, sx.overlay)}
+        {...sx(styles.overlay)}
         onClick={onDismiss} />
-      <div {...transformStyle({}, sx.content)}>
+      <div {...sx(styles.content)}>
         <Menu {...props}
-          {...transformStyle({}, sx.Menu)}
           children={children} />
       </div>
     </div>

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 
@@ -16,10 +15,8 @@ const Slider = ({
   horizontal,
   baseRef,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors } = theme
@@ -28,46 +25,28 @@ const Slider = ({
   const min = props.min || 0
   const percent = (props.value - min) / (max - min) * 100
 
-  const {
-    color,
-    backgroundColor,
-    ...rootStyle
-  } = style
-
-  const css = `
-    .Slider_input::-webkit-slider-thumb {
-      width: 24px;
-      height: 24px;
-      background-color: currentcolor;
-      border: 0;
-      border-radius: 999px;
-      -webkit-appearance: none;
-    }
-    .Slider_input::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
-      background-color: currentcolor;
-      border: 0;
-      border-radius: 999px;
-    }
-  `.replace(/\n/g, '').replace(/\s\s+/g, ' ')
-
   const backgroundImage = fill ? `linear-gradient(90deg, currentcolor, currentcolor ${percent}%, transparent ${percent}%)` : null
 
-  const cx = classnames('Slider', className)
-  const { height } = { height: 6, ...subStyles.input }
+  const height = 6
 
-  const sx = {
+  const thumbStyles = {
+    width: 24,
+    height: 24,
+    backgroundColor: 'currentcolor',
+    border: 0,
+    borderRadius: 9999,
+    WebkitAppearance: 'none'
+  }
+
+  const styles = {
     root: {
       display: horizontal ? 'flex' : null,
       alignItems: horizontal ? 'center' : null,
       paddingBottom: scale[2],
-      ...rootStyle
     },
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subStyles.label
     },
     input: {
       boxSizing: 'border-box',
@@ -86,27 +65,29 @@ const Slider = ({
       borderRadius: 999,
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...subStyles.input
+      '::-webkit-slider-thumb': {
+        ...thumbStyles
+      },
+      '::-moz-range-thumb': {
+        ...thumbStyles
+      }
     }
   }
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+    <div {...sx(styles.root)}>
       <Label
+        {...sx(styles.label)}
         htmlFor={name}
         hide={hideLabel}
-        style={sx.label}
         children={label} />
       <input
         {...props}
         ref={baseRef}
         type='range'
         name={name}
-        className='Slider_input'
-        style={sx.input} />
+        {...sx(styles.input)}
+      />
     </div>
   )
 }

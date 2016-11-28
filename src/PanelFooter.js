@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,17 +7,13 @@ import withRebass from './withRebass'
  */
 
 const PanelFooter = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, borderRadius, fontSizes } = theme
 
-  const cx = classnames('PanelFooter', className)
-
-  const sx = {
+  const style = {
     fontSize: fontSizes[6],
     display: 'flex',
     alignItems: 'center',
@@ -30,15 +25,13 @@ const PanelFooter = ({
     borderTopWidth: 1,
     borderTopStyle: 'solid',
     borderRadius: `0 0 ${borderRadius}px ${borderRadius}px`,
-    ...style.fill,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

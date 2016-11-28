@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Heading from './Heading'
 
@@ -13,22 +12,14 @@ const HeadingLink = ({
   size,
   href,
   alt,
-  style,
-  className,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const cx = classnames('HeadingLink', className)
-
-  const sx = {
-    root: {
-      ...style
-    },
+  const styles = {
     link: {
       color: 'inherit',
       textDecoration: 'none',
-      ...subStyles.link
     }
   }
 
@@ -36,13 +27,12 @@ const HeadingLink = ({
     <Heading
       alt={alt}
       level={level}
-      size={size}
-      className={cx}
-      style={sx.root}>
+      size={size}>
       <a
         {...props}
+        {...sx(styles.link)}
         href={href}
-        style={sx.link} />
+      />
     </Heading>
   )
 }

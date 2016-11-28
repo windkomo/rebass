@@ -5,8 +5,7 @@ import withRebass from './withRebass'
 const Bar = ({
   value = 0,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale, bold, colors } = theme
@@ -14,7 +13,7 @@ const Bar = ({
   const p = `${value * 100}%`
   const backgroundImage = `linear-gradient(90deg, ${backgroundColor} ${p}%, transparent ${p})`
 
-  const sx = {
+  const style = {
     fontWeight: bold,
     padding: scale[1],
     backgroundSize: '100% 100%',
@@ -24,7 +23,7 @@ const Bar = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

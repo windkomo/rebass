@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,10 +8,8 @@ import withRebass from './withRebass'
 
 const Switch = ({
   checked,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderColor } = theme
@@ -20,9 +17,7 @@ const Switch = ({
   const color = checked ? colors.success : borderColor
   const transform = checked ? `translateX(${scale[3] * 0.5}px)` : 'translateX(0)'
 
-  const cx = classnames('Switch', className)
-
-  const sx = {
+  const styles = {
     root: {
       display: 'inline-flex',
       width: scale[3] * 1.5,
@@ -32,7 +27,6 @@ const Switch = ({
       borderRadius: 99999,
       boxShadow: 'inset 0 0 0 2px',
       cursor: 'pointer',
-      ...style
     },
     dot: {
       width: scale[3],
@@ -45,18 +39,16 @@ const Switch = ({
       borderRadius: 99999,
       color,
       backgroundColor: colors.white,
-      ...subStyles.dot
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
       role='checkbox'
       aria-checked={checked}
-      style={sx.root}>
-      <div style={sx.dot} />
+      {...sx(styles.root)}>
+      <div {...sx(styles.dot)} />
     </div>
   )
 }

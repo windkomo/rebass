@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Input from './Input'
 import ButtonOutline from './ButtonOutline'
@@ -17,51 +16,42 @@ const InlineForm = ({
   onChange,
   buttonLabel,
   onClick,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const cx = classnames('InlineForm', className)
-
-  const sx = {
+  const style = {
     root: {
       display: 'flex',
       alignItems: 'center',
-      ...style
     },
     input: {
       flex: '1 1 auto',
-      ...subStyles.Input
     },
     button: {
       marginLeft: -1,
-      ...subStyles.Button,
-      ...subStyles.ButtonOutline
     }
   }
 
   return (
     <form
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...sx(styles.root)}>
       <Input
+        {...sx(styles.input)}
         name={name}
         label={label}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        style={sx.input}
         mb={0}
         hideLabel
         rounded='left' />
       <ButtonOutline
+        {...sx(styles.button)}
         type='submit'
         children={buttonLabel}
         onClick={onClick}
-        style={sx.button}
         rounded='right' />
     </form>
   )

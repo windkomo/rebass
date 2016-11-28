@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,24 +9,19 @@ import withRebass from './withRebass'
 const Rating = ({
   value,
   onClick,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, colors } = theme
 
   const stars = Array.from({ length: 5 }, (a, b) => b)
 
-  const cx = classnames('Rating', className)
-
-  const sx = {
+  const styles = {
     root: {
       display: 'inline-flex',
       fontSize: fontSizes[4],
       color: colors.orange,
-      ...style
     },
     star: {
       position: 'relative',
@@ -40,7 +34,6 @@ const Rating = ({
       color: 'inherit',
       backgroundColor: 'transparent',
       cursor: onClick ? 'pointer' : null,
-      ...subStyles.star
     }
   }
 
@@ -73,17 +66,14 @@ const Rating = ({
   }
 
   return (
-    <div
-      {...props}
-      className={cx}
-      style={sx.root}>
+    <div {...props} {...sx(styles.root)}>
       {stars.map((s) => (
         <button
           key={s}
-          style={sx.star}
+          {...sx(styles.star)}
           onClick={handleClick(s)}>
-          <span style={getEmptyStyle(s)}>☆ </span>
-          <span style={getActiveStyle(s)}>★</span>
+          <span {...sx(getEmptyStyle(s))}>☆ </span>
+          <span {...sx(getActiveStyle(s))}>★</span>
         </button>
       ))}
     </div>

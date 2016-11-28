@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 import Text from './Text'
@@ -17,40 +16,24 @@ const Textarea = ({
   horizontal,
   baseRef,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const cx = classnames('Textarea', className, {
-    'isInvalid': invalid,
-    'isDisabled': props.disabled,
-    'isReadonly': props.readOnly
-  })
-
-  const {
-    color,
-    backgroundColor,
-    ...rootStyle
-  } = style
-
-  const sx = {
+  const style = {
     root: {
       display: horizontal ? 'flex' : null,
       alignItems: horizontal ? 'baseline' : null,
       marginBottom: scale[2],
       color: invalid ? colors.error : null,
-      ...rootStyle
     },
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subStyles.label
     },
     textarea: {
       fontFamily: 'inherit',
@@ -69,33 +52,31 @@ const Textarea = ({
       boxShadow: 'none',
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...subStyles.textarea
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subStyles.message
     }
   }
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
+    <div {...sx(styles.root)}>
       <Label
+        {...sx(styles.label)}
         htmlFor={name}
         hide={hideLabel}
-        style={sx.label}
         children={label} />
       <textarea
         {...props}
+        {...sx(styles.textarea)}
         ref={baseRef}
         name={name}
-        style={sx.textarea} />
+      />
       {message && (
         <Text
           small
-          style={sx.message}
-          children={message} />
+          {...sx(styles.message)}
+          children={message}
+        />
       )}
     </div>
   )

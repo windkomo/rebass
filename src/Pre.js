@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,31 +7,26 @@ import withRebass from './withRebass'
  */
 
 const Pre = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { monospace, scale, fontSizes, borderColor } = theme
 
-  const cx = classnames('Pre', className)
-
-  const sx = {
+  const style = {
     fontFamily: monospace,
     fontSize: fontSizes[5],
     paddingLeft: scale[2],
     marginBottom: scale[2],
     borderLeft: `4px solid ${borderColor}`,
     overflowX: 'scroll',
-    ...style
   }
 
   return (
     <pre
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

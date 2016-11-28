@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import LinkBlock from './LinkBlock'
 
@@ -13,17 +12,13 @@ const SequenceMapStep = ({
   first,
   active,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }, { rebass }) => {
   const { scale, colors } = theme
 
-  const cx = classnames('SequenceMapStep', className)
-
-  const sx = {
+  const styles = {
     link: {
       position: 'relative',
       display: 'flex',
@@ -34,7 +29,6 @@ const SequenceMapStep = ({
       flex: `1 1 ${width}`,
       paddingLeft: scale[1],
       paddingRight: scale[1],
-      ...style
     },
     dot: {
       position: 'relative',
@@ -45,7 +39,6 @@ const SequenceMapStep = ({
       marginBottom: scale[1],
       borderRadius: 99999,
       backgroundColor: 'currentcolor',
-      ...subStyles.dot
     },
     line: {
       position: 'absolute',
@@ -55,28 +48,21 @@ const SequenceMapStep = ({
       right: 0,
       height: 4,
       backgroundColor: 'currentcolor',
-      ...subStyles.line
     },
     label: {
-      ...subStyles.label
     },
     active: {
       color: colors.primary,
-      ...subStyles.active
     }
   }
 
   return (
     <LinkBlock
-      className={cx}
-      style={{
-        ...sx.link,
-        ...(active ? sx.active : {})
-      }}
-      {...props}>
-      <div style={sx.dot} />
-      {!first && <div style={sx.line} />}
-      <div style={sx.label}>
+      {...props}
+      {...sx(styles.link, ...(active ? sx.active : {}))}>
+      <div {...sx(styles.dot)} />
+      {!first && <div {...sx(styles.line)} />}
+      <div {...sx(styles.label)}>
         {children}
       </div>
     </LinkBlock>

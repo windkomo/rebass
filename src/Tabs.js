@@ -1,36 +1,27 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 const Tabs = ({
-  children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { borderColor } = theme
 
-  const cx = classnames('Tabs', className)
-
-  const sx = {
+  const style = {
     display: 'flex',
     alignItems: 'flex-end',
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: borderColor,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx}>
-      {children}
-    </div>
+      {...sx(style)}
+    />
   )
 }
 

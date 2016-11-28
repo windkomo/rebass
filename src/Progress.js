@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,10 +8,8 @@ import withRebass from './withRebass'
 
 const Progress = ({
   value,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors } = theme
@@ -29,40 +26,35 @@ const Progress = ({
     }
   `.replace(/\n/g, '').replace(/\s\s+/g, ' ')
 
-  const cx = classnames('Progress', className)
-
-  const sx = {
-    root: {
-      marginBottom: scale[2],
-      overflow: 'hidden',
-      color: colors.primary,
-      borderRadius: 9999,
-      ...style
+  const style = {
+    display: 'block',
+    width: '100%',
+    height: 8,
+    marginBottom: scale[2],
+    overflow: 'hidden',
+    border: 0,
+    color: colors.primary,
+    borderRadius: 9999,
+    WebkitAppearance: 'none',
+    appearance: 'none',
+    '::-webkit-progress-bar': {
+      backgroundColor: colors.darken
     },
-    progress: {
-      display: 'block',
-      width: '100%',
-      height: 8,
-      overflow: 'hidden',
-      border: 0,
-      WebkitAppearance: 'none',
-      appearance: 'none',
-      ...subStyles.progress
+    '::-webkit-progress-value': {
+      backgroundColor: 'currentcolor'
+    },
+    '::-moz-progress-bar': {
+      backgroundColor: 'currentcolor'
     }
   }
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-      <progress
-        {...props}
-        className='Progress_progress'
-        value={value}
-        children={value}
-        style={sx.progress} />
-    </div>
+    <progress
+      {...props}
+      {...sx(style)}
+      value={value}
+      children={value}
+    />
   )
 }
 

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Heading from './Heading'
 import Input from './Input'
@@ -14,29 +13,13 @@ const SignInForm = ({
   remember = false,
   onChange = () => {},
   errors = {},
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  // const {} = theme
-
-  const cx = classnames('SignInForm', className)
-
-  const sx = {
-    root: {
-      ...style
-    }
-  }
-
-  // Or Create an Account...
-
+  // To do: Or Create an Account...
   return (
-    <form
-      {...props}
-      className={cx}
-      style={sx.root}>
+    <form {...props}>
       {heading && <Heading mb={2} children={heading} />}
       <Input
         name='username'

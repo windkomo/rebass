@@ -14,15 +14,14 @@ const Block = ({
   borderBottom,
   borderLeft,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }, { rebass }) => {
   const { colors } = theme
 
   borderColor = colors[borderColor] || borderColor || colors.primary
 
-  const sx = {
+  const style = {
     borderStyle: border ? 'solid' : 'none',
     borderTopStyle: borderTop ? 'solid' : null,
     borderRightStyle: borderRight ? 'solid' : null,
@@ -35,7 +34,7 @@ const Block = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

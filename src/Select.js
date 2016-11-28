@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 import Text from './Text'
@@ -19,35 +18,20 @@ const Select = ({
   horizontal,
   baseRef,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const cx = classnames('Select', className, {
-    'isInvalid': invalid,
-    'isDisabled': props.disabled,
-    'isReadonly': props.readOnly
-  })
-
-  const {
-    color,
-    backgroundColor,
-    ...rootStyle
-  } = style
-
-  const sx = {
+  const styles = {
     root: {
       display: horizontal ? 'flex' : null,
       alignItems: horizontal ? 'baseline' : null,
       marginBottom: scale[2],
       color: invalid ? colors.error : null,
-      ...rootStyle
     },
     select: {
       fontFamily: 'inherit',
@@ -58,8 +42,8 @@ const Select = ({
       paddingLeft: scale[1],
       paddingRight: scale[3],
       height: scale[3],
-      color: color || 'inherit',
-      backgroundColor: backgroundColor || 'transparent',
+      color: 'inherit',
+      backgroundColor: 'transparent',
       backgroundImage: 'none',
       borderWidth: 1,
       borderStyle: 'solid',
@@ -67,18 +51,14 @@ const Select = ({
       borderRadius,
       MozAppearance: 'none',
       WebkitAppearance: 'none',
-      ...style.fill,
-      ...subStyles.select
     },
     label: {
       paddingRight: horizontal ? scale[1] : null,
       minWidth: horizontal ? 96 : null,
-      ...subStyles.label
     },
     wrapper: {
       position: 'relative',
       flex: horizontal ? '1 1 auto' : null,
-      ...subStyles.wrapper
     },
     arrow: {
       position: 'absolute',
@@ -86,11 +66,9 @@ const Select = ({
       top: 0,
       margin: scale[3] / 2,
       transform: 'translate(50%, -50%)',
-      ...subStyles.arrow
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subStyles.label
     }
   }
 
@@ -101,28 +79,26 @@ const Select = ({
   })
 
   return (
-    <div
-      className={cx}
-      style={sx.root}>
+    <div {...sx(styles.root)}>
       <Label
+        {...sx(styles.label)}
         htmlFor={name}
         hide={hideLabel}
-        style={sx.label}
         children={label} />
-      <div style={sx.wrapper}>
+      <div {...sx(styles.wrapper)}>
         <select
           {...props}
+          {...sx(styles.select)}
           ref={baseRef}
-          name={name}
-          style={sx.select}>
+          name={name}>
           {selectOptions}
         </select>
-        <Arrow style={sx.arrow} />
+        <Arrow {...sx(styles.arrow)} />
       </div>
       {message && (
         <Text
           small
-          style={sx.message}
+          {...sx(styles.message)}
           children={message} />
       )}
     </div>

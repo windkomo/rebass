@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import SequenceMapStep from './SequenceMapStep'
 
@@ -12,55 +11,44 @@ const SequenceMap = ({
   steps,
   active,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, bold, colors } = theme
 
-  const cx = classnames('SequenceMap', className)
-
-  const sx = {
-    root: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'space-between',
-      fontSize: fontSizes[5],
-      fontWeight: bold,
-      color: colors.gray,
-      ...style
-    },
-    step: {
-      ...subStyles.step
-    }
+  const style = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    fontSize: fontSizes[5],
+    fontWeight: bold,
+    color: colors.gray,
   }
 
   const chx = React.Children.map(children, (child, i) => {
     return React.cloneElement(child, {
       width: `${1 / children.length * 100}%`,
       first: i === 0,
-      style: sx.step
     })
   })
 
   const schx = steps.map((step, i) => (
     <SequenceMapStep
       key={i}
+      {...step}
       first={i === 0}
       width={`${100 / steps.length}%`}
       active={i <= active}
-      style={sx.step}
-      {...step} />
+    />
   ))
 
   return (
     <div
       {...props}
+      {...sx(style)}
       children={chx || schx}
-      className={cx}
-      style={sx.root} />
+    />
   )
 }
 

@@ -12,8 +12,7 @@ const Drawer = ({
   position,
   onDismiss,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale, zIndex, colors } = theme
@@ -62,7 +61,7 @@ const Drawer = ({
     transform = transforms[position]
   }
 
-  const sx = {
+  const styles = {
     content: {
       position: 'fixed',
       ...placements[position],
@@ -85,17 +84,16 @@ const Drawer = ({
       left: 0,
       zIndex: zIndex[3],
       display: open ? null : 'none',
-      ...subStyles.dismiss
     }
   }
 
   return (
     <div>
-      <div {...transformStyle({}, sx.dismiss)}
+      <div {...sx(styles.dismiss)}
         onClick={onDismiss} />
       <div
         {...props}
-        {...transformStyle({}, props)}
+        {...sx(styles.content)}
       />
     </div>
   )

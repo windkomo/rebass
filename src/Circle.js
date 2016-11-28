@@ -5,11 +5,10 @@ import withRebass from './withRebass'
 const Circle = ({
   size = 32,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
-  const sx = {
+  const style = {
     display: 'inline-block',
     width: size,
     height: size,
@@ -24,7 +23,7 @@ const Circle = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

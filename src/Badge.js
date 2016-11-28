@@ -7,8 +7,7 @@ import baseline from './util/baseline'
 
 const Badge = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const {
@@ -23,7 +22,7 @@ const Badge = ({
   const pad = baseline(baselineShift)(scale[1])
   const xpad = props.circle ? 0 : scale[1]
 
-  const sx = {
+  const style = {
     fontSize: fontSizes[6],
     fontWeight: bold,
     display: 'inline-flex',
@@ -44,7 +43,7 @@ const Badge = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

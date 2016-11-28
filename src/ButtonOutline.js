@@ -10,17 +10,17 @@ import Button from './Button'
 const ButtonOutline = ({
   active,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { colors, borderRadius } = theme
 
-  const sx = {
+  const style = {
     backgroundColor: backgroundColor || 'transparent',
     boxShadow: `inset 0 0 0 1px ${backgroundColor}`,
     borderRadius,
     ...(active ? {
+      // To do: handle fill/theme prop shit
       color: 'white',
       backgroundColor: 'tomato'
     } : {
@@ -32,7 +32,7 @@ const ButtonOutline = ({
   return (
     <Button
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
       circle={theme.circle}
     />
   )

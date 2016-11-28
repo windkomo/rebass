@@ -65,15 +65,14 @@ const Donut = ({
   strokeWidth,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { bold, colors } = theme
 
   const viewBox = `0 0 ${size} ${size}`
 
-  const sx = {
+  const styles = {
     root: {
       position: 'relative',
       display: 'inline-flex',
@@ -93,42 +92,36 @@ const Donut = ({
       bottom: 0,
       left: 0,
       fill: 'currentcolor',
-      ...subStyles.svg
     },
     bg: {
       opacity: 1 / 16,
-      ...subStyles.background
     },
     percentage: {
       marginRight: '-.25em',
-      ...subStyles.percentage
     },
     unit: {
       fontSize: '.5em',
       verticalAlign: 'super',
-      ...subStyles.unit
     }
   }
 
   return (
-    <div
-      {...props}
-      {...transformStyle(props, sx.root)}>
+    <div {...props} {...sx(styles.root)}>
       <svg
         viewBox={viewBox}
         width={size}
         height={size}
-        {...transformStyle({}, sx.svg)}>
+        {...sx(styles.svg)}>
         <path
           d={createBg(size, strokeWidth)}
-          {...transformStyle({}, sx.bg)} />
+          {...sx(styles.bg)} />
         <path d={createPath(size, value, strokeWidth)} />
       </svg>
       {children}
       {!children &&
-        <span {...transformStyle({}, sx.percentage)}>
+        <span {...sx(styles.percentage)}>
           {Math.round(value * 100)}
-          <span {...transformStyle({}, sx.unit)}>%</span>
+          <span {...sx(styles.unit)}>%</span>
         </span>
       }
     </div>

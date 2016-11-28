@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -11,28 +10,23 @@ const Space = ({
   x,
   auto,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale } = theme
 
-  const cx = classnames('Space', className)
-
-  const sx = {
+  const style = {
     display: 'inline-block',
     flex: auto ? '1 1 auto' : null,
     width: scale[x],
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

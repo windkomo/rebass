@@ -7,11 +7,10 @@ import withRebass from './withRebass'
 const AspectRatio = ({
   ratio = 4 / 3,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
-  const sx = {
+  const style = {
     width: '100%',
     height: 0,
     paddingBottom: `${ratio * 100}%`
@@ -20,7 +19,7 @@ const AspectRatio = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

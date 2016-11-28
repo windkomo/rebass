@@ -8,13 +8,12 @@ import withRebass from './withRebass'
 
 const BoxShadow = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { boxShadow, borderRadius } = theme
 
-  const sx = {
+  const style = {
     boxShadow,
     borderRadius
   }
@@ -22,7 +21,7 @@ const BoxShadow = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

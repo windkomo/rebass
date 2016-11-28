@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,17 +7,13 @@ import withRebass from './withRebass'
  */
 
 const Footer = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, fontSizes, borderColor } = theme
 
-  const cx = classnames('Footer', className)
-
-  const sx = {
+  const style = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -29,14 +24,13 @@ const Footer = ({
     borderTopWidth: 1,
     borderTopStyle: 'solid',
     borderTopColor: borderColor,
-    ...style
   }
 
   return (
     <footer
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

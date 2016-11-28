@@ -11,13 +11,12 @@ const Blockquote = ({
   href,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { fontSizes, scale } = theme
 
-  const sx = {
+  const styles = {
     root: {
       fontSize: fontSizes[3],
       fontStyle: 'italic',
@@ -27,30 +26,27 @@ const Blockquote = ({
     p: {
       margin: 0,
       marginBottom: scale[1],
-      ...subStyles.p
     },
     cite: {
       fontSize: fontSizes[5],
       fontStyle: 'normal',
-      ...subStyles.cite
     },
     source: {
       color: 'inherit',
-      ...subStyles.source
     }
   }
 
   return (
     <blockquote
       {...props}
-      {...transformStyle(props, sx)}>
-      <p {...transformStyle({}, sx.p)}>
+      {...sx(styles.root)}>
+      <p {...sx(styles.p)}>
         {children}
       </p>
-      <cite {...transformStyle({}, sx.cite)}>
+      <cite {...sx(styles.cite)}>
         {'— '}
         <a href={href}
-          {...transformStyle({}, sx.source)}
+          {...sx(styles.source)}
           children={source} />
       </cite>
     </blockquote>

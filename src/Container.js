@@ -8,13 +8,12 @@ import withRebass from './withRebass'
 
 const Container = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale } = theme
 
-  const sx = {
+  const style = {
     maxWidth: 1024,
     paddingLeft: scale[2],
     paddingRight: scale[2],
@@ -24,7 +23,7 @@ const Container = ({
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

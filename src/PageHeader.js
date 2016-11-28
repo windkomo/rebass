@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Heading from './Heading'
 import Text from './Text'
@@ -13,17 +12,13 @@ const PageHeader = ({
   heading,
   description,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, borderColor } = theme
 
-  const cx = classnames('PageHeader', className)
-
-  const sx = {
+  const styles = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -35,34 +30,22 @@ const PageHeader = ({
       borderBottomWidth: 2,
       borderBottomStyle: 'solid',
       borderColor,
-      ...style
     },
     inner: {
       flex: '1 1 auto',
-      ...subStyles.inner
-    },
-    heading: {
-      ...subStyles.Heading
-    },
-    text: {
-      ...subStyles.Text
     }
   }
 
   return (
     <header
       {...props}
-      className={cx}
-      style={sx.root}>
-      <div style={sx.inner}>
+      {...sx(styles.root)}>
+      <div {...sx(styles.inner)}>
         <Heading
           level={1}
-          style={sx.heading}
           children={heading} />
         {description && (
-          <Text
-            style={sx.text}
-            children={description} />
+          <Text children={description} />
         )}
       </div>
       {children}

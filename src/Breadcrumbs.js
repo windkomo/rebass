@@ -10,13 +10,12 @@ const Breadcrumbs = ({
   links,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { fontSizes, scale } = theme
 
-  const sx = {
+  const styles = {
     root: {
       fontSize: fontSizes[5],
       display: 'flex',
@@ -26,14 +25,13 @@ const Breadcrumbs = ({
     spacer: {
       marginLeft: '.5em',
       marginRight: '.5em',
-      ...subStyles.spacer
     }
   }
 
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}>
+      {...sx(styles.root)}>
       {links.map((link, i) => {
         const linkStyle = {
           color: 'inherit',
@@ -44,10 +42,10 @@ const Breadcrumbs = ({
           <div key={i}>
             <a
               {...link}
-              {...transformStyle({}, linkStyle)}
+              {...sx(linkStyle)}
             />
             {i < links.length - 1 && (
-              <span {...transformStyle({}, sx.spacer)}>/</span>
+              <span {...sx(styles.spacer)}>/</span>
             )}
           </div>
         )

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,17 +7,13 @@ import withRebass from './withRebass'
  */
 
 const PanelHeader = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { bold, scale, borderRadius } = theme
 
-  const cx = classnames('PanelHeader', className)
-
-  const sx = {
+  const style = {
     display: 'flex',
     alignItems: 'center',
     fontWeight: bold,
@@ -28,15 +23,13 @@ const PanelHeader = ({
     marginBottom: scale[2],
     padding: scale[2],
     borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
-    ...style.fill,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

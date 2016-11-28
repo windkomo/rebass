@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,15 +8,11 @@ import withRebass from './withRebass'
 
 const Label = ({
   hide,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, bold } = theme
-
-  const cx = classnames('Label', className)
 
   const hideStyle = hide ? {
     position: 'absolute',
@@ -27,19 +22,18 @@ const Label = ({
     clip: 'rect(1px, 1px, 1px, 1px)'
   } : {}
 
-  const sx = {
+  const style = {
     fontSize: fontSizes[5],
     fontWeight: bold,
     lineHeight: 1,
     ...hideStyle,
-    ...style
   }
 
   return (
     <label
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

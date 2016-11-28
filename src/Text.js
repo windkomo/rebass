@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,28 +9,23 @@ import withRebass from './withRebass'
 const Text = ({
   size,
   small,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes } = theme
 
-  const cx = classnames('Text', className)
-
   size = size || (small ? 6 : 4)
-  const sx = {
+  const style = {
     fontSize: fontSizes[size],
     margin: 0,
-    ...style
   }
 
   return (
     <p
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

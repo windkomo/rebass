@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,35 +9,27 @@ import withRebass from './withRebass'
 const Embed = ({
   ratio,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const cx = classnames('Embed', className)
-
-  const sx = {
+  const style = {
     position: 'relative',
     height: 0,
     padding: 0,
     paddingBottom: `${ratio * 100}%`,
     overflow: 'hidden',
-    ...style
   }
 
-  const childProps = {
-    style: {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      border: 0,
-      ...subStyles.children
-    }
-  }
+  const childProps = sx({
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    border: 0,
+  })
 
   const styledChildren = React.Children.map(children, (child) => {
     return React.cloneElement(child, childProps)
@@ -47,9 +38,9 @@ const Embed = ({
   return (
     <div
       {...props}
-      className={cx}
+      {...sx(style)}
       children={styledChildren}
-      style={sx} />
+    />
   )
 }
 

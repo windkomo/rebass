@@ -8,18 +8,17 @@ import withRebass from './withRebass'
 
 const Dropdown = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
-  const sx = {
+  const style = {
     position: 'relative',
   }
 
   return (
     <div
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

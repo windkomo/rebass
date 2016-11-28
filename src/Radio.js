@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 
@@ -15,28 +14,15 @@ const Radio = ({
   children,
   stacked,
   baseRef,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, colors } = theme
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const cx = classnames('Radio', className, {
-    'isInvalid': invalid,
-    'isDisabled': props.disabled,
-    'isReadonly': props.readOnly
-  })
-
-  const {
-    backgroundColor,
-    ...rootStyle
-  } = style
-
-  const sx = {
+  const styles = {
     root: {
       position: 'relative',
       display: 'flex',
@@ -45,13 +31,11 @@ const Radio = ({
       paddingBottom: scale[1],
       color: invalid ? colors.error : null,
       cursor: 'pointer',
-      ...rootStyle
     },
     input: {
       position: 'absolute',
       zIndex: -1,
       opacity: 0,
-      ...subStyles.input
     },
     dot: {
       boxSizing: 'border-box',
@@ -67,24 +51,20 @@ const Radio = ({
       opacity: checked ? null : 1 / 4,
       transition: 'border .1s ease-out',
       color: backgroundColor || style.fill.backgroundColor,
-      ...subStyles.dot
     }
   }
 
   return (
-    <Label
-      className={cx}
-      style={sx.root}>
+    <Label {...sx(styles.root)}>
       <input
         {...props}
+        {...sx(styles.input)}
         ref={baseRef}
         name={name}
         checked={checked}
         type='radio'
-        style={sx.input} />
-      <div
-        className='Radio_dot'
-        style={sx.dot} />
+      />
+      <div {...sx(styles.dot)} />
       {label}
     </Label>
   )

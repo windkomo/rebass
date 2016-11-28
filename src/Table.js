@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,23 +9,18 @@ import withRebass from './withRebass'
 const Table = ({
   headings,
   data,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { fontSizes, scale, borderColor } = theme
 
-  const cx = classnames('Table', className)
-
-  const sx = {
+  const styles = {
     root: {
       maxWidth: '100%',
       overflowX: 'scroll',
       marginBottom: scale[2],
       borderColor,
-      ...style
     },
     table: {
       fontSize: fontSizes[5],
@@ -34,17 +28,10 @@ const Table = ({
       borderCollapse: 'separate',
       borderSpacing: 0,
       width: '100%',
-      ...subStyles.table
     },
-    thead: {
-      ...subStyles.thead
-    },
-    tbody: {
-      ...subStyles.tbody
-    },
-    tr: {
-      ...subStyles.tr
-    },
+    thead: {},
+    tbody: {},
+    tr: {},
     th: {
       textAlign: 'left',
       verticalAlign: 'bottom',
@@ -53,7 +40,6 @@ const Table = ({
       borderBottomStyle: 'solid',
       borderBottomWidth: 2,
       borderColor: 'inherit',
-      ...subStyles.th
     },
     td: {
       padding: scale[1],
@@ -61,32 +47,30 @@ const Table = ({
       borderBottomStyle: 'solid',
       borderBottomWidth: 1,
       borderColor: 'inherit',
-      ...subStyles.td
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
-      <table style={sx.table}>
-        <thead style={sx.thead}>
-          <tr style={sx.tr}>
+      {...sx(styles.root)}>
+      <table {...sx(styles.table)}>
+        <thead {...sx(styles.thead)}>
+          <tr {...sx(styles.tr)}>
             {headings.map((heading, i) => (
               <th key={i}
-                style={sx.th}
+                {...sx(styles.th)}
                 children={heading} />
             ))}
           </tr>
         </thead>
-        <tbody style={sx.tbody}>
+        <tbody {...sx(styles.tbody)}>
           {data.map((row, i) => (
             <tr key={i}
-              style={sx.tr}>
+              {...sx(styles.tr)}>
               {row.map((datum, j) => (
                 <td key={j}
-                  style={sx.td}
+                  {...sx(styles.td)}
                   children={datum} />
               ))}
             </tr>

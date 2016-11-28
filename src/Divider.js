@@ -9,13 +9,12 @@ import withRebass from './withRebass'
 const Divider = ({
   width,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { scale, borderColor } = theme
 
-  const sx = {
+  const style = {
     width,
     marginTop: scale[2],
     marginBottom: scale[2],
@@ -28,7 +27,7 @@ const Divider = ({
   return (
     <hr
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

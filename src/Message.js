@@ -1,22 +1,17 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /** Component for displaying flash and error messages */
 
 const Message = ({
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { bold, scale, colors, borderRadius } = theme
 
-  const cx = classnames('Message', className)
-
-  const sx = {
+  const style = {
     fontWeight: bold,
     display: 'flex',
     alignItems: 'center',
@@ -25,15 +20,13 @@ const Message = ({
     borderRadius,
     color: colors.white,
     backgroundColor: colors.primary,
-    ...style.fill,
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

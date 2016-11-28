@@ -10,13 +10,12 @@ const Avatar = ({
   size,
   children,
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }, { rebass }) => {
   const { colors } = theme
 
-  const sx = {
+  const style = {
     display: 'inline-block',
     maxWidth: 'none',
     width: size,
@@ -28,7 +27,7 @@ const Avatar = ({
   return (
     <img
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
       width={size}
       height={size}
     />

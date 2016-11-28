@@ -8,13 +8,12 @@ import withRebass from './withRebass'
 
 const Code = ({
   theme,
-  subStyles,
-  transformStyle,
+  sx,
   ...props
 }) => {
   const { monospace, fontSizes } = theme
 
-  const sx = {
+  const style = {
     fontFamily: monospace,
     fontSize: fontSizes[5]
   }
@@ -22,7 +21,7 @@ const Code = ({
   return (
     <code
       {...props}
-      {...transformStyle(props, sx)}
+      {...sx(style)}
     />
   )
 }

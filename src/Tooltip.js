@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,10 +9,8 @@ import withRebass from './withRebass'
 const Tooltip = ({
   title,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const {
@@ -23,19 +20,14 @@ const Tooltip = ({
     borderRadius
   } = theme
 
-  const cx = classnames('Tooltip', className)
-
-  const css = `
-    .Tooltip_box { display: none }
-    .Tooltip:hover .Tooltip_box { display: block }
-  `.replace(/\n/g, '').replace(/\s\s+/g, ' ')
-
-  const sx = {
+  const styles = {
     root: {
       position: 'relative',
       display: 'inline-block',
       cursor: 'pointer',
-      ...style
+      ':hover > div': {
+        display: 'block'
+      }
     },
     box: {
       position: 'absolute',
@@ -51,32 +43,27 @@ const Tooltip = ({
       transform: 'translate(-50%, -8px)',
       color: colors.white,
       backgroundColor: colors.black,
-      ...style.fill,
-      ...subStyles.box
+      display: 'none'
     },
     arrow: {
       position: 'absolute',
       top: '100%',
       left: '50%',
       border: '6px solid transparent',
-      borderTopColor: style.fill.backgroundColor || style.backgroundColor || colors.black,
+      borderTopColor: colors.black,
       transform: 'translate(-50%, 0)',
-      ...subStyles.box
     }
   }
 
   return (
     <span
-      className={cx}
       aria-label={title}
-      style={sx.root}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+      {...sx(styles.root)}>
       <div
         {...props}
-        style={sx.box}
-        className='Tooltip_box'>
+        {...sx(styles.box)}>
         {title}
-        <div className='Tooltip_arrow' style={sx.arrow} />
+        <div {...sx(styles.arrow)} />
       </div>
       {children}
     </span>

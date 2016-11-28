@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -13,15 +12,11 @@ const Fixed = ({
   bottom,
   left,
   zIndex,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
-  const cx = classnames('Fixed', className)
-
-  const sx = {
+  const style = {
     position: 'fixed',
     top: top ? 0 : null,
     right: right ? 0 : null,
@@ -34,8 +29,8 @@ const Fixed = ({
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(style)}
+    />
   )
 }
 

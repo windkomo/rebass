@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import HeadingLink from './HeadingLink'
 import Text from './Text'
@@ -14,17 +13,13 @@ const SectionHeader = ({
   href,
   description,
   children,
-  className,
-  style,
   theme,
-  subStyles,
+  sx,
   ...props
 }) => {
   const { scale, borderColor } = theme
 
-  const cx = classnames('SectionHeader', className)
-
-  const sx = {
+  const styles = {
     root: {
       display: 'flex',
       alignItems: 'center',
@@ -34,17 +29,9 @@ const SectionHeader = ({
       borderBottomWidth: 1,
       borderBottomStyle: 'solid',
       borderBottomColor: borderColor,
-      ...style
     },
     inner: {
       flex: '1 1 auto',
-      ...subStyles.inner
-    },
-    Heading: {
-      ...subStyles.Heading
-    },
-    Text: {
-      ...subStyles.Text
     }
   }
 
@@ -53,17 +40,13 @@ const SectionHeader = ({
   return (
     <header
       {...props}
-      className={cx}
-      style={sx.root}>
-      <div style={sx.inner}>
+      {...sx(styles.root)}>
+      <div {...sx(styles.inner)}>
         <HeadingLink
           href={href}
-          style={sx.Heading}
           children={heading} />
         {description && (
-          <Text
-            style={sx.Text}
-            children={description} />
+          <Text children={description} />
         )}
       </div>
       {children}
