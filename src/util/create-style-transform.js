@@ -3,8 +3,9 @@ import assign from 'object-assign'
 import classnames from 'classnames'
 import cxs from 'cxs'
 
-const defaultStyleTransform = (props, style) => {
-  const sx = assign({}, style, props.css)
+const defaultStyleTransform = (style, props = {}) => {
+  console.log('props', props)
+  const sx = assign({}, style)
   const cx = cxs(sx)
   const className = classnames(cx, props.className)
 
@@ -13,11 +14,12 @@ const defaultStyleTransform = (props, style) => {
   }
 }
 
-const createStyleTransform = (config = {}) => {
-  const transformStyle = config.transformStyle || defaultStyleTransform
-  return (props, ...args) => {
-    const styles = assign({}, ...args)
-    return transformStyle(props, styles)
+const createStyleTransform = (theme, props) => {
+  const transformStyle = theme.transformStyle || defaultStyleTransform
+
+  return (...args) => {
+    const style = assign({}, ...args)
+    return transformStyle(style, props)
   }
 }
 

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -13,10 +12,9 @@ const Heading = ({
   big,
   alt,
   center,
-  className,
-  theme,
-  subStyles,
   style,
+  theme,
+  sx,
   ...props
 }) => {
   const { fontSizes, bold } = theme
@@ -30,25 +28,19 @@ const Heading = ({
     fontSize *= 2
   }
 
-  const cx = classnames('Heading', className, {
-    'Heading_alt': alt
-  })
-
-  const sx = {
+  const styles = {
     fontSize,
     fontWeight: bold,
     lineHeight: 1.25,
     textAlign: center ? 'center' : null,
-    margin: 0,
-    ...(alt ? subStyles.alt : {}),
-    ...style
+    margin: 0
   }
 
   return (
     <Comp
       {...props}
-      className={cx}
-      style={sx} />
+      {...sx(styles, style)}
+    />
   )
 }
 
@@ -69,6 +61,7 @@ Heading.defaultProps = {
   level: 2
 }
 
+Heading.displayName = 'Heading'
 Heading._name = 'Heading'
 
 export default withRebass(Heading)

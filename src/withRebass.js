@@ -1,49 +1,33 @@
 
 import React from 'react'
+import getTheme from './util/get-theme'
 import parseStyleProps from './util/parse-style-props'
 import createStyleTransform from './util/create-style-transform'
 
-const withRebass = Comp => {
-  class RebassBase extends React.Component {
+const withRebass = (Comp) => {
+  class RebassComponent extends React.Component {
     render () {
-      const { rebass } = this.context
-      const props = parseStyleProps(this.props, this.context, Comp._name)
-      const transformStyle = createStyleTransform(rebass)
+      const theme = getTheme(this.context)
+      const props = parseStyleProps(Comp.displayName, theme, this.props)
+      const sx = createStyleTransform(theme, props)
 
       return (
         <Comp
           {...props}
-          transformStyle={transformStyle}
+          theme={theme}
+          sx={sx}
         />
       )
     }
   }
 
-  RebassBase.contextTypes = {
+  RebassComponent.contextTypes = {
     rebass: React.PropTypes.object
   }
 
-  RebassBase.propTypes = {
-    /** Sets foreground color */
-    color: React.PropTypes.string,
-    /** Sets background color */
-    backgroundColor: React.PropTypes.string,
-    /** Sets semantic color themes */
-    theme: React.PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'default',
-      'info',
-      'success',
-      'warning',
-      'error',
-      'muted'
-    ])
-  }
+  RebassComponent.displayName = Comp.displayName
 
-  RebassBase.displayName = Comp._name
-
-  return RebassBase
+  return RebassComponent
 }
 
 export default withRebass
