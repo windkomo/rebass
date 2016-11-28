@@ -15,14 +15,14 @@ const NavItem = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, scale, bold } = theme
 
   const cx = classnames('NavItem', className)
 
-  const activeStyle = active ? subComponentStyles.active : {}
+  const activeStyle = active ? subStyles.active : {}
 
   const sx = {
     fontSize: small ? fontSizes[6] : fontSizes[5],

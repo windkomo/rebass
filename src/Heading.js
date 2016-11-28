@@ -15,7 +15,7 @@ const Heading = ({
   center,
   className,
   theme,
-  subComponentStyles,
+  subStyles,
   style,
   ...props
 }) => {
@@ -40,7 +40,7 @@ const Heading = ({
     lineHeight: 1.25,
     textAlign: center ? 'center' : null,
     margin: 0,
-    ...(alt ? subComponentStyles.alt : {}),
+    ...(alt ? subStyles.alt : {}),
     ...style
   }
 

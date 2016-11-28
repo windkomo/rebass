@@ -17,7 +17,7 @@ const SectionHeader = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, borderColor } = theme
@@ -38,13 +38,13 @@ const SectionHeader = ({
     },
     inner: {
       flex: '1 1 auto',
-      ...subComponentStyles.inner
+      ...subStyles.inner
     },
     Heading: {
-      ...subComponentStyles.Heading
+      ...subStyles.Heading
     },
     Text: {
-      ...subComponentStyles.Text
+      ...subStyles.Text
     }
   }
 

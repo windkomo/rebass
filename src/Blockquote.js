@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -11,52 +10,47 @@ const Blockquote = ({
   source,
   href,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { fontSizes, scale } = theme
-
-  const cx = classnames('Blockquote', className)
 
   const sx = {
     root: {
       fontSize: fontSizes[3],
       fontStyle: 'italic',
       margin: 0,
-      marginBottom: scale[2],
-      ...style
+      marginBottom: scale[2]
     },
     p: {
       margin: 0,
       marginBottom: scale[1],
-      ...subComponentStyles.p
+      ...subStyles.p
     },
     cite: {
       fontSize: fontSizes[5],
       fontStyle: 'normal',
-      ...subComponentStyles.cite
+      ...subStyles.cite
     },
     source: {
       color: 'inherit',
-      ...subComponentStyles.source
+      ...subStyles.source
     }
   }
 
   return (
     <blockquote
       {...props}
-      className={cx}
-      style={sx.root}>
-      <p style={sx.p}>
+      {...transformStyle(props, sx)}>
+      <p {...transformStyle({}, sx.p)}>
         {children}
       </p>
-      <cite style={sx.cite}>
+      <cite {...transformStyle({}, sx.cite)}>
         {'— '}
         <a href={href}
-          style={sx.source}
+          {...transformStyle({}, sx.source)}
           children={source} />
       </cite>
     </blockquote>

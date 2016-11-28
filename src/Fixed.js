@@ -16,7 +16,7 @@ const Fixed = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('Fixed', className)

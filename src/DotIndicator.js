@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -12,20 +11,16 @@ const DotIndicator = ({
   active,
   onClick,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale } = theme
 
-  const cx = classnames('DotIndicator', className)
-
   const sx = {
     root: {
-      display: 'inline-flex',
-      ...style
+      display: 'inline-flex'
     },
     button: {
       fontSize: 16,
@@ -40,7 +35,7 @@ const DotIndicator = ({
       backgroundColor: 'transparent',
       border: 0,
       cursor: 'pointer',
-      ...subComponentStyles.button
+      ...subStyles.button
     },
     dot: {
       width: scale[1],
@@ -48,7 +43,7 @@ const DotIndicator = ({
       margin: 'auto',
       backgroundColor: 'currentcolor',
       borderRadius: 99999,
-      ...subComponentStyles.dot
+      ...subStyles.dot
     }
   }
 
@@ -64,17 +59,15 @@ const DotIndicator = ({
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...transformStyle(props, sx.roo)}>
       {dots.map((d) => (
         <button
           key={d}
-          style={{
-            ...sx.button,
+          {...transformStyle({}, sx.button, {
             opacity: d !== active ? 0.375 : 0.875
-          }}
+          })}
           onClick={handleClick(d)}>
-          <div style={sx.dot} />
+          <div {...transformStyle({}, sx.dot)} />
         </button>
       ))}
     </div>

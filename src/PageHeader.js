@@ -16,7 +16,7 @@ const PageHeader = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, borderColor } = theme
@@ -39,13 +39,13 @@ const PageHeader = ({
     },
     inner: {
       flex: '1 1 auto',
-      ...subComponentStyles.inner
+      ...subStyles.inner
     },
     heading: {
-      ...subComponentStyles.Heading
+      ...subStyles.Heading
     },
     text: {
-      ...subComponentStyles.Text
+      ...subStyles.Text
     }
   }
 

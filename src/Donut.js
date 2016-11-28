@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 const M = 'M'
@@ -65,17 +64,14 @@ const Donut = ({
   size,
   strokeWidth,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { bold, colors } = theme
 
   const viewBox = `0 0 ${size} ${size}`
-
-  const cx = classnames('Donut', className)
 
   const sx = {
     root: {
@@ -89,7 +85,6 @@ const Donut = ({
       width: size,
       height: size,
       color: colors.primary,
-      ...style
     },
     svg: {
       position: 'absolute',
@@ -98,43 +93,42 @@ const Donut = ({
       bottom: 0,
       left: 0,
       fill: 'currentcolor',
-      ...subComponentStyles.svg
+      ...subStyles.svg
     },
     bg: {
       opacity: 1 / 16,
-      ...subComponentStyles.background
+      ...subStyles.background
     },
     percentage: {
       marginRight: '-.25em',
-      ...subComponentStyles.percentage
+      ...subStyles.percentage
     },
     unit: {
       fontSize: '.5em',
       verticalAlign: 'super',
-      ...subComponentStyles.unit
+      ...subStyles.unit
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...transformStyle(props, sx.root)}>
       <svg
         viewBox={viewBox}
         width={size}
         height={size}
-        style={sx.svg}>
+        {...transformStyle({}, sx.svg)}>
         <path
           d={createBg(size, strokeWidth)}
-          style={sx.bg} />
+          {...transformStyle({}, sx.bg)} />
         <path d={createPath(size, value, strokeWidth)} />
       </svg>
       {children}
       {!children &&
-        <span style={sx.percentage}>
+        <span {...transformStyle({}, sx.percentage)}>
           {Math.round(value * 100)}
-          <span style={sx.unit}>%</span>
+          <span {...transformStyle({}, sx.unit)}>%</span>
         </span>
       }
     </div>

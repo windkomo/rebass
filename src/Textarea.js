@@ -20,7 +20,7 @@ const Textarea = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme
@@ -50,7 +50,7 @@ const Textarea = ({
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subComponentStyles.label
+      ...subStyles.label
     },
     textarea: {
       fontFamily: 'inherit',
@@ -69,11 +69,11 @@ const Textarea = ({
       boxShadow: 'none',
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...subComponentStyles.textarea
+      ...subStyles.textarea
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subComponentStyles.message
+      ...subStyles.message
     }
   }
 

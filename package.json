@@ -26,7 +26,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.14.0",
-    "cxs": "^1.0.1",
     "enzyme": "^2.4.1",
     "gh-pages": "^0.11.0",
     "gridsys": "^1.0.0-beta.5",
@@ -55,6 +54,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "cxs": "^2.1.0",
     "understyle": "^1.3.0"
   },
   "keywords": [

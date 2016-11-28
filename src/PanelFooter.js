@@ -11,7 +11,7 @@ const PanelFooter = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, borderRadius, fontSizes } = theme

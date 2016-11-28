@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,27 +8,22 @@ import withRebass from './withRebass'
 
 const Carousel = ({
   index,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const length = props.children ? (props.children.length || 0) : 0
 
-  const cx = classnames('Carousel', className)
-
   const sx = {
     root: {
-      overflow: 'hidden',
-      ...style
+      overflow: 'hidden'
     },
     inner: {
       whiteSpace: 'nowrap',
       height: '100%',
       transition: 'transform .2s ease-out',
       transform: `translateX(${index % length * -100}%)`,
-      ...subComponentStyles.inner
+      ...subStyles.inner
     },
     child: {
       display: 'inline-block',
@@ -37,13 +31,13 @@ const Carousel = ({
       whiteSpace: 'normal',
       width: '100%',
       height: '100%',
-      ...subComponentStyles.child
+      ...subStyles.child
     }
   }
 
   const children = React.Children.map(props.children, (child, i) => {
     return (
-      <div style={sx.child}>
+      <div {...transformStyle({}, sx.child)}>
         {child}
       </div>
     )
@@ -52,9 +46,8 @@ const Carousel = ({
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
-      <div style={sx.inner}>
+      {...transformStyle(props, sx.root)}>
+      <div {...transformStyle({}, sx.inner)}>
         {children}
       </div>
     </div>

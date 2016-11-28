@@ -11,7 +11,7 @@ const Pre = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { monospace, scale, fontSizes, borderColor } = theme

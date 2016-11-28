@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,15 +9,12 @@ import withRebass from './withRebass'
 const CardImage = ({
   src,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale } = theme
-
-  const cx = classnames('CardImage', className)
 
   const sx = {
     display: 'block',
@@ -27,15 +23,14 @@ const CardImage = ({
     height: 'auto',
     margin: -scale[1],
     marginBottom: scale[1],
-    ...style
   }
 
   return (
     <img
       {...props}
+      {...transformStyle(props, sx)}
       src={src}
-      className={cx}
-      style={sx} />
+    />
   )
 }
 

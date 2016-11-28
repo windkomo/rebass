@@ -12,7 +12,7 @@ const List = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   children,
   ...props
 }) => {
@@ -31,7 +31,7 @@ const List = ({
     },
     item: {
       marginBottom: scale[1],
-      ...subComponentStyles.item
+      ...subStyles.item
     }
   }
 

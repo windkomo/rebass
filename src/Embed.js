@@ -13,7 +13,7 @@ const Embed = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('Embed', className)
@@ -36,7 +36,7 @@ const Embed = ({
       bottom: 0,
       left: 0,
       border: 0,
-      ...subComponentStyles.children
+      ...subStyles.children
     }
   }
 

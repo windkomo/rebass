@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,15 +8,12 @@ import withRebass from './withRebass'
 
 const Divider = ({
   width,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale, borderColor } = theme
-
-  const cx = classnames('Divider', className)
 
   const sx = {
     width,
@@ -27,14 +23,13 @@ const Divider = ({
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: borderColor,
-    ...style
   }
 
   return (
     <hr
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

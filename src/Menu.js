@@ -11,7 +11,7 @@ const Menu = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme

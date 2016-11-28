@@ -23,7 +23,7 @@ const Input = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderColor } = theme
@@ -54,7 +54,7 @@ const Input = ({
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subComponentStyles.label
+      ...subStyles.label
     },
     input: {
       fontFamily: 'inherit',
@@ -77,11 +77,11 @@ const Input = ({
       WebkitAppearance: 'none',
       appearance: 'none',
       ...style.fill,
-      ...subComponentStyles.input
+      ...subStyles.input
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subComponentStyles.message
+      ...subStyles.message
     }
   }
 

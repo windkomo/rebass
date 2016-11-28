@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Label from './Label'
 
@@ -15,21 +14,14 @@ const Checkbox = ({
   children,
   stacked,
   baseRef,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale, colors, borderRadius } = theme
 
   const invalid = props['aria-invalid'] || props.invalid
-
-  const {
-    color,
-    backgroundColor,
-    ...rootStyle
-  } = style
 
   const sx = {
     root: {
@@ -39,14 +31,13 @@ const Checkbox = ({
       flexDirection: stacked ? 'column' : null,
       paddingBottom: scale[1],
       color: invalid ? colors.error : null,
-      cursor: 'pointer',
-      ...rootStyle
+      cursor: 'pointer'
     },
     input: {
       position: 'absolute',
       zIndex: -1,
       opacity: 0,
-      ...subComponentStyles.input
+      ...subStyles.input
     },
     box: {
       display: 'flex',
@@ -67,7 +58,7 @@ const Checkbox = ({
       borderStyle: 'solid',
       borderWidth: 2,
       transition: 'background-color .1s ease-out',
-      ...subComponentStyles.box
+      ...subStyles.box
     },
     icon: {
       display: checked ? null : 'none',
@@ -75,33 +66,24 @@ const Checkbox = ({
       height: '75%',
       marginTop: 1,
       fill: 'currentcolor',
-      ...subComponentStyles.icon
+      ...subStyles.icon
     }
   }
 
-  const cx = classnames('Checkbox', className, {
-    'isInvalid': invalid,
-    'isDisabled': props.disabled,
-    'isReadonly': props.readOnly
-  })
-
   return (
     <Label
-      className={cx}
-      style={sx.root}>
+      {...transformStyle(props, sx.root)}>
       <input
         {...props}
         ref={baseRef}
         name={name}
         type='checkbox'
         checked={checked}
-        style={sx.input} />
-      <div
-        className='Checkbox_box'
-        style={sx.box}>
+        {...transformStyle({}, sx.input)} />
+      <div {...transformStyle({}, sx.box)}>
         <svg
           viewBox='0 0 32 32'
-          style={sx.icon}>
+          {...transformStyle({}, sx.icon)}>
           <path d='M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z' />
         </svg>
       </div>

@@ -1,21 +1,17 @@
 
 import React from 'react'
 import withRebass from './withRebass'
-import classnames from 'classnames'
 
 /** Arrow for use in dropdowns and other UI elements */
 
 const Arrow = ({
   direction,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
-  const cx = classnames('Arrow', className)
-
   const sx = {
     display: 'inline-block',
     width: 0,
@@ -27,14 +23,13 @@ const Arrow = ({
     borderTop: direction === 'down' ? '.4375em solid' : null,
     borderBottom: direction === 'up' ? '.4375em solid' : null,
     pointerEvents: 'none',
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

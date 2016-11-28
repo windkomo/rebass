@@ -22,7 +22,7 @@ const Select = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderColor, borderRadius } = theme
@@ -68,17 +68,17 @@ const Select = ({
       MozAppearance: 'none',
       WebkitAppearance: 'none',
       ...style.fill,
-      ...subComponentStyles.select
+      ...subStyles.select
     },
     label: {
       paddingRight: horizontal ? scale[1] : null,
       minWidth: horizontal ? 96 : null,
-      ...subComponentStyles.label
+      ...subStyles.label
     },
     wrapper: {
       position: 'relative',
       flex: horizontal ? '1 1 auto' : null,
-      ...subComponentStyles.wrapper
+      ...subStyles.wrapper
     },
     arrow: {
       position: 'absolute',
@@ -86,11 +86,11 @@ const Select = ({
       top: 0,
       margin: scale[3] / 2,
       transform: 'translate(50%, -50%)',
-      ...subComponentStyles.arrow
+      ...subStyles.arrow
     },
     message: {
       paddingLeft: horizontal ? scale[1] : null,
-      ...subComponentStyles.label
+      ...subStyles.label
     }
   }
 

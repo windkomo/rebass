@@ -15,7 +15,7 @@ const SequenceMap = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, bold, colors } = theme
@@ -33,7 +33,7 @@ const SequenceMap = ({
       ...style
     },
     step: {
-      ...subComponentStyles.step
+      ...subStyles.step
     }
   }
 

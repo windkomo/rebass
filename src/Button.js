@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -12,10 +11,9 @@ const Button = ({
   big,
   size,
   baseRef,
-  style,
-  className,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { fontSizes, bold, scale, colors, borderRadius } = theme
@@ -26,10 +24,6 @@ const Button = ({
   const width = theme.circle ? minHeight : null
   const padx = theme.circle ? 0 : scale[2]
   const pady = big ? scale[2] : scale[1]
-
-  const cx = classnames('Button', className)
-
-  const fillStyles = style.fill
 
   const sx = {
     fontFamily: 'inherit',
@@ -49,18 +43,16 @@ const Button = ({
     border: 0,
     borderRadius,
     color: colors.white,
-    backgroundColor: colors.primary,
-    ...fillStyles,
-    ...style
+    backgroundColor: colors.primary
   }
 
   return (
     <Comp
       {...props}
+      {...transformStyle(props, sx)}
       ref={baseRef}
       href={href}
-      className={cx}
-      style={sx} />
+    />
   )
 }
 

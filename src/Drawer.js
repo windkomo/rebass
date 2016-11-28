@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -12,10 +11,9 @@ const Drawer = ({
   size,
   position,
   onDismiss,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale, zIndex, colors } = theme
@@ -64,8 +62,6 @@ const Drawer = ({
     transform = transforms[position]
   }
 
-  const cx = classnames('Drawer', className)
-
   const sx = {
     content: {
       position: 'fixed',
@@ -80,7 +76,6 @@ const Drawer = ({
       overflowY: 'scroll',
       color: colors.white,
       backgroundColor: colors.default,
-      ...style
     },
     dismiss: {
       position: 'fixed',
@@ -90,18 +85,18 @@ const Drawer = ({
       left: 0,
       zIndex: zIndex[3],
       display: open ? null : 'none',
-      ...subComponentStyles.dismiss
+      ...subStyles.dismiss
     }
   }
 
   return (
-    <div className={cx}>
-      <div style={sx.dismiss}
+    <div>
+      <div {...transformStyle({}, sx.dismiss)}
         onClick={onDismiss} />
       <div
         {...props}
-        className='Drawer Drawer_content'
-        style={sx.content} />
+        {...transformStyle({}, props)}
+      />
     </div>
   )
 }

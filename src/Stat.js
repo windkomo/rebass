@@ -15,7 +15,7 @@ const Stat = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, bold, scale } = theme
@@ -34,17 +34,17 @@ const Stat = ({
       lineHeight: 1,
       marginTop: topLabel ? scale[1] / 2 : null,
       marginBottom: topLabel ? null : scale[1] / 2,
-      ...subComponentStyles.value
+      ...subStyles.value
     },
     unit: {
       fontSize: fontSizes[3],
-      ...subComponentStyles.unit
+      ...subStyles.unit
     },
     label: {
       fontSize: fontSizes[6],
       fontWeight: bold,
       lineHeight: 1,
-      ...subComponentStyles.label
+      ...subStyles.label
     }
   }
 

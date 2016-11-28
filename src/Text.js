@@ -13,7 +13,7 @@ const Text = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes } = theme

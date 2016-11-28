@@ -4,11 +4,12 @@ import withRebass from './withRebass'
 
 const Base = ({
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
-}) => {
-  return <div {...props} />
-}
+}) => (
+  <div {...props} />
+)
 
 export default withRebass(Base)
 

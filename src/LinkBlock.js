@@ -11,7 +11,7 @@ const LinkBlock = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('LinkBlock', className)

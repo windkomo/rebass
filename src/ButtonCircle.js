@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Button from './Button'
 
@@ -9,22 +8,13 @@ import Button from './Button'
  */
 
 const ButtonCircle = ({
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
-}) => {
-  const cx = classnames('ButtonCircle', className)
-
-  return (
-    <Button
-      {...props}
-      circle
-      className={cx}
-      style={style} />
-  )
-}
+}) => (
+  <Button {...props} circle />
+)
 
 ButtonCircle._name = 'ButtonCircle'
 

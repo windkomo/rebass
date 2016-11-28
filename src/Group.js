@@ -17,7 +17,7 @@ const Group = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('Group', className)

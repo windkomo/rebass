@@ -20,7 +20,7 @@ const InlineForm = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('InlineForm', className)
@@ -33,12 +33,12 @@ const InlineForm = ({
     },
     input: {
       flex: '1 1 auto',
-      ...subComponentStyles.Input
+      ...subStyles.Input
     },
     button: {
       marginLeft: -1,
-      ...subComponentStyles.Button,
-      ...subComponentStyles.ButtonOutline
+      ...subStyles.Button,
+      ...subStyles.ButtonOutline
     }
   }
 

@@ -13,7 +13,7 @@ const Tooltip = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const {
@@ -52,7 +52,7 @@ const Tooltip = ({
       color: colors.white,
       backgroundColor: colors.black,
       ...style.fill,
-      ...subComponentStyles.box
+      ...subStyles.box
     },
     arrow: {
       position: 'absolute',
@@ -61,7 +61,7 @@ const Tooltip = ({
       border: '6px solid transparent',
       borderTopColor: style.fill.backgroundColor || style.backgroundColor || colors.black,
       transform: 'translate(-50%, 0)',
-      ...subComponentStyles.box
+      ...subStyles.box
     }
   }
 

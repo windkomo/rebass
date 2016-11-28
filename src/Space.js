@@ -14,7 +14,7 @@ const Space = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale } = theme

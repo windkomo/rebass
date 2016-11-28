@@ -13,7 +13,7 @@ const Rating = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, colors } = theme
@@ -40,7 +40,7 @@ const Rating = ({
       color: 'inherit',
       backgroundColor: 'transparent',
       cursor: onClick ? 'pointer' : null,
-      ...subComponentStyles.star
+      ...subStyles.star
     }
   }
 

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Button from './Button'
 
@@ -10,36 +9,32 @@ import Button from './Button'
 
 const ButtonOutline = ({
   active,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { colors, borderRadius } = theme
-  const cx = classnames('ButtonOutline', className)
-
-  const {
-    backgroundColor = colors.primary
-  } = style.fill
 
   const sx = {
     backgroundColor: backgroundColor || 'transparent',
     boxShadow: `inset 0 0 0 1px ${backgroundColor}`,
     borderRadius,
-    ...(active ? style.fill : {
+    ...(active ? {
+      color: 'white',
+      backgroundColor: 'tomato'
+    } : {
       color: backgroundColor,
       backgroundColor: 'transparent'
     }),
-    ...style
   }
 
   return (
     <Button
       {...props}
+      {...transformStyle(props, sx)}
       circle={theme.circle}
-      className={cx}
-      style={sx} />
+    />
   )
 }
 

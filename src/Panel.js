@@ -14,7 +14,7 @@ const Panel = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderRadius } = theme

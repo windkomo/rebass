@@ -13,7 +13,7 @@ const Table = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, scale, borderColor } = theme
@@ -34,16 +34,16 @@ const Table = ({
       borderCollapse: 'separate',
       borderSpacing: 0,
       width: '100%',
-      ...subComponentStyles.table
+      ...subStyles.table
     },
     thead: {
-      ...subComponentStyles.thead
+      ...subStyles.thead
     },
     tbody: {
-      ...subComponentStyles.tbody
+      ...subStyles.tbody
     },
     tr: {
-      ...subComponentStyles.tr
+      ...subStyles.tr
     },
     th: {
       textAlign: 'left',
@@ -53,7 +53,7 @@ const Table = ({
       borderBottomStyle: 'solid',
       borderBottomWidth: 2,
       borderColor: 'inherit',
-      ...subComponentStyles.th
+      ...subStyles.th
     },
     td: {
       padding: scale[1],
@@ -61,7 +61,7 @@ const Table = ({
       borderBottomStyle: 'solid',
       borderBottomWidth: 1,
       borderColor: 'inherit',
-      ...subComponentStyles.td
+      ...subStyles.td
     }
   }
 

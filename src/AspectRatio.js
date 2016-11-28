@@ -2,31 +2,26 @@
 // Fixed aspect ratio component
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 const AspectRatio = ({
   ratio = 4 / 3,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
-  const cx = classnames('AspectRatio', className)
-
   const sx = {
     width: '100%',
     height: 0,
-    paddingBottom: `${ratio * 100}%`,
-    ...style
+    paddingBottom: `${ratio * 100}%`
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

@@ -16,7 +16,7 @@ const SequenceMapStep = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }, { rebass }) => {
   const { scale, colors } = theme
@@ -45,7 +45,7 @@ const SequenceMapStep = ({
       marginBottom: scale[1],
       borderRadius: 99999,
       backgroundColor: 'currentcolor',
-      ...subComponentStyles.dot
+      ...subStyles.dot
     },
     line: {
       position: 'absolute',
@@ -55,14 +55,14 @@ const SequenceMapStep = ({
       right: 0,
       height: 4,
       backgroundColor: 'currentcolor',
-      ...subComponentStyles.line
+      ...subStyles.line
     },
     label: {
-      ...subComponentStyles.label
+      ...subStyles.label
     },
     active: {
       color: colors.primary,
-      ...subComponentStyles.active
+      ...subStyles.active
     }
   }
 

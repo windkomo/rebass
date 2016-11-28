@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,10 +9,9 @@ import withRebass from './withRebass'
 const Banner = ({
   align,
   backgroundImage,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }, { rebass }) => {
   const { scale, colors, fontSizes } = theme
@@ -25,8 +23,6 @@ const Banner = ({
   }
 
   const alignItems = alignment[align]
-
-  const cx = classnames('Banner', className)
 
   const sx = {
     fontSize: fontSizes[1],
@@ -42,15 +38,14 @@ const Banner = ({
     minHeight: '100vh',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
-    backgroundImage: backgroundImage ? `url(${backgroundImage})` : null,
-    ...style
+    backgroundImage: backgroundImage ? `url(${backgroundImage})` : null
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

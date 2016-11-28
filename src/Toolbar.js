@@ -11,7 +11,7 @@ const Toolbar = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors } = theme

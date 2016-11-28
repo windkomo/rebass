@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 import Menu from './Menu'
 
@@ -14,15 +13,12 @@ const DropdownMenu = ({
   top,
   children,
   onDismiss,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { zIndex } = theme
-
-  const cx = classnames('DropdownMenu', className)
 
   const sx = {
     root: {
@@ -33,7 +29,6 @@ const DropdownMenu = ({
       top: top ? 'auto' : '100%',
       bottom: top ? '100%' : 'auto',
       zIndex: 4,
-      ...style
     },
     overlay: {
       position: 'fixed',
@@ -42,29 +37,28 @@ const DropdownMenu = ({
       right: 0,
       bottom: 0,
       left: 0,
-      ...subComponentStyles.overlay
+      ...subStyles.overlay
     },
     content: {
       position: 'relative',
       zIndex: zIndex[1],
-      ...subComponentStyles.content
+      ...subStyles.content
     },
     Menu: {
-      ...subComponentStyles.Menu
+      ...subStyles.Menu
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...transformStyle(props, sx.root)}>
       <div
-        style={sx.overlay}
+        {...transformStyle({}, sx.overlay)}
         onClick={onDismiss} />
-      <div style={sx.content}>
+      <div {...transformStyle({}, sx.content)}>
         <Menu {...props}
-          style={sx.Menu}
+          {...transformStyle({}, sx.Menu)}
           children={children} />
       </div>
     </div>

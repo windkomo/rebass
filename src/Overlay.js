@@ -17,7 +17,7 @@ const Overlay = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { zIndex, scale, colors, borderRadius } = theme
@@ -28,7 +28,7 @@ const Overlay = ({
     padding: scale[3],
     backgroundColor: colors.white,
     borderRadius,
-    ...subComponentStyles.box
+    ...subStyles.box
   }
 
   const sx = {
@@ -43,7 +43,7 @@ const Overlay = ({
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      ...subComponentStyles.background
+      ...subStyles.background
     },
     dismiss: {
       position: 'fixed',
@@ -53,7 +53,7 @@ const Overlay = ({
       left: 0,
       backgroundColor: dark ? colors.black : colors.white,
       opacity: 0.875,
-      ...subComponentStyles.dismiss
+      ...subStyles.dismiss
     },
     inner: {
       position: 'relative',

@@ -8,7 +8,7 @@ const Tabs = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { borderColor } = theme

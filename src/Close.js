@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,14 +8,10 @@ import withRebass from './withRebass'
 
 const Close = ({
   baseRef,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
-  const cx = classnames('Close', className)
-
   const sx = {
     fontSize: '1.5em',
     lineHeight: 1,
@@ -28,16 +23,14 @@ const Close = ({
     backgroundColor: 'transparent',
     border: 0,
     WebkitAppearance: 'none',
-    ...style
   }
 
   return (
     <button
       {...props}
+      {...transformStyle(props, sx)}
       ref={baseRef}
       title='Close'
-      className={cx}
-      style={sx}
       children='×' />
   )
 }

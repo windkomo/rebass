@@ -17,7 +17,7 @@ const Media = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale } = theme
@@ -45,10 +45,10 @@ const Media = ({
       marginRight: right ? 0 : scale[2],
       marginLeft: right ? scale[2] : 0,
       order: right ? 9999 : null,
-      ...subComponentStyles.image
+      ...subStyles.image
     },
     body: {
-      ...subComponentStyles.body
+      ...subStyles.body
     }
   }
 

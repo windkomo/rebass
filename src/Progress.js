@@ -12,7 +12,7 @@ const Progress = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors } = theme
@@ -47,7 +47,7 @@ const Progress = ({
       border: 0,
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...subComponentStyles.progress
+      ...subStyles.progress
     }
   }
 

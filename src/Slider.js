@@ -19,7 +19,7 @@ const Slider = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors } = theme
@@ -55,7 +55,7 @@ const Slider = ({
   const backgroundImage = fill ? `linear-gradient(90deg, currentcolor, currentcolor ${percent}%, transparent ${percent}%)` : null
 
   const cx = classnames('Slider', className)
-  const { height } = { height: 6, ...subComponentStyles.input }
+  const { height } = { height: 6, ...subStyles.input }
 
   const sx = {
     root: {
@@ -67,7 +67,7 @@ const Slider = ({
     label: {
       minWidth: horizontal ? 96 : null,
       paddingRight: horizontal ? scale[1] : null,
-      ...subComponentStyles.label
+      ...subStyles.label
     },
     input: {
       boxSizing: 'border-box',
@@ -86,7 +86,7 @@ const Slider = ({
       borderRadius: 999,
       WebkitAppearance: 'none',
       appearance: 'none',
-      ...subComponentStyles.input
+      ...subStyles.input
     }
   }
 

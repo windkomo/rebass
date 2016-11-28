@@ -1,34 +1,28 @@
 
 import React from 'react'
 import withRebass from './withRebass'
-import classnames from 'classnames'
 
 /**
  * Box component for adding box shadows
  */
 
 const BoxShadow = ({
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { boxShadow, borderRadius } = theme
 
-  const cx = classnames('BoxShadow', className)
-
   const sx = {
     boxShadow,
-    borderRadius,
-    ...style
+    borderRadius
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx}
+      {...transformStyle(props, sx)}
     />
   )
 }

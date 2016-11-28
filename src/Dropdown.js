@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,24 +7,20 @@ import withRebass from './withRebass'
  */
 
 const Dropdown = ({
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
-  const cx = classnames('Dropdown', className)
-
   const sx = {
     position: 'relative',
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

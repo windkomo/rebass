@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -14,17 +13,14 @@ const Block = ({
   borderRight,
   borderBottom,
   borderLeft,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }, { rebass }) => {
   const { colors } = theme
 
   borderColor = colors[borderColor] || borderColor || colors.primary
-
-  const cx = classnames('Block', className)
 
   const sx = {
     borderStyle: border ? 'solid' : 'none',
@@ -33,15 +29,14 @@ const Block = ({
     borderBottomStyle: borderBottom ? 'solid' : null,
     borderLeftStyle: borderLeft ? 'solid' : null,
     borderWidth: 4,
-    borderColor,
-    ...style
+    borderColor
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

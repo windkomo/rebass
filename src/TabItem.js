@@ -9,7 +9,7 @@ const TabItem = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, fontSizes, bold, colors } = theme
@@ -32,7 +32,7 @@ const TabItem = ({
     ...(active ? {
       color: colors.primary,
       borderBottomColor: colors.primary,
-      ...subComponentStyles.active
+      ...subStyles.active
     } : {})
   }
 

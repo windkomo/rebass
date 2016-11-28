@@ -18,7 +18,7 @@ const Radio = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors } = theme
@@ -51,7 +51,7 @@ const Radio = ({
       position: 'absolute',
       zIndex: -1,
       opacity: 0,
-      ...subComponentStyles.input
+      ...subStyles.input
     },
     dot: {
       boxSizing: 'border-box',
@@ -67,7 +67,7 @@ const Radio = ({
       opacity: checked ? null : 1 / 4,
       transition: 'border .1s ease-out',
       color: backgroundColor || style.fill.backgroundColor,
-      ...subComponentStyles.dot
+      ...subStyles.dot
     }
   }
 

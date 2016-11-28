@@ -11,7 +11,7 @@ const Footer = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, fontSizes, borderColor } = theme

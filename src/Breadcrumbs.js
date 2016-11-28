@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -10,36 +9,31 @@ import withRebass from './withRebass'
 const Breadcrumbs = ({
   links,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { fontSizes, scale } = theme
-
-  const cx = classnames('Breadcrumbs', className)
 
   const sx = {
     root: {
       fontSize: fontSizes[5],
       display: 'flex',
       marginBottom: scale[2],
-      alignItems: 'center',
-      ...style
+      alignItems: 'center'
     },
     spacer: {
       marginLeft: '.5em',
       marginRight: '.5em',
-      ...subComponentStyles.spacer
+      ...subStyles.spacer
     }
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx.root}>
+      {...transformStyle(props, sx)}>
       {links.map((link, i) => {
         const linkStyle = {
           color: 'inherit',
@@ -50,9 +44,10 @@ const Breadcrumbs = ({
           <div key={i}>
             <a
               {...link}
-              style={linkStyle} />
+              {...transformStyle({}, linkStyle)}
+            />
             {i < links.length - 1 && (
-              <span style={sx.spacer}>/</span>
+              <span {...transformStyle({}, sx.spacer)}>/</span>
             )}
           </div>
         )

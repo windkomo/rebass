@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -9,15 +8,13 @@ import withRebass from './withRebass'
 
 const Card = ({
   width,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }, { rebass }) => {
   const { scale, borderColor, borderRadius } = theme
 
-  const cx = classnames('Card', className)
   const sx = {
     width,
     padding: scale[1],
@@ -26,15 +23,14 @@ const Card = ({
     borderStyle: 'solid',
     borderColor,
     borderRadius,
-    overflow: 'hidden',
-    ...style
+    overflow: 'hidden'
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

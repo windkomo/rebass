@@ -1,7 +1,6 @@
 
 import React from 'react'
 import withRebass from './withRebass'
-import classnames from 'classnames'
 
 /**
  * A circular image for displaying user avatars
@@ -10,15 +9,12 @@ import classnames from 'classnames'
 const Avatar = ({
   size,
   children,
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }, { rebass }) => {
   const { colors } = theme
-
-  const cx = classnames('Avatar', className)
 
   const sx = {
     display: 'inline-block',
@@ -26,17 +22,15 @@ const Avatar = ({
     width: size,
     height: size,
     backgroundColor: colors.gray,
-    borderRadius: 99999,
-    ...style
+    borderRadius: 99999
   }
 
   return (
     <img
       {...props}
-      className={cx}
+      {...transformStyle(props, sx)}
       width={size}
       height={size}
-      style={sx}
     />
   )
 }

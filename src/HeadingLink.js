@@ -16,7 +16,7 @@ const HeadingLink = ({
   style,
   className,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const cx = classnames('HeadingLink', className)
@@ -28,7 +28,7 @@ const HeadingLink = ({
     link: {
       color: 'inherit',
       textDecoration: 'none',
-      ...subComponentStyles.link
+      ...subStyles.link
     }
   }
 

@@ -1,6 +1,5 @@
 
 import React from 'react'
-import classnames from 'classnames'
 import withRebass from './withRebass'
 
 /**
@@ -8,29 +7,25 @@ import withRebass from './withRebass'
  */
 
 const Container = ({
-  className,
-  style,
   theme,
-  subComponentStyles,
+  subStyles,
+  transformStyle,
   ...props
 }) => {
   const { scale } = theme
-
-  const cx = classnames('Container', className)
 
   const sx = {
     maxWidth: 1024,
     paddingLeft: scale[2],
     paddingRight: scale[2],
     margin: 'auto',
-    ...style
   }
 
   return (
     <div
       {...props}
-      className={cx}
-      style={sx} />
+      {...transformStyle(props, sx)}
+    />
   )
 }
 

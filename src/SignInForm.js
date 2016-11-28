@@ -17,7 +17,7 @@ const SignInForm = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   // const {} = theme

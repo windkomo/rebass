@@ -9,7 +9,7 @@ const Message = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { bold, scale, colors, borderRadius } = theme

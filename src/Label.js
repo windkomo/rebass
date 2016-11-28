@@ -12,7 +12,7 @@ const Label = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { fontSizes, bold } = theme

@@ -12,7 +12,7 @@ const Switch = ({
   className,
   style,
   theme,
-  subComponentStyles,
+  subStyles,
   ...props
 }) => {
   const { scale, colors, borderColor } = theme
@@ -45,7 +45,7 @@ const Switch = ({
       borderRadius: 99999,
       color,
       backgroundColor: colors.white,
-      ...subComponentStyles.dot
+      ...subStyles.dot
     }
   }
 
