@@ -50,7 +50,7 @@ const Radio = ({
       borderRadius: 99999,
       opacity: checked ? null : 1 / 4,
       transition: 'border .1s ease-out',
-      color: backgroundColor || style.fill.backgroundColor,
+      color: 'tomato' // style.fill.backgroundColor,
     }
   }
 

@@ -22,7 +22,7 @@ const Checkbox = ({
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const stylesx = {
+  const styles = {
     root: {
       position: 'relative',
       display: 'flex',
@@ -46,9 +46,9 @@ const Checkbox = ({
       marginRight: stacked ? null : scale[1],
       marginBottom: stacked ? scale[1] : null,
       ...(checked ? {
-        color: color || style.fill.color || colors.white,
-        backgroundColor: backgroundColor || style.fill.backgroundColor || colors.success,
-        borderColor: backgroundColor || style.fill.borderColor || colors.success
+        color: colors.white,
+        backgroundColor: colors.success,
+        borderColor: colors.success
       } : {
         borderColor: theme.borderColor
       }),

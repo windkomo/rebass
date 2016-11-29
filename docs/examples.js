@@ -589,16 +589,17 @@ export const examples = {
         { value: 64, children: 'Sixty-Four' }
       ]} />
   ),
+  // {...getProps(rest)}
   SequenceMap: ({ ...rest }) => (
     <SequenceMap
-      {...getProps(rest)}
       steps={[
         { href: '#!', children: 'Sign In' },
         { href: '#!', children: 'Shipping Address' },
         { href: '#!', children: 'Payment Method' },
         { href: '#!', children: 'Place Order' }
       ]}
-      active={1} />
+      active={1}
+    />
   ),
   SequenceMapStep: ({ ...rest }) => (
     <SequenceMapStep

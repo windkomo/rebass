@@ -20,7 +20,7 @@ const InlineForm = ({
   sx,
   ...props
 }) => {
-  const style = {
+  const styles = {
     root: {
       display: 'flex',
       alignItems: 'center',

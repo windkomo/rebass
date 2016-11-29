@@ -16,15 +16,15 @@ const ButtonOutline = ({
   const { colors, borderRadius } = theme
 
   const style = {
-    backgroundColor: backgroundColor || 'transparent',
-    boxShadow: `inset 0 0 0 1px ${backgroundColor}`,
+    backgroundColor: 'transparent',
+    // boxShadow: `inset 0 0 0 1px ${backgroundColor}`,
     borderRadius,
     ...(active ? {
       // To do: handle fill/theme prop shit
       color: 'white',
       backgroundColor: 'tomato'
     } : {
-      color: backgroundColor,
+      color: 'tomato', // backgroundColor,
       backgroundColor: 'transparent'
     }),
   }

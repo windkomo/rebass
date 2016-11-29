@@ -8,7 +8,7 @@ import SequenceMapStep from './SequenceMapStep'
  */
 
 const SequenceMap = ({
-  steps,
+  steps = [],
   active,
   children,
   theme,
@@ -42,6 +42,8 @@ const SequenceMap = ({
       active={i <= active}
     />
   ))
+
+  console.log('steps', steps, schx, chx)
 
   return (
     <div

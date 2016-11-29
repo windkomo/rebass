@@ -24,7 +24,7 @@ const Textarea = ({
 
   const invalid = props['aria-invalid'] || props.invalid
 
-  const style = {
+  const styles = {
     root: {
       display: horizontal ? 'flex' : null,
       alignItems: horizontal ? 'baseline' : null,
@@ -43,8 +43,8 @@ const Textarea = ({
       flex: horizontal ? '1 1 auto' : null,
       width: '100%',
       padding: scale[1],
-      color: color || 'inherit',
-      backgroundColor: backgroundColor || colors.lighten,
+      color: 'inherit',
+      backgroundColor: colors.lighten,
       borderWidth: 1,
       borderStyles: 'solid',
       borderColor,

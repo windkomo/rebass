@@ -11,6 +11,7 @@ const Bar = ({
   const { scale, bold, colors } = theme
 
   const p = `${value * 100}%`
+  const backgroundColor = colors.primary
   const backgroundImage = `linear-gradient(90deg, ${backgroundColor} ${p}%, transparent ${p})`
 
   const style = {
