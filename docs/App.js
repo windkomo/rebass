@@ -8,8 +8,15 @@ import {
   Badge,
   Banner,
   Bar,
-  Button
+  Block,
+  Blockquote,
+  Button,
+  ButtonCircle,
+  ButtonOutline,
 } from 'rebass'
+
+console.log(Button)
+console.log(ButtonOutline)
 
 const App = () => (
   <div id='app'>
@@ -28,14 +35,28 @@ const App = () => (
       <Arrow />
       <Arrow direction='up' />
     </Base>
-    <Bar value={1/2}>Bar</Bar>
-    <Bar value={3/4}>Bar</Bar>
+    <Block p2>
+      <Bar value={1/2}>Bar</Bar>
+      <Bar value={3/4}>Bar</Bar>
+    </Block>
+    <Blockquote>
+      “If one says ‘Red’ (the name of the color) and there are 50 people listening, it can be expected that there will be 50 reds in their minds. And one can be sure that all these reds will be very different.”
+    </Blockquote>
     <Avatar src='http://jxnblk.com/avatar/avatar-640.png' />
     {/*
     <AspectRatio bgOrange>AspectRatio</AspectRatio>
     */}
 
     <Button
+      rounded='left'
+      href='http://jxnblk.com'
+      children='Beep' />
+    <ButtonOutline
+      rounded={false}
+      href='http://jxnblk.com'
+      children='Beep' />
+    <ButtonOutline
+      rounded='right'
       href='http://jxnblk.com'
       children='Boop' />
   </div>

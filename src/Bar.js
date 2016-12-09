@@ -28,7 +28,9 @@ styles.removeProps = [
   'color'
 ]
 
-const Bar = createComponent('div', styles, 'Bar')
+const Bar = createComponent('div', styles, {
+  name: 'Bar'
+})
 
 export default Bar
 

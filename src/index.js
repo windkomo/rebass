@@ -16,20 +16,20 @@ export { default as Avatar } from './Avatar'
 export { default as Badge } from './Badge'
 export { default as Banner } from './Banner'
 export { default as Bar } from './Bar'
+export { default as Block } from './Block'
+export { default as Blockquote } from './Blockquote'
+export { default as BoxShadow } from './BoxShadow'
 export { default as Button } from './Button'
+export { default as ButtonCircle } from './ButtonCircle'
+export { default as ButtonOutline } from './ButtonOutline'
 
 /*
 
 export { default as theme } from './themes/basic'
 export { default as themes } from './themes'
 
-export { default as Block } from './Block'
-export { default as Blockquote } from './Blockquote'
-export { default as BoxShadow } from './BoxShadow'
 export { default as Breadcrumbs } from './Breadcrumbs'
-export { default as Button } from './Button'
-export { default as ButtonCircle } from './ButtonCircle'
-export { default as ButtonOutline } from './ButtonOutline'
+
 export { default as Card } from './Card'
 export { default as CardImage } from './CardImage'
 export { default as Carousel } from './Carousel'

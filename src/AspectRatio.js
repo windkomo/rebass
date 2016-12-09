@@ -16,7 +16,9 @@ styles.removeProps = [
   'ratio'
 ]
 
-const AspectRatio = createComponent('div', styles, 'AspectRatio')
+const AspectRatio = createComponent('div', styles, {
+  name: 'AspectRatio'
+})
 
 export default AspectRatio
 

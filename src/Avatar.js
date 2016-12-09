@@ -21,7 +21,9 @@ styles.removeProps = [
   'size'
 ]
 
-const Avatar = createComponent('img', styles, 'Avatar')
+const Avatar = createComponent('img', styles, {
+  name: 'Avatar'
+})
 
 export default Avatar
 

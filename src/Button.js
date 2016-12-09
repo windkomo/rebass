@@ -32,10 +32,19 @@ export const styles = ({
   }
 }
 
-export const BaseButton = comp('button', styles, 'Button')
-export const LinkButton = comp('a', styles, 'Button')
+// To do: this might not work as expected
+export const BaseButton = comp('button', styles, {
+  name: 'Button'
+})
+export const LinkButton = comp('a', styles, {
+  name: 'Button'
+})
 
-const Button = ({
+const Button = comp('button' styles, {
+  name: 'Button'
+})
+
+const xButton = ({
   href,
   ...props
 }) => {

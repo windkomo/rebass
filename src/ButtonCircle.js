@@ -1,32 +1,20 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
 import Button from './Button'
+import createComponent from './create-component'
 
 /**
  * Deprecated in favor of Button `circle` prop
+ * Maybe just outright deprecate this
  */
 
-const ButtonCircle = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('ButtonCircle', className)
+export const styles = () => ({
+  borderRadius: 99999
+})
 
-  return (
-    <Button
-      {...props}
-      circle
-      className={cx}
-      style={style} />
-  )
-}
+const ButtonCircle = createComponent(Button, styles, {
+  name: 'ButtonCircle'
+})
 
-ButtonCircle._name = 'ButtonCircle'
-
-export default withRebass(ButtonCircle)
+export default ButtonCircle
 

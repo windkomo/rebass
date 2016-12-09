@@ -10,7 +10,9 @@ const getTheme = ({ rebass = {} }) => merge(rebass, defaultTheme, { clone: true 
 // To do:
 // - [ ] Add removeProps option
 
-const createComponent = (Comp, styles, name) => {
+const createComponent = (Comp, styles, {
+  name
+} = {}) => {
   class RebassComponent extends React.Component {
     render () {
       const theme = getTheme(this.context)

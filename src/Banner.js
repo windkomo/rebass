@@ -33,7 +33,9 @@ styles.removeProps = [
   'backgroundImage'
 ]
 
-const Banner = createComponent('div', styles, 'Banner')
+const Banner = createComponent('div', styles, {
+  name: 'Banner'
+})
 
 export default Banner
 

@@ -23,7 +23,9 @@ styles.removeProps = [
   'direction'
 ]
 
-const Arrow = createComponent('div', styles, 'Arrow')
+const Arrow = createComponent('div', styles, {
+  name: 'Arrow'
+})
 
 export default Arrow
 
