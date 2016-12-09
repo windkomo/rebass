@@ -20,11 +20,18 @@ module.exports = {
     libraryTarget: 'umd'
   },
 
+  resolve: {
+    alias: {
+      rebass: path.join(__dirname, 'src')
+    }
+  },
+
   module: {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // To do: Remove understyle after unlinking
+        exclude: /node_modules|understyle/,
         loaders: [
           'babel'
         ]

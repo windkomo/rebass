@@ -1,14 +1,7 @@
 
-import React from 'react'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
-const Base = ({
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  return <div {...props} />
-}
+const Base = createComponent('div')
 
-export default withRebass(Base)
+export default Base
 

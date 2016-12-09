@@ -1,4 +1,8 @@
 
+import { defaultConfig } from 'understyle'
+
+const { colors } = defaultConfig
+
 const serif = 'Georgia, serif'
 const monospace = 'Menlo, Consolas, monospace'
 
@@ -15,7 +19,7 @@ const baseColors = {
   darken: `rgba(0, 0, 0, ${1 / 16})`
 }
 
-const colors = {
+const xcolors = {
   ...baseColors,
   primary: baseColors.blue,
   secondary: baseColors.midgray,
@@ -35,7 +39,7 @@ const scale = [
   64
 ]
 
-const fontSizes = [
+const typeScale = [
   48,
   32,
   24,
@@ -66,7 +70,7 @@ const caps = {
 const basic = {
   name: 'Basic',
   scale,
-  fontSizes,
+  typeScale,
   bold,
   serif,
   monospace,

@@ -1,53 +1,29 @@
 
 import React from 'react'
-import withRebass from './withRebass'
-import classnames from 'classnames'
+import createComponent from './create-component'
 
 /** Arrow for use in dropdowns and other UI elements */
 
-const Arrow = ({
-  direction,
-  children,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('Arrow', className)
+export const styles = (theme, {
+  direction = 'down'
+}) => ({
+  display: 'inline-block',
+  width: 0,
+  height: 0,
+  marginLeft: '.5em',
+  verticalAlign: 'middle',
+  borderRight: '.3125em solid transparent',
+  borderLeft: '.3125em solid transparent',
+  borderTop: direction === 'down' ? '.4375em solid' : null,
+  borderBottom: direction === 'up' ? '.4375em solid' : null,
+  pointerEvents: 'none',
+})
 
-  const sx = {
-    display: 'inline-block',
-    width: 0,
-    height: 0,
-    marginLeft: '.5em',
-    verticalAlign: 'middle',
-    borderRight: '.3125em solid transparent',
-    borderLeft: '.3125em solid transparent',
-    borderTop: direction === 'down' ? '.4375em solid' : null,
-    borderBottom: direction === 'up' ? '.4375em solid' : null,
-    pointerEvents: 'none',
-    ...style
-  }
+styles.removeProps = [
+  'direction'
+]
 
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
+const Arrow = createComponent('div', styles, 'Arrow')
 
-Arrow.propTypes = {
-  /** Direction of arrow */
-  direction: React.PropTypes.oneOf(['up', 'down'])
-}
-
-Arrow.defaultProps = {
-  direction: 'down'
-}
-
-Arrow._name = 'Arrow'
-
-export default withRebass(Arrow)
+export default Arrow
 

@@ -1,8 +1,18 @@
 
-export { default as withRebass } from './withRebass'
+// New
+export { default as createComponent } from './create-component'
+
+// Old
+// export { default as withRebass } from './withRebass'
+
 export { default as ThemeProvider } from './ThemeProvider'
 
 export { default as Base } from './Base'
+
+export { default as Arrow } from './Arrow'
+export { default as Button } from './Button'
+
+/*
 
 export { default as theme } from './themes/basic'
 export { default as themes } from './themes'
@@ -86,4 +96,5 @@ export { default as config } from './themes/basic'
 
 import * as Rebass from '.'
 export default Rebass
+*/
 
