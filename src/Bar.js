@@ -1,44 +1,34 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
-const Bar = ({
+export const styles = ({
+  scale,
+  bold,
+  colors
+}, {
   value = 0,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
+  // To do: handle bar color
+  backgroundColor
 }) => {
-  const { scale, bold, colors } = theme
-  const cx = classnames('Bar', className)
-
-  const {
-    backgroundColor = style.fill.backgroundColor || colors.muted,
-    ...rootStyle
-  } = style
-
   const p = `${value * 100}%`
-  const backgroundImage = `linear-gradient(90deg, ${backgroundColor} ${p}%, transparent ${p})`
+  const backgroundImage = `linear-gradient(90deg, ${backgroundColor || colors.blue} ${p}%, transparent ${p})`
 
-  const sx = {
+  return {
     fontWeight: bold,
     padding: scale[1],
     backgroundSize: '100% 100%',
     backgroundImage,
-    ...rootStyle
+    backgroundColor: 'transparent'
   }
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
 }
 
-Bar._name = 'Bar'
+styles.removeProps = [
+  'value',
+  'color'
+]
 
-export default withRebass(Bar)
+const Bar = createComponent('div', styles, 'Bar')
+
+export default Bar
 

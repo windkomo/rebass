@@ -10,6 +10,12 @@ export { default as ThemeProvider } from './ThemeProvider'
 export { default as Base } from './Base'
 
 export { default as Arrow } from './Arrow'
+export { default as AspectRatio } from './AspectRatio'
+export { default as Avatar } from './Avatar'
+
+export { default as Badge } from './Badge'
+export { default as Banner } from './Banner'
+export { default as Bar } from './Bar'
 export { default as Button } from './Button'
 
 /*
@@ -17,12 +23,6 @@ export { default as Button } from './Button'
 export { default as theme } from './themes/basic'
 export { default as themes } from './themes'
 
-export { default as Arrow } from './Arrow'
-export { default as AspectRatio } from './AspectRatio'
-export { default as Avatar } from './Avatar'
-export { default as Badge } from './Badge'
-export { default as Banner } from './Banner'
-export { default as Bar } from './Bar'
 export { default as Block } from './Block'
 export { default as Blockquote } from './Blockquote'
 export { default as BoxShadow } from './BoxShadow'
