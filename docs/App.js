@@ -15,9 +15,6 @@ import {
   ButtonOutline,
 } from 'rebass'
 
-console.log(Button)
-console.log(ButtonOutline)
-
 const App = () => (
   <div id='app'>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
@@ -48,15 +45,12 @@ const App = () => (
     */}
 
     <Button
-      rounded='left'
       href='http://jxnblk.com'
       children='Beep' />
     <ButtonOutline
-      rounded={false}
       href='http://jxnblk.com'
       children='Beep' />
     <ButtonOutline
-      rounded='right'
       href='http://jxnblk.com'
       children='Boop' />
   </div>
