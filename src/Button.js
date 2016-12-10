@@ -12,23 +12,33 @@ export const styles = ({
   colors,
   borderRadius
 }) => {
-  const pady = `calc(${scale[1]}px - 1px)`
+  // To do: Add to Input/Select or remove
+  // const pady = `calc(${scale[1]}px - 1px)`
   return {
     fontFamily: 'inherit',
     fontSize: 'inherit',
     fontWeight: bold,
+    lineHeight: 1.5,
     textDecoration: 'none',
     display: 'inline-block',
     margin: 0,
-    paddingTop: pady,
-    paddingBottom: pady,
+    paddingTop: scale[1],
+    paddingBottom: scale[1],
     paddingLeft: scale[2],
     paddingRight: scale[2],
     color: colors.white,
     backgroundColor: colors.blue,
     border: '1px solid transparent',
     borderRadius,
-    WebkitFontSmoothing: 'antialiased'
+    // WebkitFontSmoothing: 'antialiased',
+    WebkitAppearance: 'none',
+    appearance: 'none',
+    ':focus': {
+      outline: 'none',
+      // borderColor: colors.blue,
+      // To do: Add darken/lighten colors/functions
+      boxShadow: `0 0 0 2px rgba(0, 0, 0, .25)`
+    }
   }
 }
 

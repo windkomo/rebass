@@ -1,37 +1,21 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Unstyled display block link
  */
 
-const LinkBlock = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('LinkBlock', className)
-
-  const sx = {
-    display: 'block',
-    textDecoration: 'none',
-    color: 'inherit',
-    ...style
-  }
-
-  return (
-    <a
-      {...props}
-      className={cx}
-      style={sx} />
-  )
+export const styles = {
+  display: 'block',
+  textDecoration: 'none',
+  color: 'inherit'
+  // To do: hover/focus
 }
 
-LinkBlock._name = 'LinkBlock'
+const LinkBlock = createComponent('a', styles, {
+  name: 'LinkBlock'
+})
 
-export default withRebass(LinkBlock)
+export default LinkBlock
 

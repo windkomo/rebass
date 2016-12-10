@@ -1,7 +1,6 @@
 
 import React from 'react'
-import withRebass from './withRebass'
-import classnames from 'classnames'
+import createComponent from './create-component'
 import {
   Button,
   ButtonOutline,
@@ -13,26 +12,22 @@ import {
  * Wrapper component to control border radii and alignment of child button components
  */
 
-const Group = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('Group', className)
+export const styles = {
+  display: 'flex',
+  alignItems: 'center'
+}
 
-  const sx = {
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-      ...style
-    },
-    child: {
-    }
-  }
+const Base = (props) => {
+  const children = styleChildren(props.children)
+  return <div {...props} children={children} />
+}
 
-  const children = React.Children.map(props.children, (child, i) => {
+const Group = createComponent(Base, styles, {
+  name: 'Group'
+})
+
+const styleChildren = (children) => {
+  return React.Children.map(children, (child, i) => {
     const childProps = {}
 
     if (child.type === Button ||
@@ -41,13 +36,12 @@ const Group = ({
         child.type === Select) {
       childProps.rounded = i === 0
         ? 'left'
-        : i === props.children.length - 1
+        : i === children.length - 1
         ? 'right'
         : false
     }
 
     if (child.type === Input || child.type === Select) {
-      childProps.hideLabel = true
       childProps.mb = 0
     }
 
@@ -62,18 +56,7 @@ const Group = ({
 
     return React.cloneElement(child, childProps)
   })
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx.root}
-      children={children}
-    />
-  )
 }
 
-Group._name = 'Group'
-
-export default withRebass(Group)
+export default Group
 

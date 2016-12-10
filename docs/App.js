@@ -30,9 +30,13 @@ import {
   Embed,
   Fixed,
   Footer,
+  Group,
   Heading,
   HeadingLink,
+  Input,
+  InlineForm,
   Label,
+  LinkBlock,
 } from 'rebass'
 
 const App = ({
@@ -59,25 +63,27 @@ const App = ({
         <Code>Code</Code>
       </div>
       <Divider />
-      <Card width={256}>
-        <CardImage
-          src='http://placehold.it/256' />
-        <Base
-          p2
-          white
-          bgGreen>
-          Base
-          <Arrow />
-          <Arrow direction='up' />
-          <Close onClick={e => alert('close me')} />
-        </Base>
-        <Checkbox>
-          Hello
-        </Checkbox>
-        <Checkbox checked>
-          Hello
-        </Checkbox>
-      </Card>
+      <LinkBlock href='http://jxnblk.com/rebass'>
+        <Card width={256}>
+          <CardImage
+            src='http://placehold.it/256' />
+          <Base
+            p2
+            white
+            bgGreen>
+            Base
+            <Arrow />
+            <Arrow direction='up' />
+            <Close onClick={e => alert('close me')} />
+          </Base>
+          <Checkbox>
+            Hello
+          </Checkbox>
+          <Checkbox checked>
+            Hello
+          </Checkbox>
+        </Card>
+      </LinkBlock>
       <Block p2>
         <Bar value={1/2}>Bar</Bar>
         <Bar value={3/4}>Bar</Bar>
@@ -117,6 +123,13 @@ const App = ({
         onClick={e => { setDrawerOpen(!drawerOpen) }}
         children='Toggle Drawer'
       />
+      <Divider />
+      <Group mb3>
+        <Input defaultValue='Beep' />
+        <Button children='Beep' />
+        <ButtonOutline children='Boop' />
+      </Group>
+      <InlineForm />
       <Embed>
         <iframe
           src='https://www.youtube.com/embed/BoEKWtgJQAU'

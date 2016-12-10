@@ -1,99 +1,52 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
+import Group from './Group'
+import Label from './Label'
 import Input from './Input'
-import ButtonOutline from './ButtonOutline'
+import Button from './Button'
 
 /**
  * Inline grouped form for search or other simple forms
  */
 
-const InlineForm = ({
-  label,
+const noop = () => {}
+
+const Base = ({
   name,
+  label,
   value,
   placeholder,
-  onChange,
-  buttonLabel,
-  onClick,
-  className,
-  style,
-  theme,
-  subComponentStyles,
+  buttonLabel = 'Go',
+  onChange = noop,
+  onClick = noop,
   ...props
-}) => {
-  const cx = classnames('InlineForm', className)
-
-  const sx = {
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-      ...style
-    },
-    input: {
-      flex: '1 1 auto',
-      ...subComponentStyles.Input
-    },
-    button: {
-      marginLeft: -1,
-      ...subComponentStyles.Button,
-      ...subComponentStyles.ButtonOutline
-    }
-  }
-
-  return (
-    <form
-      {...props}
-      className={cx}
-      style={sx.root}>
+}) => (
+  <form {...props}>
+    <Label
+      htmlFor={name}
+      hide>
+      {label}
+    </Label>
+    <Group>
       <Input
         name={name}
-        label={label}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        style={sx.input}
-        mb={0}
-        hideLabel
         rounded='left' />
-      <ButtonOutline
+      <Button
         type='submit'
         children={buttonLabel}
         onClick={onClick}
-        style={sx.button}
         rounded='right' />
-    </form>
-  )
-}
+    </Group>
+  </form>
+)
 
-InlineForm.propTypes = {
-  /** Input label */
-  label: React.PropTypes.string.isRequired,
-  /** Input name */
-  name: React.PropTypes.string.isRequired,
-  /** Input value */
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string
-  ]),
-  /** Input placeholder */
-  placeholder: React.PropTypes.string,
-  /** onChange handler for input */
-  onChange: React.PropTypes.func,
-  /** Text for button */
-  buttonLabel: React.PropTypes.string,
-  /** onClick handler for button */
-  onClick: React.PropTypes.func
-}
+const InlineForm = createComponent(Base, null, {
+  name: 'InlineForm'
+})
 
-InlineForm.defaultProps = {
-  buttonLabel: 'Go',
-  onClick: () => {},
-  onChange: () => {}
-}
-
-InlineForm._name = 'InlineForm'
-
-export default withRebass(InlineForm)
+export default InlineForm
 

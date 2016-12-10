@@ -10,10 +10,6 @@ body {
   line-height: 1.5;
   margin: 0;
 }
-:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 191, 191, .25);
-}
 ${css}`
 }
 
