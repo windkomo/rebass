@@ -26,6 +26,7 @@ export { default as ButtonOutline } from './ButtonOutline'
 export { default as Card } from './Card'
 export { default as CardImage } from './CardImage'
 export { default as Carousel } from './Carousel'
+export { default as Checkbox } from './Checkbox'
 export { default as Circle } from './Circle'
 export { default as Close } from './Close'
 export { default as Code } from './Code'
@@ -52,8 +53,6 @@ export { default as theme } from './themes/basic'
 export { default as themes } from './themes'
 
 export { default as Breadcrumbs } from './Breadcrumbs'
-
-export { default as Checkbox } from './Checkbox'
 
 export { default as Donut } from './Donut'
 export { default as Group } from './Group'

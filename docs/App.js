@@ -17,6 +17,7 @@ import {
   Card,
   CardImage,
   Carousel,
+  Checkbox,
   Circle,
   Close,
   Code,
@@ -70,6 +71,12 @@ const App = ({
           <Arrow direction='up' />
           <Close onClick={e => alert('close me')} />
         </Base>
+        <Checkbox>
+          Hello
+        </Checkbox>
+        <Checkbox checked>
+          Hello
+        </Checkbox>
       </Card>
       <Block p2>
         <Bar value={1/2}>Bar</Bar>
