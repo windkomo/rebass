@@ -1,67 +1,41 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 import Heading from './Heading'
 
 /**
  * Heading element with unstyled link. Useful for in-page navigation
  */
 
-const HeadingLink = ({
-  level,
-  size,
-  href,
-  alt,
-  style,
-  className,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('HeadingLink', className)
-
-  const sx = {
-    root: {
-      ...style
-    },
-    link: {
-      color: 'inherit',
-      textDecoration: 'none',
-      ...subComponentStyles.link
+export const styles = {
+  root: {},
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
+    ':hover': {
+      textDecoration: 'underline'
     }
   }
-
-  return (
-    <Heading
-      alt={alt}
-      level={level}
-      size={size}
-      className={cx}
-      style={sx.root}>
-      <a
-        {...props}
-        href={href}
-        style={sx.link} />
-    </Heading>
-  )
 }
 
-HeadingLink.propTypes = {
-  /** Heading level, e.g. level={1} for <h1> */
-  level: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  /** Visual size of heading */
-  size: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  /** href for link */
-  href: React.PropTypes.string
-}
+const Link = createComponent('a', styles.link)
 
-HeadingLink.defaultProps = {
-  level: 2,
-  href: '#!'
-}
+const Base = ({
+  href,
+  children,
+  ...props
+}) => (
+  <Heading {...props}>
+    <Link
+      href={href}
+      children={children}
+    />
+  </Heading>
+)
 
-HeadingLink._name = 'HeadingLink'
+const HeadingLink = createComponent(Base, styles.root, {
+  name: 'HeadingLink'
+})
 
-export default withRebass(HeadingLink)
+export default HeadingLink
 

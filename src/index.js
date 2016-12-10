@@ -41,6 +41,9 @@ export { default as Embed } from './Embed'
 export { default as Fixed } from './Fixed'
 export { default as Footer } from './Footer'
 
+export { default as Heading } from './Heading'
+export { default as HeadingLink } from './HeadingLink'
+
 export { default as Label } from './Label'
 
 /*
@@ -55,8 +58,6 @@ export { default as Checkbox } from './Checkbox'
 export { default as Donut } from './Donut'
 export { default as Group } from './Group'
 
-export { default as Heading } from './Heading'
-export { default as HeadingLink } from './HeadingLink'
 export { default as Input } from './Input'
 export { default as InlineForm } from './InlineForm'
 

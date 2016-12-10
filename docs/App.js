@@ -29,6 +29,8 @@ import {
   Embed,
   Fixed,
   Footer,
+  Heading,
+  HeadingLink,
   Label,
 } from 'rebass'
 
@@ -40,12 +42,15 @@ const App = ({
 }) => (
   <div id='app'>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
-      <h1>Rebass</h1>
+      <Heading level={1} size={0}>Rebass</Heading>
       <DotIndicator
         active={1}
       />
     </Banner>
-    <Container p3>
+    <Container p3 id='heading-link'>
+      <HeadingLink
+        href='#heading-link'
+        children='HeadingLink' />
       <div>
         Hello
         <Circle>C</Circle>
