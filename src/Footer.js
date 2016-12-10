@@ -1,46 +1,30 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Minimal footer component with top border
  */
 
-const Footer = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { scale, fontSizes, borderColor } = theme
+export const styles = ({
+  scale,
+  typeScale,
+  colors
+}) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  marginTop: scale[3],
+  paddingTop: scale[3],
+  paddingBottom: scale[3],
+  fontSize: typeScale[5],
+  borderTop: '1px solid',
+  borderColor: colors.gray
+})
 
-  const cx = classnames('Footer', className)
+const Footer = createComponent('footer', styles, {
+  name: 'Footer'
+})
 
-  const sx = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    marginTop: scale[3],
-    paddingTop: scale[3],
-    paddingBottom: scale[3],
-    fontSize: fontSizes[5],
-    borderTopWidth: 1,
-    borderTopStyle: 'solid',
-    borderTopColor: borderColor,
-    ...style
-  }
-
-  return (
-    <footer
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Footer._name = 'Footer'
-
-export default withRebass(Footer)
+export default Footer
 

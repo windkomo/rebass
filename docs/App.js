@@ -26,12 +26,17 @@ import {
   Drawer,
   Dropdown,
   DropdownMenu,
+  Embed,
+  Fixed,
+  Footer,
   Label,
 } from 'rebass'
 
 const App = ({
   drawerOpen,
-  setDrawerOpen
+  setDrawerOpen,
+  dropdownOpen,
+  setDropdownOpen
 }) => (
   <div id='app'>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
@@ -68,6 +73,18 @@ const App = ({
       <Blockquote>
         “If one says ‘Red’ (the name of the color) and there are 50 people listening, it can be expected that there will be 50 reds in their minds. And one can be sure that all these reds will be very different.”
       </Blockquote>
+      <Divider />
+      <Dropdown display='inline-block'>
+        <Button onClick={e => setDropdownOpen(!dropdownOpen)}>
+          Dropdown <Arrow />
+        </Button>
+        <DropdownMenu
+          onDismiss={e => setDropdownOpen(false)}
+          open={dropdownOpen}>
+          DropdownMenu
+        </DropdownMenu>
+      </Dropdown>
+      <Divider />
       <Avatar src='http://jxnblk.com/avatar/avatar-640.png' />
       {/*
       <AspectRatio bgOrange>AspectRatio</AspectRatio>
@@ -88,6 +105,14 @@ const App = ({
         onClick={e => { setDrawerOpen(!drawerOpen) }}
         children='Toggle Drawer'
       />
+      <Embed>
+        <iframe
+          src='https://www.youtube.com/embed/BoEKWtgJQAU'
+          allowFullScreen />
+      </Embed>
+      <Footer>
+        Footer
+      </Footer>
     </Container>
     <Drawer
       open={drawerOpen}
@@ -98,10 +123,12 @@ const App = ({
   </div>
 )
 
-const withDrawerState = withState('drawerOpen', 'setDrawerOpen', false)
+const withDrawer = withState('drawerOpen', 'setDrawerOpen', false)
+const withDropdown = withState('dropdownOpen', 'setDropdownOpen', false)
 
 const enhance = compose(
-  withDrawerState
+  withDrawer,
+  withDropdown
 )
 
 export default enhance(App)

@@ -37,6 +37,10 @@ export { default as Drawer } from './Drawer'
 export { default as Dropdown } from './Dropdown'
 export { default as DropdownMenu } from './DropdownMenu'
 
+export { default as Embed } from './Embed'
+export { default as Fixed } from './Fixed'
+export { default as Footer } from './Footer'
+
 export { default as Label } from './Label'
 
 /*
@@ -49,9 +53,6 @@ export { default as Breadcrumbs } from './Breadcrumbs'
 export { default as Checkbox } from './Checkbox'
 
 export { default as Donut } from './Donut'
-export { default as Embed } from './Embed'
-export { default as Fixed } from './Fixed'
-export { default as Footer } from './Footer'
 export { default as Group } from './Group'
 
 export { default as Heading } from './Heading'

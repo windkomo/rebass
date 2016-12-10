@@ -1,72 +1,54 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Responsive media embed wrapper
  */
 
-const Embed = ({
-  ratio,
-  children,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('Embed', className)
-
-  const sx = {
+export const styles = {
+  root: (theme, { ratio }) => ({
     position: 'relative',
     height: 0,
     padding: 0,
     paddingBottom: `${ratio * 100}%`,
-    overflow: 'hidden',
-    ...style
+    overflow: 'hidden'
+  }),
+  child: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    border: 0
   }
+}
 
-  const childProps = {
-    style: {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      border: 0,
-      ...subComponentStyles.children
-    }
-  }
-
-  const styledChildren = React.Children.map(children, (child) => {
-    return React.cloneElement(child, childProps)
+const Base = ({
+  ratio = 9 / 16,
+  ...props
+}) => {
+  const children = React.Children.map(props.children, (child) => {
+    return React.cloneElement(child, {
+      style: styles.child
+    })
   })
 
   return (
     <div
       {...props}
-      className={cx}
-      children={styledChildren}
-      style={sx} />
+      children={children}
+    />
   )
 }
 
-Embed.propTypes = {
-  /**
-   * Aspect ratio for the embed.
-   * Divide height over width to calculate.
-   * E.g. ratio={9/16}
-   */
-  ratio: React.PropTypes.number
-}
+const Embed = createComponent(Base, styles.root, {
+  name: 'Embed',
+  removeProps: [
+    'ratio'
+  ]
+})
 
-Embed.defaultProps = {
-  ratio: 9 / 16
-}
-
-Embed._name = 'Embed'
-
-export default withRebass(Embed)
+export default Embed
 

@@ -1,58 +1,38 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Layout container for fixed positioning children
  */
 
-const Fixed = ({
+const pos = n => n ? 0 : null
+
+export const styles = (theme, {
   top,
   right,
   bottom,
   left,
-  zIndex,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('Fixed', className)
+  zIndex
+}) => ({
+  position: 'fixed',
+  top: pos(top),
+  right: pos(right),
+  bottom: pos(bottom),
+  left: pos(left),
+  zIndex
+})
 
-  const sx = {
-    position: 'fixed',
-    top: top ? 0 : null,
-    right: right ? 0 : null,
-    bottom: bottom ? 0 : null,
-    left: left ? 0 : null,
-    zIndex,
-    ...style
-  }
+const Fixed = createComponent('div', styles, {
+  name: 'Fixed',
+  removeProps: [
+    'top',
+    'right',
+    'bottom',
+    'left',
+    'zIndex'
+  ]
+})
 
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Fixed.propTypes = {
-  /** Sets top: 0 */
-  top: React.PropTypes.bool,
-  /** Sets right: 0 */
-  right: React.PropTypes.bool,
-  /** Sets bottom: 0 */
-  bottom: React.PropTypes.bool,
-  /** Sets left: 0 */
-  left: React.PropTypes.bool,
-  /** Sets z-index */
-  zIndex: React.PropTypes.number
-}
-
-Fixed._name = 'Fixed'
-
-export default withRebass(Fixed)
+export default Fixed
 

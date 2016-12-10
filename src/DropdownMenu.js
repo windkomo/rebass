@@ -1,6 +1,7 @@
 
 import React from 'react'
 import createComponent from './create-component'
+// To do:
 // import Menu from './Menu'
 
 /**
@@ -25,9 +26,19 @@ export const styles = {
     bottom: 0,
     left: 0,
   }),
-  content: ({ zIndex }) => ({
+  content: ({
+    zIndex,
+    scale,
+    colors,
+    borderRadius
+  }) => ({
     position: 'relative',
-    zIndex: zIndex[1]
+    zIndex: zIndex[1],
+    padding: scale[1],
+    backgroundColor: colors.white,
+    border: '1px solid',
+    borderColor: colors.gray,
+    borderRadius
   })
 }
 
@@ -35,13 +46,18 @@ const Overlay = createComponent('div', styles.overlay)
 
 const Content = createComponent('div', styles.content)
 
+const noop = () => {}
+
 const Base = ({
   open,
+  onDismiss = noop,
   children,
   ...props
 }) => (
   <div {...props}>
-    <Overlay open={open} />
+    <Overlay
+      onClick={onDismiss}
+      open={open} />
     <Content open={open}>
       {children}
     </Content>
@@ -54,77 +70,5 @@ const DropdownMenu = createComponent(Base, styles.root, {
   ]
 })
 
-/*
-const DropdownMenu = ({
-  open,
-  right,
-  top,
-  children,
-  onDismiss,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { zIndex } = theme
-
-  const cx = classnames('DropdownMenu', className)
-
-  const sx = {
-    root: {
-      display: open ? null : 'none',
-      position: 'absolute',
-      left: right ? 'auto' : 0,
-      right: right ? 0 : 'auto',
-      top: top ? 'auto' : '100%',
-      bottom: top ? '100%' : 'auto',
-      zIndex: 4,
-      ...style
-    },
-    overlay: {
-      position: 'fixed',
-      display: open ? null : 'none',
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-      ...subComponentStyles.overlay
-    },
-    content: {
-      position: 'relative',
-      zIndex: zIndex[1],
-      ...subComponentStyles.content
-    },
-    Menu: {
-      ...subComponentStyles.Menu
-    }
-  }
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx.root}>
-      <div
-        style={sx.overlay}
-        onClick={onDismiss} />
-      <div style={sx.content}>
-        <Menu {...props}
-          style={sx.Menu}
-          children={children} />
-      </div>
-    </div>
-  )
-}
-
-DropdownMenu.defaultProps = {
-  open: false,
-  onDismiss: function () {}
-}
-
-DropdownMenu._name = 'DropdownMenu'
-
-export default withRebass(DropdownMenu)
-*/
+export default DropdownMenu
 
