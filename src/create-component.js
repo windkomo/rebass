@@ -7,16 +7,13 @@ import parseProps from './parse-props'
 
 const getTheme = ({ rebass = {} }) => merge(rebass, defaultTheme, { clone: true })
 
-// To do:
-// - [ ] Add removeProps option
+const createComponent = (Comp, baseStyles, options = {}) => {
+  const { name } = options
 
-const createComponent = (Comp, styles, {
-  name
-} = {}) => {
   class RebassComponent extends React.Component {
     render () {
       const theme = getTheme(this.context)
-      const props = parseProps(name, theme, this.props, styles)
+      const props = parseProps(theme, this.props, baseStyles, options)
 
       return <Comp {...props} />
     }

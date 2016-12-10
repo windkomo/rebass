@@ -1,52 +1,30 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Styled box with border
  */
 
-const Card = ({
-  width,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}, { rebass }) => {
-  const { scale, borderColor, borderRadius } = theme
+export const styles = ({
+  scale,
+  borderRadius,
+  colors
+}) => ({
+  padding: scale[1],
+  marginBottom: scale[2],
+  border: '1px solid',
+  borderColor: colors.gray,
+  borderRadius,
+  overflow: 'hidden'
+})
 
-  const cx = classnames('Card', className)
-  const sx = {
-    width,
-    padding: scale[1],
-    marginBottom: scale[2],
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor,
-    borderRadius,
-    overflow: 'hidden',
-    ...style
-  }
+const Card = createComponent('div', styles, {
+  name: 'Card',
+  removeProps: [
+    'width'
+  ]
+})
 
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Card.propTypes = {
-  /** Width of card */
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string
-  ])
-}
-
-Card._name = 'Card'
-
-export default withRebass(Card)
+export default Card
 

@@ -19,12 +19,11 @@ export const styles = (theme, {
   pointerEvents: 'none',
 })
 
-styles.removeProps = [
-  'direction'
-]
-
 const Arrow = createComponent('div', styles, {
-  name: 'Arrow'
+  name: 'Arrow',
+  removeProps: [
+    'direction'
+  ]
 })
 
 export default Arrow

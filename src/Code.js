@@ -1,39 +1,22 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Code element for inline code snippets
  */
 
-const Code = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { monospace, fontSizes } = theme
+export const styles = ({
+  typeScale,
+  monospace
+}) => ({
+  fontFamily: monospace,
+  fontSize: typeScale[5]
+})
 
-  const cx = classnames('Code', className)
+const Code = createComponent('code', styles, {
+  name: 'Code'
+})
 
-  const sx = {
-    fontFamily: monospace,
-    fontSize: fontSizes[5],
-    ...style
-  }
-
-  return (
-    <code
-      {...props}
-      className={cx}
-      style={sx}
-    />
-  )
-}
-
-Code._name = 'Code'
-
-export default withRebass(Code)
+export default Code
 

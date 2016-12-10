@@ -1,41 +1,27 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
-const Circle = ({
-  size = 32,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const cx = classnames('Circle', className)
+export const styles = (theme, {
+  size = 32
+}) => ({
+  display: 'inline-block',
+  width: size,
+  height: size,
+  textAlign: 'center',
+  fontWeight: 'bold',
+  lineHeight: size + 'px',
+  overflow: 'hidden',
+  border: '1px solid',
+  borderRadius: 99999
+})
 
-  const sx = {
-    display: 'inline-block',
-    width: size,
-    height: size,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    lineHeight: size + 'px',
-    overflow: 'hidden',
-    border: '1px solid',
-    borderRadius: 99999,
-    ...style.fill,
-    ...style
-  }
+const Circle = createComponent('div', styles, {
+  name: 'Circle',
+  removeProps: [
+    'size'
+  ]
+})
 
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Circle._name = 'Circle'
-
-export default withRebass(Circle)
+export default Circle
 

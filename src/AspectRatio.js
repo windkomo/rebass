@@ -12,12 +12,11 @@ export const styles = (theme, {
   paddingBottom: `${ratio * 100}%`,
 })
 
-styles.removeProps = [
-  'ratio'
-]
-
 const AspectRatio = createComponent('div', styles, {
-  name: 'AspectRatio'
+  name: 'AspectRatio',
+  removeProps: [
+    'ratio'
+  ]
 })
 
 export default AspectRatio

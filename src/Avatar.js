@@ -17,12 +17,11 @@ export const styles = ({ colors }, {
   borderRadius: 99999
 })
 
-styles.removeProps = [
-  'size'
-]
-
 const Avatar = createComponent('img', styles, {
-  name: 'Avatar'
+  name: 'Avatar',
+  removeProps: [
+    'size'
+  ]
 })
 
 export default Avatar

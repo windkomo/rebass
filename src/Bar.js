@@ -23,13 +23,12 @@ export const styles = ({
   }
 }
 
-styles.removeProps = [
-  'value',
-  'color'
-]
-
 const Bar = createComponent('div', styles, {
-  name: 'Bar'
+  name: 'Bar',
+  removeProps: [
+    'value',
+    'color'
+  ]
 })
 
 export default Bar

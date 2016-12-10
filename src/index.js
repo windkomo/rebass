@@ -23,6 +23,19 @@ export { default as Button } from './Button'
 export { default as ButtonCircle } from './ButtonCircle'
 export { default as ButtonOutline } from './ButtonOutline'
 
+export { default as Card } from './Card'
+export { default as CardImage } from './CardImage'
+export { default as Carousel } from './Carousel'
+export { default as Circle } from './Circle'
+export { default as Close } from './Close'
+export { default as Code } from './Code'
+export { default as Container } from './Container'
+
+export { default as Divider } from './Divider'
+export { default as DotIndicator } from './DotIndicator'
+
+export { default as Label } from './Label'
+
 /*
 
 export { default as theme } from './themes/basic'
@@ -30,18 +43,9 @@ export { default as themes } from './themes'
 
 export { default as Breadcrumbs } from './Breadcrumbs'
 
-export { default as Card } from './Card'
-export { default as CardImage } from './CardImage'
-export { default as Carousel } from './Carousel'
 export { default as Checkbox } from './Checkbox'
-export { default as Circle } from './Circle'
-export { default as Close } from './Close'
-export { default as Code } from './Code'
-export { default as Container } from './Container'
 
-export { default as Divider } from './Divider'
 export { default as Donut } from './Donut'
-export { default as DotIndicator } from './DotIndicator'
 export { default as Drawer } from './Drawer'
 export { default as Dropdown } from './Dropdown'
 export { default as DropdownMenu } from './DropdownMenu'
@@ -55,7 +59,6 @@ export { default as HeadingLink } from './HeadingLink'
 export { default as Input } from './Input'
 export { default as InlineForm } from './InlineForm'
 
-export { default as Label } from './Label'
 export { default as LinkBlock } from './LinkBlock'
 export { default as List } from './List'
 export { default as Media } from './Media'

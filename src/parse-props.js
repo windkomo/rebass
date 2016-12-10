@@ -29,10 +29,8 @@ const clean = (props, theme, removeProps) => {
     }, {})
 }
 
-const getCustomProps = ({ removeProps }) => removeProps || []
-
-const parseProps = (name, theme, rawProps, baseStyles) => {
-  const removeProps = getCustomProps(baseStyles || {})
+const parseProps = (theme, rawProps, baseStyles, options) => {
+  const { name, removeProps = [] } = options
 
   baseStyles = typeof baseStyles === 'function'
     ? baseStyles(theme, rawProps)

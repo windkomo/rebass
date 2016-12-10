@@ -1,24 +1,15 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Label element for form controls
  */
 
-const Label = ({
-  hide,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { fontSizes, bold } = theme
-
-  const cx = classnames('Label', className)
-
+export const styles = ({
+  typeScale,
+  bold
+}, { hide }) => {
   const hideStyle = hide ? {
     position: 'absolute',
     height: 1,
@@ -27,30 +18,20 @@ const Label = ({
     clip: 'rect(1px, 1px, 1px, 1px)'
   } : {}
 
-  const sx = {
-    fontSize: fontSizes[5],
+  return {
+    fontSize: typeScale[5],
     fontWeight: bold,
     lineHeight: 1,
-    ...hideStyle,
-    ...style
+    ...hideStyle
   }
-
-  return (
-    <label
-      {...props}
-      className={cx}
-      style={sx} />
-  )
 }
 
-Label.propTypes = {
-  /** Accessibly hide label for use in high density UI.
-   *  This can still cause accessibility issues. Use this with caution.
-   */
-  hide: React.PropTypes.bool
-}
+const Label = createComponent('label', styles, {
+  name: 'Label',
+  removeProps: [
+    'hide'
+  ]
+})
 
-Label._name = 'Label'
-
-export default withRebass(Label)
+export default Label
 

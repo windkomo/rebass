@@ -1,40 +1,23 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Div with max-width and margin auto for centering content
  */
 
-const Container = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { scale } = theme
+export const styles = ({
+  scale
+}) => ({
+  maxWidth: 1024,
+  paddingLeft: scale[2],
+  paddingRight: scale[2],
+  margin: 'auto'
+})
 
-  const cx = classnames('Container', className)
+const Container = createComponent('div', styles, {
+  name: 'Container'
+})
 
-  const sx = {
-    maxWidth: 1024,
-    paddingLeft: scale[2],
-    paddingRight: scale[2],
-    margin: 'auto',
-    ...style
-  }
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Container._name = 'Container'
-
-export default withRebass(Container)
+export default Container
 
