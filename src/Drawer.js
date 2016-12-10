@@ -1,12 +1,106 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * An off-canvas drawer component
  */
 
+export const styles = {
+  content: ({
+    zIndex,
+    scale,
+    colors,
+  }, { position }) => ({
+    position: 'fixed',
+    ...placements[position],
+    zIndex: zIndex[4],
+    width,
+    height,
+    padding: scale[2],
+    transform,
+    transition: 'transform .2s ease-out',
+    overflowX: 'hidden',
+    overflowY: 'scroll',
+    color: colors.white,
+    backgroundColor: colors.default
+  }),
+  dismiss: ({ zIndex }, { open }) => ({
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: zIndex[3],
+    display: open ? null : 'none'
+  })
+}
+
+const placements = {
+}
+
+const Dismiss = createComponent('div', styles.dismiss)
+const Content = createComponent('div', styles.content)
+
+const noop = () => {}
+
+const Base = ({
+  onDismiss = noop,
+  children,
+  ...props
+}) => {
+  return (
+    <div>
+      <Dismiss
+        onClick={onDismiss}
+      />
+      <Content {...props} />
+    </div>
+  )
+}
+
+const Drawer = createComponent(Base, null, {
+  name: 'Drawer',
+  removeProps: [
+    'size',
+    'open',
+    'position'
+  ]
+})
+
+const placements = {
+  top: {
+    top: 0,
+    right: 0,
+    left: 0
+  },
+  right: {
+    top: 0,
+    right: 0,
+    bottom: 0
+  },
+  bottom: {
+    right: 0,
+    bottom: 0,
+    left: 0
+  },
+  left: {
+    top: 0,
+    bottom: 0,
+    left: 0
+  }
+}
+
+const transforms = {
+  top: 'translateY(-100%)',
+  right: 'translateX(100%)',
+  bottom: 'translateY(100%)',
+  left: 'translateX(-100%)'
+}
+
+export default Drawer
+
+/*
 const Drawer = ({
   open,
   size,
@@ -105,31 +199,32 @@ const Drawer = ({
     </div>
   )
 }
+*/
 
-Drawer.propTypes = {
-  /** Width or height of drawer, depending on placement */
-  size: React.PropTypes.number,
-  /** Shows and hides the drawer */
-  open: React.PropTypes.bool,
-  /** Position relative to the viewport */
-  position: React.PropTypes.oneOf([
-    'top',
-    'right',
-    'bottom',
-    'left'
-  ]),
-  /** Click event callback for the background overlay */
-  onDismiss: React.PropTypes.func
-}
-
-Drawer.defaultProps = {
-  open: false,
-  size: 320,
-  position: 'left',
-  onDismiss: function () {}
-}
-
-Drawer._name = 'Drawer'
-
-export default withRebass(Drawer)
-
+// Drawer.propTypes = {
+//   /** Width or height of drawer, depending on placement */
+//   size: React.PropTypes.number,
+//   /** Shows and hides the drawer */
+//   open: React.PropTypes.bool,
+//   /** Position relative to the viewport */
+//   position: React.PropTypes.oneOf([
+//     'top',
+//     'right',
+//     'bottom',
+//     'left'
+//   ]),
+//   /** Click event callback for the background overlay */
+//   onDismiss: React.PropTypes.func
+// }
+//
+// Drawer.defaultProps = {
+//   open: false,
+//   size: 320,
+//   position: 'left',
+//   onDismiss: function () {}
+// }
+//
+// Drawer._name = 'Drawer'
+//
+// export default withRebass(Drawer)
+//
