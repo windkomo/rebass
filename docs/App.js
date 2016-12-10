@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { compose, withState } from 'recompose'
 import {
   Base,
   Arrow,
@@ -22,10 +23,16 @@ import {
   Container,
   Divider,
   DotIndicator,
+  Drawer,
+  Dropdown,
+  DropdownMenu,
   Label,
 } from 'rebass'
 
-const App = () => (
+const App = ({
+  drawerOpen,
+  setDrawerOpen
+}) => (
   <div id='app'>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
       <h1>Rebass</h1>
@@ -33,7 +40,7 @@ const App = () => (
         active={1}
       />
     </Banner>
-    <Container>
+    <Container p3>
       <div>
         Hello
         <Circle>C</Circle>
@@ -76,9 +83,26 @@ const App = () => (
       <ButtonOutline
         href='http://jxnblk.com'
         children='Boop' />
+      <Divider />
+      <Button
+        onClick={e => { setDrawerOpen(!drawerOpen) }}
+        children='Toggle Drawer'
+      />
     </Container>
+    <Drawer
+      open={drawerOpen}
+      backgroundColor='red'
+      onDismiss={e => { setDrawerOpen(!drawerOpen) }}>
+      Hello Drawer
+    </Drawer>
   </div>
 )
 
-export default App
+const withDrawerState = withState('drawerOpen', 'setDrawerOpen', false)
+
+const enhance = compose(
+  withDrawerState
+)
+
+export default enhance(App)
 
