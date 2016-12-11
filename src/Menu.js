@@ -1,47 +1,31 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Menu component for navigation links and actions
  */
 
-const Menu = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { scale, colors, borderColor, borderRadius } = theme
+export const styles = ({
+  scale,
+  colors,
+  borderRadius
+}) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  minWidth: 128,
+  marginBottom: scale[2],
+  overflow: 'hidden',
+  border: '1px solid',
+  borderColor: colors.gray,
+  borderRadius,
+  color: colors.black,
+  backgroundColor: colors.white
+})
 
-  const cx = classnames('Menu', className)
+const Menu = createComponent('div', styles, {
+  name: 'Menu'
+})
 
-  const sx = {
-    display: 'flex',
-    flexDirection: 'column',
-    minWidth: 128,
-    marginBottom: scale[2],
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor,
-    borderRadius,
-    color: colors.black,
-    backgroundColor: colors.white,
-    ...style
-  }
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-Menu._name = 'Menu'
-
-export default withRebass(Menu)
+export default Menu
 

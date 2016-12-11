@@ -39,6 +39,9 @@ import {
   LinkBlock,
   List,
   Media,
+  Menu,
+  Message,
+  NavItem,
 } from 'rebass'
 
 const App = ({
@@ -55,6 +58,9 @@ const App = ({
       />
     </Banner>
     <Container p3 id='heading-link'>
+      <Message>
+        Hello Message
+      </Message>
       <HeadingLink
         href='#heading-link'
         children='HeadingLink' />
@@ -114,6 +120,11 @@ const App = ({
         </DropdownMenu>
       </Dropdown>
       <Divider />
+      <Menu>
+        <NavItem href='http://jxnblk.com/rebass'>Hello Menu</NavItem>
+        <NavItem href='#!'>NavItem Two</NavItem>
+        <NavItem href='#!'>NavItem Three</NavItem>
+      </Menu>
       <Avatar src='http://jxnblk.com/avatar/avatar-640.png' />
       {/*
       <AspectRatio bgOrange>AspectRatio</AspectRatio>

@@ -54,6 +54,12 @@ export { default as LinkBlock } from './LinkBlock'
 export { default as List } from './List'
 
 export { default as Media } from './Media'
+export { default as Menu } from './Menu'
+export { default as Message } from './Message'
+
+export { default as NavItem } from './NavItem'
+
+// export { default as Overlay } from './Overlay'
 
 /*
 
@@ -64,10 +70,6 @@ export { default as Breadcrumbs } from './Breadcrumbs'
 
 export { default as Donut } from './Donut'
 
-export { default as Menu } from './Menu'
-export { default as Message } from './Message'
-export { default as NavItem } from './NavItem'
-export { default as Overlay } from './Overlay'
 export { default as PageHeader } from './PageHeader'
 export { default as Panel } from './Panel'
 export { default as PanelFooter } from './PanelFooter'

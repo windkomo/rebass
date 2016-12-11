@@ -1,12 +1,40 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Fixed positioned overlay for use with modal dialogs
  */
 
+export const styles = {
+  root: () => ({
+  }),
+  dismiss: () => ({
+  }),
+  inner: () => ({
+  })
+}
+
+const Dismiss = createComponent('div', styles.dismiss)
+const Inner = createComponent('div', styles.inner)
+
+const Base = ({
+  children,
+  ...props
+}) => (
+  <div>
+    <Dismiss onClick={onDismiss} />
+    <Inner
+      {...props}
+      children={children} />
+  </div>
+)
+
+const Overlay = createComponent(Base, styles.root, {
+  name: 'Overlay'
+})
+
+/*
 const Overlay = ({
   open,
   dark,
@@ -79,19 +107,6 @@ const Overlay = ({
   )
 }
 
-Overlay.propTypes = {
-  /** Shows and hides overlay */
-  open: React.PropTypes.bool,
-  /** Sets dark transparent overlay style */
-  dark: React.PropTypes.bool,
-  /** Sets padding and background white for the content container */
-  box: React.PropTypes.bool,
-  /** Sets content container full width */
-  fullWidth: React.PropTypes.bool,
-  /** Click event callback for the Overlay background */
-  onDismiss: React.PropTypes.func
-}
-
 Overlay.defaultProps = {
   open: false,
   dark: true,
@@ -102,3 +117,4 @@ Overlay._name = 'Overlay'
 
 export default withRebass(Overlay)
 
+*/
