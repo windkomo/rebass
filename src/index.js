@@ -51,6 +51,9 @@ export { default as InlineForm } from './InlineForm'
 
 export { default as Label } from './Label'
 export { default as LinkBlock } from './LinkBlock'
+export { default as List } from './List'
+
+export { default as Media } from './Media'
 
 /*
 
@@ -61,8 +64,6 @@ export { default as Breadcrumbs } from './Breadcrumbs'
 
 export { default as Donut } from './Donut'
 
-export { default as List } from './List'
-export { default as Media } from './Media'
 export { default as Menu } from './Menu'
 export { default as Message } from './Message'
 export { default as NavItem } from './NavItem'

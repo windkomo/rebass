@@ -1,68 +1,46 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /** List component that accepts any child component item types */
 
-const List = ({
-  ordered,
+export const styles = ({
+  scale
+}, {
   reset,
-  flush,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  children,
+  flush
+}) => ({
+  margin: 0,
+  paddingLeft: (flush || reset) ? 0 : scale[2],
+  listStyle: reset ? 'none' : null
+})
+
+const wrapChildren = (children) => (
+  React.Children.map(children, child => (
+    child.type === 'li'
+      ? child
+      : <li>{child}</li>
+  ))
+)
+
+const Base = ({
+  ordered,
   ...props
 }) => {
-  const { scale } = theme
   const Comp = ordered ? 'ol' : 'ul'
-  const cx = classnames('List', className)
-
-  flush = flush || reset
-
-  const sx = {
-    root: {
-      paddingLeft: flush ? 0 : scale[2],
-      margin: 0,
-      listStyle: reset ? 'none' : null,
-      ...style
-    },
-    item: {
-      marginBottom: scale[1],
-      ...subComponentStyles.item
-    }
-  }
-
-  const wrappedChildren = React.Children.map(children, child => {
-    if (child.type === 'li') {
-      return child
-    }
-
-    return <li style={sx.item}>{child}</li>
-  })
+  const children = wrapChildren(props.children)
 
   return (
     <Comp
       {...props}
-      className={cx}
-      style={sx.root}>
-      {wrappedChildren}
-    </Comp>
+      children={children}
+    />
   )
 }
 
-List.propTypes = {
-  /** Changes the root component to an ordered list */
-  ordered: React.PropTypes.bool,
-  /** Removes padding left to keep text flush-left */
-  flush: React.PropTypes.bool,
-  /** Removes list styling */
-  reset: React.PropTypes.bool
-}
+const List = createComponent(Base, styles, {
+  name: 'List'
+})
 
-List._name = 'List'
-
-export default withRebass(List)
+export default List
 

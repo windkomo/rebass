@@ -37,6 +37,8 @@ import {
   InlineForm,
   Label,
   LinkBlock,
+  List,
+  Media,
 } from 'rebass'
 
 const App = ({
@@ -88,9 +90,18 @@ const App = ({
         <Bar value={1/2}>Bar</Bar>
         <Bar value={3/4}>Bar</Bar>
       </Block>
+      <Media img='http://placehold.it/128'
+        align='center'>
+        Media Object
+      </Media>
       <Blockquote>
         “If one says ‘Red’ (the name of the color) and there are 50 people listening, it can be expected that there will be 50 reds in their minds. And one can be sure that all these reds will be very different.”
       </Blockquote>
+      <List>
+        <li>One</li>
+        <span>Two</span>
+        <span>Three</span>
+      </List>
       <Divider />
       <Dropdown display='inline-block'>
         <Button onClick={e => setDropdownOpen(!dropdownOpen)}>

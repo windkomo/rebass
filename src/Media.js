@@ -1,12 +1,65 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Media object with vertical alignment using flexbox
  */
 
+export const styles = {
+  root: ({ scale }, { align }) => {
+    const alignItems = alignments[align]
+    return {
+      display: 'flex',
+      marginBottom: scale[2],
+      alignItems
+    }
+  },
+  image: ({ scale }, { right }) => ({
+    flex: 'none',
+    maxWidth: 'none',
+    marginRight: right ? 0 : scale[2],
+    marginLeft: right ? scale[2] : 0,
+    order: right ? 9999 : null
+  })
+}
+
+const Image = createComponent('img', styles.image)
+
+const Base = ({
+  img,
+  imgWidth,
+  imgHeight,
+  right,
+  children,
+  ...props
+}) => (
+  <div {...props}>
+    <Image
+      src={img}
+      width={imgWidth}
+      height={imgHeight}
+      right={right}
+    />
+    <div>
+      {children}
+    </div>
+  </div>
+)
+
+const Media = createComponent(Base, styles.root, {
+  name: 'Media'
+})
+
+const alignments = {
+  top: 'flex-start',
+  center: 'center',
+  bottom: 'flex-end'
+}
+
+export default Media
+
+/*
 const Media = ({
   img,
   right,
@@ -69,16 +122,9 @@ const Media = ({
   )
 }
 
-Media.propTypes = {
-  /** Image source */
-  img: React.PropTypes.string,
-  /** Displays image to the right */
-  right: React.PropTypes.bool,
-  /** Vertical alignment */
-  align: React.PropTypes.oneOf(['top', 'center', 'bottom'])
-}
 
 Media._name = 'Media'
 
 export default withRebass(Media)
 
+*/
