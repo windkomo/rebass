@@ -7,32 +7,81 @@ import createComponent from './create-component'
  */
 
 export const styles = {
-  root: () => ({
+  root: ({ zIndex }, { open }) => ({
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: zIndex[2],
+    display: open ? 'flex' : 'none',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   }),
-  dismiss: () => ({
+  dismiss: ({
+    colors
+  }, {
+    open,
+    dark
+  }) => ({
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: dark ? colors.black : colors.white,
+    opacity: 0.875,
+    display: open ? 'block' : 'none'
   }),
-  inner: () => ({
+  inner: ({ zIndex }, { fullWidth }) => ({
+    position: 'relative',
+    zIndex: zIndex[1],
+    minWidth: 320,
+    width: fullWidth ? '100%' : null
   })
 }
 
-const Dismiss = createComponent('div', styles.dismiss)
-const Inner = createComponent('div', styles.inner)
+const Dismiss = createComponent('div', styles.dismiss, {
+  removeProps: [
+    'dark'
+  ]
+})
+
+const Inner = createComponent('div', styles.inner, {
+  removeProps: [
+    'fullWidth'
+  ]
+})
+
+const noop = () => { console.log('noop') }
 
 const Base = ({
+  dark,
+  open,
+  onDismiss = noop,
   children,
   ...props
-}) => (
-  <div>
-    <Dismiss onClick={onDismiss} />
-    <Inner
-      {...props}
-      children={children} />
-  </div>
-)
+}) => {
+  return (
+    <div {...props}>
+      <Dismiss
+        dark={dark}
+        open={open}
+        onClick={onDismiss}
+      />
+      <Inner
+        open={open}
+        children={children} />
+    </div>
+  )
+}
 
 const Overlay = createComponent(Base, styles.root, {
   name: 'Overlay'
 })
+
+export default Overlay
 
 /*
 const Overlay = ({

@@ -1,5 +1,4 @@
 
-// New
 export { default as createComponent } from './create-component'
 
 // Old
@@ -59,16 +58,7 @@ export { default as Message } from './Message'
 
 export { default as NavItem } from './NavItem'
 
-// export { default as Overlay } from './Overlay'
-
-/*
-
-export { default as theme } from './themes/basic'
-export { default as themes } from './themes'
-
-export { default as Breadcrumbs } from './Breadcrumbs'
-
-export { default as Donut } from './Donut'
+export { default as Overlay } from './Overlay'
 
 export { default as PageHeader } from './PageHeader'
 export { default as Panel } from './Panel'
@@ -78,6 +68,16 @@ export { default as Pre } from './Pre'
 export { default as Progress } from './Progress'
 
 export { default as Radio } from './Radio'
+
+export { default as Text } from './Text'
+
+/*
+export { default as theme } from './themes/basic'
+export { default as themes } from './themes'
+
+export { default as Breadcrumbs } from './Breadcrumbs'
+export { default as Donut } from './Donut'
+
 export { default as Rating } from './Rating'
 export { default as Section } from './Section'
 export { default as SectionHeader } from './SectionHeader'
@@ -93,7 +93,6 @@ export { default as Switch } from './Switch'
 export { default as Table } from './Table'
 export { default as Tabs } from './Tabs'
 export { default as TabItem } from './TabItem'
-export { default as Text } from './Text'
 export { default as Textarea } from './Textarea'
 export { default as Toolbar } from './Toolbar'
 export { default as Tooltip } from './Tooltip'

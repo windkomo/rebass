@@ -1,46 +1,33 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Header for Panel component with vertical centering using flexbox
  */
 
-const PanelHeader = ({
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { bold, scale, borderRadius } = theme
+export const styles = ({
+  scale,
+  bold,
+  borderRadius,
+  colors
+}) => ({
+  display: 'flex',
+  alignItems: 'center',
+  fontWeight: bold,
+  marginTop: -scale[2] - 1,
+  marginRight: -scale[2] - 1,
+  marginLeft: -scale[2] - 1,
+  marginBottom: scale[2],
+  padding: scale[2],
+  borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+  color: colors.white,
+  backgroundColor: colors.blue
+})
 
-  const cx = classnames('PanelHeader', className)
+const PanelHeader = createComponent('div', styles, {
+  name: 'PanelHeader'
+})
 
-  const sx = {
-    display: 'flex',
-    alignItems: 'center',
-    fontWeight: bold,
-    marginTop: -scale[2] - 1,
-    marginRight: -scale[2] - 1,
-    marginLeft: -scale[2] - 1,
-    marginBottom: scale[2],
-    padding: scale[2],
-    borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
-    ...style.fill,
-    ...style
-  }
-
-  return (
-    <div
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-PanelHeader._name = 'PanelHeader'
-
-export default withRebass(PanelHeader)
+export default PanelHeader
 

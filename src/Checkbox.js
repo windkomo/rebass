@@ -77,12 +77,13 @@ const IconBase = (props) => {
 const Icon = createComponent(IconBase, styles.icon)
 
 const Base = ({
+  className,
   children,
   ...props
 }) => {
   // To do: split style and input props
   return (
-    <Label>
+    <Label className={className}>
       <Input
         {...props}
         type='checkbox'

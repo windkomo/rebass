@@ -42,7 +42,7 @@ export const styles = ({
 })
 
 const Base = (props) => (
-  <input {...props} type='text' />
+  <input type='text' {...props} />
 )
 
 const Input = createComponent(Base, styles, {

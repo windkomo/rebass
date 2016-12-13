@@ -1,79 +1,38 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Progress element
  */
 
-const Progress = ({
-  value,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { scale, colors } = theme
+export const styles = ({
+  scale,
+  colors
+}) => ({
+  display: 'block',
+  width: '100%',
+  height: 8,
+  marginBottom: scale[2],
+  overflow: 'hidden',
+  border: 0,
+  borderRadius: 99999,
+  WebkitAppearance: 'none',
+  appearance: 'none',
+  '::-webkit-progress-bar': {
+    backgroundColor: colors.gray2
+  },
+  '::-webkit-progress-value': {
+    backgroundColor: 'currentcolor'
+  },
+  '::-moz-progress-bar': {
+    backgroundColor: 'currentcolor'
+  },
+})
 
-  const css = `
-    .Progress_progress::-webkit-progress-bar {
-      background-color: ${colors.darken};
-    }
-    .Progress_progress::-webkit-progress-value {
-      background-color: currentcolor;
-    }
-    .Progress_progress::-moz-progress-bar {
-      background-color: currentcolor;
-    }
-  `.replace(/\n/g, '').replace(/\s\s+/g, ' ')
+const Progress = createComponent('progress', styles, {
+  name: 'Progress'
+})
 
-  const cx = classnames('Progress', className)
-
-  const sx = {
-    root: {
-      marginBottom: scale[2],
-      overflow: 'hidden',
-      color: colors.primary,
-      borderRadius: 9999,
-      ...style
-    },
-    progress: {
-      display: 'block',
-      width: '100%',
-      height: 8,
-      overflow: 'hidden',
-      border: 0,
-      WebkitAppearance: 'none',
-      appearance: 'none',
-      ...subComponentStyles.progress
-    }
-  }
-
-  return (
-    <div
-      className={cx}
-      style={sx.root}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-      <progress
-        {...props}
-        className='Progress_progress'
-        value={value}
-        children={value}
-        style={sx.progress} />
-    </div>
-  )
-}
-
-Progress.propTypes = {
-  /** Value for progress bar */
-  value: React.PropTypes.number,
-  /** Bar color - can either be a key from the theme colors object or any color value */
-  color: React.PropTypes.string
-}
-
-Progress._name = 'Progress'
-
-export default withRebass(Progress)
+export default Progress
 

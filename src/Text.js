@@ -1,46 +1,18 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Component for displaying text in UI
  */
 
-const Text = ({
-  size,
-  small,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { fontSizes } = theme
-
-  const cx = classnames('Text', className)
-
-  size = size || (small ? 6 : 4)
-  const sx = {
-    fontSize: fontSizes[size],
-    margin: 0,
-    ...style
-  }
-
-  return (
-    <p
-      {...props}
-      className={cx}
-      style={sx} />
-  )
+export const styles = {
+  margin: 0
 }
 
-Text.propTypes = {
-  /** Sets a smaller font size */
-  small: React.PropTypes.bool
-}
+const Text = createComponent('p', styles, {
+  name: 'Text'
+})
 
-Text._name = 'Text'
-
-export default withRebass(Text)
+export default Text
 

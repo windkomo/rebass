@@ -5,6 +5,8 @@ import _style from 'understyle'
 import defaultTheme from './themes/basic'
 import parseProps from './parse-props'
 
+// To do: handle fill/theme colors prop???
+
 const getTheme = ({ rebass = {} }) => merge(rebass, defaultTheme, { clone: true })
 
 const createComponent = (Comp, baseStyles, options = {}) => {

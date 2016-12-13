@@ -1,12 +1,32 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Pre element for displaying code examples
  */
 
+export const styles = ({
+  monospace,
+  typeScale,
+  scale,
+  borderColor
+}) => ({
+  fontFamily: monospace,
+  fontSize: typeScale[5],
+  paddingLeft: scale[2],
+  marginBottom: scale[2],
+  borderLeft: `4px solid ${borderColor}`,
+  overflowX: 'scroll'
+})
+
+const Pre = createComponent('pre', styles, {
+  name: 'Pre'
+})
+
+export default Pre
+
+/*
 const Pre = ({
   className,
   style,
@@ -39,4 +59,5 @@ const Pre = ({
 Pre._name = 'Pre'
 
 export default withRebass(Pre)
+*/
 
