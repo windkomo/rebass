@@ -51,6 +51,9 @@ import {
   Progress,
   Radio,
   Rating,
+  Section,
+  SectionHeader,
+  Select,
   Text,
 } from 'rebass'
 
@@ -89,6 +92,14 @@ const App = ({
         <Code>Code</Code>
       </div>
       <Divider />
+      <Section id='section'>
+        <SectionHeader
+          heading='Hello'
+          href='#section'
+          children='Section'
+        />
+        Hello Section
+      </Section>
       <LinkBlock href='http://jxnblk.com/rebass'>
         <Card width={256}>
           <CardImage
@@ -186,6 +197,13 @@ const App = ({
         <Button children='Beep' />
         <ButtonOutline children='Boop' />
       </Group>
+      <Select
+        value={rating}
+        onChange={e => { setRating(e.target.value) }}
+        options={[
+          0, .5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5
+        ]}
+      />
       <InlineForm />
       <Embed>
         <iframe
