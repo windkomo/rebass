@@ -1,50 +1,31 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
-const TabItem = ({
-  is = 'a',
-  active,
-  className,
-  style,
-  theme,
-  subComponentStyles,
-  ...props
-}) => {
-  const { scale, fontSizes, bold, colors } = theme
-  const Comp = is
+export const styles = ({
+  typeScale,
+  bold,
+  scale,
+  colors
+}, { active }) => ({
+  fontSize: typeScale[5],
+  fontWeight: bold,
+  paddingTop: scale[1],
+  paddingBottom: scale[1],
+  marginRight: scale[2],
+  textDecoration: 'none',
+  borderBottom: '2px solid transparent',
+  cursor: 'pointer',
+  // To do: consider data attributes for custom styling
+  ...(active ? {
+    color: colors.blue,
+    borderColor: colors.blue,
+  } : {})
+})
 
-  const cx = classnames('TabItem', className)
+const TabItem = createComponent('a', styles, {
+  name: 'TabItem'
+})
 
-  const sx = {
-    fontWeight: bold,
-    fontSize: fontSizes[5],
-    paddingTop: scale[1],
-    paddingBottom: scale[1],
-    marginRight: scale[2],
-    textDecoration: 'none',
-    borderBottomWidth: 2,
-    borderBottomStyle: 'solid',
-    borderBottomColor: 'transparent',
-    cursor: 'pointer',
-    ...style,
-    ...(active ? {
-      color: colors.primary,
-      borderBottomColor: colors.primary,
-      ...subComponentStyles.active
-    } : {})
-  }
-
-  return (
-    <Comp
-      {...props}
-      className={cx}
-      style={sx} />
-  )
-}
-
-TabItem._name = 'TabItem'
-
-export default withRebass(TabItem)
+export default TabItem
 

@@ -76,6 +76,8 @@ export { default as Select } from './Select'
 export { default as Slider } from './Slider'
 export { default as Space } from './Space'
 
+export { default as Tabs } from './Tabs'
+export { default as TabItem } from './TabItem'
 export { default as Text } from './Text'
 export { default as Textarea } from './Textarea'
 export { default as Toolbar } from './Toolbar'
@@ -94,8 +96,6 @@ export { default as Stat } from './Stat'
 export { default as Switch } from './Switch'
 
 export { default as Table } from './Table'
-export { default as Tabs } from './Tabs'
-export { default as TabItem } from './TabItem'
 
 // For backwards compatibility
 export { default as config } from './themes/basic'

@@ -1,8 +1,10 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
+// To do: WIP
+
+/*
 const Tabs = ({
   children,
   className,
@@ -37,4 +39,4 @@ const Tabs = ({
 Tabs._name = 'Tabs'
 
 export default withRebass(Tabs)
-
+*/
