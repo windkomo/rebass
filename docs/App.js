@@ -50,6 +50,7 @@ import {
   Pre,
   Progress,
   Radio,
+  Rating,
   Text,
 } from 'rebass'
 
@@ -59,7 +60,9 @@ const App = ({
   dropdownOpen,
   setDropdownOpen,
   overlayOpen,
-  setOverlayOpen
+  setOverlayOpen,
+  rating,
+  setRating
 }) => (
   <div id='app'>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
@@ -114,6 +117,11 @@ const App = ({
         <Bar value={1/2}>Bar</Bar>
         <Bar value={3/4}>Bar</Bar>
       </Block>
+      <Rating
+        fontSize={2}
+        value={rating}
+        onClick={setRating}
+      />
       <Media img='http://placehold.it/128'
         align='center'>
         Media Object
@@ -212,11 +220,13 @@ const App = ({
 const withDrawer = withState('drawerOpen', 'setDrawerOpen', false)
 const withDropdown = withState('dropdownOpen', 'setDropdownOpen', false)
 const withOverlay = withState('overlayOpen', 'setOverlayOpen', false)
+const withRating = withState('rating', 'setRating', 1.5)
 
 const enhance = compose(
   withDrawer,
   withDropdown,
-  withOverlay
+  withOverlay,
+  withRating
 )
 
 export default enhance(App)

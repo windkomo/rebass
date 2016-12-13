@@ -68,6 +68,7 @@ export { default as Pre } from './Pre'
 export { default as Progress } from './Progress'
 
 export { default as Radio } from './Radio'
+export { default as Rating } from './Rating'
 
 export { default as Text } from './Text'
 
@@ -78,7 +79,6 @@ export { default as themes } from './themes'
 export { default as Breadcrumbs } from './Breadcrumbs'
 export { default as Donut } from './Donut'
 
-export { default as Rating } from './Rating'
 export { default as Section } from './Section'
 export { default as SectionHeader } from './SectionHeader'
 export { default as Select } from './Select'
