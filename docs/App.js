@@ -94,9 +94,11 @@ const App = ({
         heading='Hello'
         description='PageHeader'
       />
-      <Tabs>
+      <Tabs mb2>
         <TabItem children='Herro' />
-        <TabItem children='Hi' active />
+        <TabItem children='Hi There' active />
+        <Space auto />
+        <TabItem mr0 children='Nope' />
       </Tabs>
       <Message>
         Hello Message

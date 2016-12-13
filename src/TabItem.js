@@ -24,7 +24,10 @@ export const styles = ({
 })
 
 const TabItem = createComponent('a', styles, {
-  name: 'TabItem'
+  name: 'TabItem',
+  removeProps: [
+    'active'
+  ]
 })
 
 export default TabItem
