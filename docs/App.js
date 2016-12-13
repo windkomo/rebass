@@ -54,7 +54,11 @@ import {
   Section,
   SectionHeader,
   Select,
+  Slider,
+  Space,
   Text,
+  Textarea,
+  Toolbar,
 } from 'rebass'
 
 const App = ({
@@ -65,9 +69,18 @@ const App = ({
   overlayOpen,
   setOverlayOpen,
   rating,
-  setRating
+  setRating,
+  num,
+  setNum,
+  text,
+  setText,
 }) => (
   <div id='app'>
+    <Toolbar>
+      <NavItem href='#'>Home</NavItem>
+      <Space auto />
+      <NavItem href='#'>GitHub</NavItem>
+    </Toolbar>
     <Banner backgroundImage='https://images.unsplash.com/photo-1459909633680-206dc5c67abb?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop='>
       <Heading level={1} size={0}>Rebass</Heading>
       <DotIndicator
@@ -197,12 +210,20 @@ const App = ({
         <Button children='Beep' />
         <ButtonOutline children='Boop' />
       </Group>
+      <Textarea
+        value={text}
+        onChange={e => { setText(e.target.value) }}
+      />
       <Select
         value={rating}
         onChange={e => { setRating(e.target.value) }}
         options={[
           0, .5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5
         ]}
+      />
+      <Slider
+        value={num}
+        onChange={e => { setNum(parseInt(e.target.value)) }}
       />
       <InlineForm />
       <Embed>
@@ -211,7 +232,7 @@ const App = ({
           allowFullScreen />
       </Embed>
       <Pre>This is preformatted text</Pre>
-      <Progress value={1/3} color='blue' />
+      <Progress value={1 - num / 100} color='blue' />
       <Footer>
         Footer
       </Footer>
@@ -239,12 +260,16 @@ const withDrawer = withState('drawerOpen', 'setDrawerOpen', false)
 const withDropdown = withState('dropdownOpen', 'setDropdownOpen', false)
 const withOverlay = withState('overlayOpen', 'setOverlayOpen', false)
 const withRating = withState('rating', 'setRating', 1.5)
+const withNum = withState('num', 'setNum', 32)
+const withText = withState('text', 'setText', 'Hello')
 
 const enhance = compose(
   withDrawer,
   withDropdown,
   withOverlay,
-  withRating
+  withRating,
+  withNum,
+  withText
 )
 
 export default enhance(App)

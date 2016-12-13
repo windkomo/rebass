@@ -73,8 +73,12 @@ export { default as Rating } from './Rating'
 export { default as Section } from './Section'
 export { default as SectionHeader } from './SectionHeader'
 export { default as Select } from './Select'
+export { default as Slider } from './Slider'
+export { default as Space } from './Space'
 
 export { default as Text } from './Text'
+export { default as Textarea } from './Textarea'
+export { default as Toolbar } from './Toolbar'
 
 /*
 export { default as theme } from './themes/basic'
@@ -86,17 +90,12 @@ export { default as Donut } from './Donut'
 export { default as SequenceMap } from './SequenceMap'
 export { default as SequenceMapStep } from './SequenceMapStep'
 export { default as SignInForm } from './SignInForm'
-export { default as Slider } from './Slider'
-export { default as Space } from './Space'
 export { default as Stat } from './Stat'
 export { default as Switch } from './Switch'
 
 export { default as Table } from './Table'
 export { default as Tabs } from './Tabs'
 export { default as TabItem } from './TabItem'
-export { default as Textarea } from './Textarea'
-export { default as Toolbar } from './Toolbar'
-export { default as Tooltip } from './Tooltip'
 
 // For backwards compatibility
 export { default as config } from './themes/basic'

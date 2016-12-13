@@ -6,31 +6,6 @@ const { colors } = defaultConfig
 const serif = 'Georgia, serif'
 const monospace = 'Menlo, Consolas, monospace'
 
-const baseColors = {
-  black: '#111',
-  white: '#fff',
-  gray: '#eee',
-  midgray: '#888',
-  blue: '#008cef',
-  red: '#ef0034',
-  orange: '#FFCD29',
-  green: '#00ef50',
-  lighten: `rgba(255, 255, 255, ${1 / 16})`,
-  darken: `rgba(0, 0, 0, ${1 / 16})`
-}
-
-const xcolors = {
-  ...baseColors,
-  primary: baseColors.blue,
-  secondary: baseColors.midgray,
-  default: baseColors.black,
-  muted: baseColors.gray,
-  info: baseColors.blue,
-  success: baseColors.green,
-  warning: baseColors.orange,
-  error: baseColors.red
-}
-
 const scale = [
   0,
   8,

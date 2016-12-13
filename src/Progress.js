@@ -20,6 +20,7 @@ export const styles = ({
   WebkitAppearance: 'none',
   appearance: 'none',
   '::-webkit-progress-bar': {
+    // To do: opacity of currentcolor
     backgroundColor: colors.gray2
   },
   '::-webkit-progress-value': {
