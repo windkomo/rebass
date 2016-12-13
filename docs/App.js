@@ -56,6 +56,8 @@ import {
   Select,
   Slider,
   Space,
+  Tabs,
+  TabItem,
   Text,
   Textarea,
   Toolbar,
@@ -92,6 +94,10 @@ const App = ({
         heading='Hello'
         description='PageHeader'
       />
+      <Tabs>
+        <TabItem children='Herro' />
+        <TabItem children='Hi' active />
+      </Tabs>
       <Message>
         Hello Message
       </Message>
