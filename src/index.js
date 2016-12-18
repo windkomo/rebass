@@ -75,6 +75,8 @@ export { default as SectionHeader } from './SectionHeader'
 export { default as Select } from './Select'
 export { default as Slider } from './Slider'
 export { default as Space } from './Space'
+export { default as Stat } from './Stat'
+export { default as Switch } from './Switch'
 
 export { default as Tabs } from './Tabs'
 export { default as TabItem } from './TabItem'
@@ -92,8 +94,6 @@ export { default as Donut } from './Donut'
 export { default as SequenceMap } from './SequenceMap'
 export { default as SequenceMapStep } from './SequenceMapStep'
 export { default as SignInForm } from './SignInForm'
-export { default as Stat } from './Stat'
-export { default as Switch } from './Switch'
 
 export { default as Table } from './Table'
 

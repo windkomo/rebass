@@ -56,6 +56,8 @@ import {
   Select,
   Slider,
   Space,
+  Stat,
+  Switch,
   Tabs,
   TabItem,
   Text,
@@ -76,6 +78,8 @@ const App = ({
   setNum,
   text,
   setText,
+  bool,
+  setBool,
 }) => (
   <div id='app'>
     <Toolbar>
@@ -93,6 +97,15 @@ const App = ({
       <PageHeader
         heading='Hello'
         description='PageHeader'
+      />
+      <Stat
+        value={256}
+        unit='KB'
+        label='Module Size'
+      />
+      <Switch
+        checked={bool}
+        onClick={e => setBool(!bool)}
       />
       <Tabs mb2>
         <TabItem children='Herro' />
@@ -270,6 +283,7 @@ const withOverlay = withState('overlayOpen', 'setOverlayOpen', false)
 const withRating = withState('rating', 'setRating', 1.5)
 const withNum = withState('num', 'setNum', 32)
 const withText = withState('text', 'setText', 'Hello')
+const withBool = withState('bool', 'setBool', false)
 
 const enhance = compose(
   withDrawer,
@@ -277,7 +291,8 @@ const enhance = compose(
   withOverlay,
   withRating,
   withNum,
-  withText
+  withText,
+  withBool
 )
 
 export default enhance(App)

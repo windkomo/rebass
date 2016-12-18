@@ -1,83 +1,58 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Styled number display for statistics
  */
 
-const Stat = ({
+export const styles = {
+  root: {
+    display: 'inline-block'
+  },
+  value: ({ typeScale, bold, scale }) => ({
+    fontSize: typeScale[0],
+    fontWeight: bold,
+    lineHeight: 1
+  }),
+  unit: ({ typeScale, bold }) => ({
+    display: 'inline-block',
+    fontSize: typeScale[3],
+    fontWeight: bold
+  }),
+  label: ({ typeScale, bold }) => ({
+    fontSize: typeScale[6],
+    fontWeight: bold,
+    lineHeight: 1
+  })
+}
+
+export const StatLabel = createComponent('div', styles.label)
+
+export const StatValue = createComponent('div', styles.value)
+
+export const StatUnit = createComponent('div', styles.unit)
+
+const Base = ({
   value,
-  label,
   unit,
-  topLabel,
-  className,
-  style,
-  theme,
-  subComponentStyles,
+  label,
   ...props
 }) => {
-  const { fontSizes, bold, scale } = theme
-
-  const cx = classnames('Stat', className)
-
-  const sx = {
-    root: {
-      display: 'inline-block',
-      ...style
-    },
-    value: {
-      fontSize: fontSizes[0],
-      letterSpace: '-.125em',
-      fontWeight: bold,
-      lineHeight: 1,
-      marginTop: topLabel ? scale[1] / 2 : null,
-      marginBottom: topLabel ? null : scale[1] / 2,
-      ...subComponentStyles.value
-    },
-    unit: {
-      fontSize: fontSizes[3],
-      ...subComponentStyles.unit
-    },
-    label: {
-      fontSize: fontSizes[6],
-      fontWeight: bold,
-      lineHeight: 1,
-      ...subComponentStyles.label
-    }
-  }
-
   return (
-    <div
-      {...props}
-      className={cx}
-      style={sx.root}>
-      {topLabel && <div style={sx.label}>{label}</div>}
-      <div style={sx.value}>
+    <div {...props}>
+      <StatValue>
         {value}
-        {unit && <span style={sx.unit}>{unit}</span>}
-      </div>
-      {!topLabel && <div style={sx.label}>{label}</div>}
+        {unit && (<StatUnit children={unit} />)}
+      </StatValue>
+      {label && (<StatLabel children={label} />)}
     </div>
   )
 }
 
-Stat.propTypes = {
-  /** Value for stat shown in large font size */
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string
-  ]),
-  /** Optional unit for displaying next to value */
-  unit: React.PropTypes.string,
-  /** Label for stat */
-  label: React.PropTypes.string,
-  /** Displays label above value */
-  topLabel: React.PropTypes.bool
-}
+const Stat = createComponent(Base, styles.root, {
+  name: 'Stat'
+})
 
-Stat._name = 'Stat'
-
-export default withRebass(Stat)
+export default Stat
 
