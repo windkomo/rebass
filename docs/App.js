@@ -60,6 +60,7 @@ import {
   Switch,
   Tabs,
   TabItem,
+  Table,
   Text,
   Textarea,
   Toolbar,

@@ -80,6 +80,7 @@ export { default as Switch } from './Switch'
 
 export { default as Tabs } from './Tabs'
 export { default as TabItem } from './TabItem'
+export { default as Table } from './Table'
 export { default as Text } from './Text'
 export { default as Textarea } from './Textarea'
 export { default as Toolbar } from './Toolbar'
@@ -95,7 +96,6 @@ export { default as SequenceMap } from './SequenceMap'
 export { default as SequenceMapStep } from './SequenceMapStep'
 export { default as SignInForm } from './SignInForm'
 
-export { default as Table } from './Table'
 
 // For backwards compatibility
 export { default as config } from './themes/basic'

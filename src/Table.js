@@ -1,12 +1,80 @@
 
 import React from 'react'
-import classnames from 'classnames'
-import withRebass from './withRebass'
+import createComponent from './create-component'
 
 /**
  * Table element with simplified props
  */
 
+export const styles = {
+  root: ({ colors }) => ({
+    maxWidth: '100%',
+    overflow: 'auto',
+    borderColor: colors.gray
+  }),
+  table: {
+    lineHeight: 1.25,
+    borderCollapse: 'separate',
+    borderSpacing: 0,
+    width: '100%'
+  },
+  th: ({ scale }) => ({
+    textAlign: 'left',
+    verticalAlign: 'bottom',
+    padding: scale[1],
+    paddingLeft: 0,
+    borderBottom: '2px solid inherit'
+  }),
+  td: ({ scale }) => ({
+    padding: scale[1],
+    paddingLeft: 0,
+    borderBottom: '1px solid inherit'
+  })
+}
+
+export const TableBase = createComponent('table', styles.table)
+
+export const TH = createComponent('th', styles.th)
+export const TD = createComponent('td', styles.td)
+
+const Base = ({
+  headings = [],
+  data = [],
+  ...props
+}) => (
+  <div {...props}>
+    <TableBase>
+      <thead>
+        <tr>
+          {headings.map((heading, i) => (
+            <TH key={i} children={heading} />
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, i) => (
+          <tr key={i}>
+            {row.map((datum, j) => (
+              <TD key={j} children={datum} />
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </TableBase>
+  </div>
+)
+
+const Table = createComponent(Base, styles.root, {
+  name: 'Table',
+  removeProps: [
+    'headings',
+    'data'
+  ]
+})
+
+export default Table
+
+/*
 const Table = ({
   headings,
   data,
@@ -97,13 +165,6 @@ const Table = ({
   )
 }
 
-Table.propTypes = {
-  /** Headings for <th> */
-  headings: React.PropTypes.array,
-  /** Array of table row data for <td> */
-  data: React.PropTypes.arrayOf(React.PropTypes.array)
-}
-
 Table.defaultProps = {
   headings: [],
   data: []
@@ -112,4 +173,4 @@ Table.defaultProps = {
 Table._name = 'Table'
 
 export default withRebass(Table)
-
+*/
