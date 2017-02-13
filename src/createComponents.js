@@ -1,13 +1,17 @@
 
 import createComponent from './createComponent'
+// import withSpace from 'respace'
 
-const createComponents = (config, theme) => {
+// Consider renaming
+const createComponents = (config, theme, options = {}) => {
   const keys = Object.keys(config)
   const components = {}
 
   keys.forEach(key => {
     const { Tag, ...styles } = config[key]
-    components[key] = createComponent(Tag)(styles, theme)
+    const component = createComponent(Tag)(styles, theme)
+    components[key] = component
+    // components[key] = options.spaceProps ? withSpace(theme)(component) : component
   })
 
   return components
