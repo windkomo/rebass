@@ -1,35 +1,34 @@
 
-var path = require('path')
+const path = require('path')
 
 module.exports = {
-  entry: './demo/entry.js',
+  entry: './docs/entry.js',
 
   output: {
-    path: path.join(__dirname, 'demo'),
-    // publicPath: 'demo',
+    path: path.join(__dirname, 'docs'),
     filename: 'bundle.js'
   },
 
+  resolve: {
+    alias: {
+      'rebass': path.join(__dirname, 'src/index.js')
+    }
+  },
+
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        // exclude: /node_modules/,
-        loaders: [
-          'babel'
-        ]
-      },
-      {
-        test: /\.json$/,
-        loaders: [
-          'json'
-        ]
+        exclude: /node_modules/,
+        use: 'babel-loader'
       }
     ]
   },
 
+  devtool: 'cheap-source-map',
+
   devServer: {
-    contentBase: 'demo/'
+    contentBase: 'docs'
   }
 }
 
