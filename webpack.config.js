@@ -28,7 +28,8 @@ module.exports = {
   devtool: 'cheap-source-map',
 
   devServer: {
-    contentBase: 'docs'
+    contentBase: 'docs',
+    historyApiFallback: true
   }
 }
 
