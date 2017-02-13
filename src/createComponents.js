@@ -1,13 +1,13 @@
 
 import createComponent from './createComponent'
 
-const createComponents = (config) => {
+const createComponents = (config, theme) => {
   const keys = Object.keys(config)
   const components = {}
 
   keys.forEach(key => {
     const { Tag, ...styles } = config[key]
-    components[key] = createComponent(Tag)(styles)
+    components[key] = createComponent(Tag)(styles, theme)
   })
 
   return components

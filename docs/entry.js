@@ -12,7 +12,10 @@ const {
 const App = () => (
   <div>
     <H1>Hello</H1>
-    <Button children='Button' />
+    <Button
+      p={2}
+      m={4}
+      children='Button' />
   </div>
 )
 
