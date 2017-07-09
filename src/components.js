@@ -1139,6 +1139,17 @@ const components = [
     },
     style:  {}
   },
+
+  {
+    name: 'Debug',
+    tag: 'Pre',
+    props: {
+      f: 0,
+      color: 'fuschia',
+      children: props => JSON.stringify(props, null, 2)
+    },
+    style: {}
+  }
 ]
 
 export default components

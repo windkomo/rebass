@@ -79,6 +79,7 @@ export const {
   Star,
   Embed,
   Donut,
+  Debug,
 } = library
 
 export default Rebass
