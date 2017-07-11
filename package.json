@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "babel src -d dist",
-    "start": "start-storybook -p 8000 -c stories",
+    "_start": "start-storybook -p 8001 -c stories",
+    "start": "relab lab -o -c lab/config.js",
     "storybook": "build-storybook -c stories -o docs/stories",
     "test": "nyc ava"
   },
@@ -42,7 +43,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
-    "react-x-ray": "^1.0.0-2"
+    "react-x-ray": "^1.0.0-2",
+    "relab": "^1.0.0-13"
   },
   "repository": {
     "type": "git",
