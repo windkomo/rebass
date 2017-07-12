@@ -16,17 +16,18 @@ import {
   px,
   color,
   darken,
-  baseKey,
   caps,
   align,
 } from './util'
 import DonutBase from './DonutBase'
 
+const bold = props => idx('weights.1', props.theme)
+
 const components = [
   // Buttons
   {
     name: 'Button',
-    tag: 'button',
+    type: 'button',
     props: {
       f: 1,
       m: 0,
@@ -37,7 +38,7 @@ const components = [
     style: props => ({
       display: 'inline-block',
       fontFamily: 'inherit',
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       lineHeight: 1.25,
       textAlign: 'center',
       textDecoration: 'none',
@@ -46,15 +47,15 @@ const components = [
       appearance: 'none',
       backgroundColor: color(props)(props.bg),
       '&:hover': {
-        backgroundColor: color(props)(props.bg, 6),
+        boxShadow: `inset 0 0 0 999px ${darken(1/8)}`
       },
       '&:focus': {
         outline: 0,
-        boxShadow: `0 0 0 2px ${color(props)(props.bg, 3)}`
+        boxShadow: `0 0 0 2px ${color(props)(props.bg)}`
       },
       '&:active': {
         backgroundColor: color(props)(props.bg, 6),
-        boxShadow: `inset 0 0 8px ${color(props)(props.bg, 9)}`
+        boxShadow: `inset 0 0 8px ${darken(1/4)}`
       },
       '&:disabled': {
         opacity: 1/4
@@ -63,7 +64,7 @@ const components = [
   },
   {
     name: 'ButtonOutline',
-    tag: 'Button',
+    type: 'Button',
     props: {
       color: 'blue',
       bg: 'transparent'
@@ -71,21 +72,22 @@ const components = [
     style: props => ({
       boxShadow: `inset 0 0 0 2px`,
       '&:hover': {
-        color: color(props)(props.color, 8),
-        backgroundColor: 'transparent'
+        color: color(props)('white'),
+        backgroundColor: color(props)(props.color)
       },
       '&:focus': {
-        boxShadow: `inset 0 0 0 2px, 0 0 0 2px ${color(props)(props.color, 3)}`
+        boxShadow: `inset 0 0 0 2px, 0 0 0 2px`
       },
       '&:active': {
-        backgroundColor: 'transparent',
-        boxShadow: `inset 0 0 0 2px, inset 0 0 8px ${color(props)(props.color, 9)}`
+        color: color(props)('white'),
+        backgroundColor: color(props)(props.color),
+        boxShadow: `inset 0 0 0 2px ${color(props)(props.color)}, inset 0 0 8px ${darken(1/4)}`
       }
     })
   },
   {
     name: 'ButtonCircle',
-    tag: 'Button',
+    type: 'Button',
     props: {
       px: 3
     },
@@ -95,47 +97,43 @@ const components = [
   },
   {
     name: 'ButtonTransparent',
-    tag: 'Button',
+    type: 'Button',
     props: {
       color: 'inherit',
       bg: 'transparent'
     },
     style: props => ({
       '&:hover': {
-        color: color(props)(props.color, 8),
+        color: color(props)(props.color),
         backgroundColor: 'transparent'
       },
       '&:focus': {
-        boxShadow: `inset 0 0 0 2px, 0 0 0 2px ${color(props)(props.color, 3)}`
+        boxShadow: `inset 0 0 0 2px, 0 0 0 2px`
       },
       '&:active': {
         backgroundColor: 'transparent',
-        boxShadow: `inset 0 0 0 2px, inset 0 0 8px ${color(props)(props.color, 9)}`
+        boxShadow: `inset 0 0 0 2px, inset 0 0 8px ${darken(1/4)}`
       }
     })
   },
   {
     name: 'Link',
-    tag: 'a',
+    type: 'a',
     props: {
       color: 'blue'
     },
-    style: props => ({
-      '&:hover': {
-        color: color(props)(props.color, 8)
-      }
-    })
+    style: {}
   },
   {
     name: 'NavLink',
-    tag: 'a',
+    type: 'a',
     props: {
       f: 1,
       p: 2
     },
     style: props => ({
       display: 'inline-block',
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       textDecoration: 'none',
       whiteSpace: 'nowrap',
       color: 'inherit',
@@ -154,7 +152,7 @@ const components = [
   },
   {
     name: 'BlockLink',
-    tag: 'a',
+    type: 'a',
     props: {},
     style: {
       display: 'block',
@@ -166,13 +164,13 @@ const components = [
   // Typography
   {
     name: 'Text',
-    tag: 'p',
+    type: 'p',
     props: {
       m: 0
     },
     style: props => Object.assign({
       textAlign: align(props),
-      fontWeight: props.bold ? idx('weights.1', props.theme) : idx('weights.0', props.theme)
+      fontWeight: props.bold ? bold(props) : idx('weights.0', props.theme)
     }, caps(props)),
     propTypes: {
       left: bool,
@@ -185,7 +183,7 @@ const components = [
   },
   {
     name: 'Heading',
-    tag: 'Text',
+    type: 'Text',
     props: {
       is: 'h2',
       f: 5,
@@ -206,7 +204,7 @@ const components = [
   },
   {
     name: 'Subhead',
-    tag: 'Heading',
+    type: 'Heading',
     props: {
       is: 'h3',
       f: 4,
@@ -216,7 +214,7 @@ const components = [
   },
   {
     name: 'Small',
-    tag: 'Text',
+    type: 'Text',
     props: {
       is: 'small',
       f: 0
@@ -225,7 +223,7 @@ const components = [
   },
   {
     name: 'Lead',
-    tag: 'Text',
+    type: 'Text',
     props: {
       is: 'p',
       f: 3,
@@ -237,7 +235,7 @@ const components = [
   },
   {
     name: 'Pre',
-    tag: 'pre',
+    type: 'pre',
     props: {
       f: 1,
       m: 0,
@@ -249,7 +247,7 @@ const components = [
   },
   {
     name: 'Code',
-    tag: 'code',
+    type: 'code',
     props: {
       f: 1,
     },
@@ -259,7 +257,7 @@ const components = [
   },
   {
     name: 'Samp',
-    tag: 'Code',
+    type: 'Code',
     props: {
       is: 'samp'
     },
@@ -267,7 +265,7 @@ const components = [
   },
   {
     name: 'Blockquote',
-    tag: 'Text',
+    type: 'Text',
     props: {
       is: 'blockquote',
       m: 0,
@@ -279,7 +277,7 @@ const components = [
   // Forms
   {
     name: 'Label',
-    tag: 'label',
+    type: 'label',
     props: {
       f: 1,
       mb: 1
@@ -291,7 +289,7 @@ const components = [
   },
   {
     name: 'Input',
-    tag: 'input',
+    type: 'input',
     props: {
       type: 'text',
       p: 1,
@@ -305,7 +303,7 @@ const components = [
       fontSize: 'inherit',
       borderWidth: px(1),
       borderStyle: 'solid',
-      borderColor: color(props)('gray', 2),
+      borderColor: color(props)('gray2'),
       borderRadius: px(props.theme.radius),
       appearance: 'none',
       '&:focus': {
@@ -319,7 +317,7 @@ const components = [
   },
   {
     name: 'Select',
-    tag: 'select',
+    type: 'select',
     props: {
       p: 1,
       m: 0,
@@ -333,7 +331,7 @@ const components = [
       height: 32,
       borderWidth: px(1),
       borderStyle: 'solid',
-      borderColor: color(props)('gray', 2),
+      borderColor: color(props)('gray2'),
       borderRadius: px(props.theme.radius),
       '&:focus': {
         outline: 'none',
@@ -346,7 +344,7 @@ const components = [
   },
   {
     name: 'Textarea',
-    tag: 'textarea',
+    type: 'textarea',
     props: {
       p: 1,
       m: 0,
@@ -359,7 +357,7 @@ const components = [
       fontSize: 'inherit',
       borderWidth: px(1),
       borderStyle: 'solid',
-      borderColor: color(props)('gray', 2),
+      borderColor: color(props)('gray2'),
       borderRadius: px(props.theme.radius),
       appearance: 'none',
       '&:focus': {
@@ -373,7 +371,7 @@ const components = [
   },
   {
     name: 'Checkbox',
-    tag: 'input',
+    type: 'input',
     props: {
       type: 'checkbox',
       mr: 1
@@ -382,7 +380,7 @@ const components = [
   },
   {
     name: 'Radio',
-    tag: 'input',
+    type: 'input',
     props: {
       type: 'radio',
       mr: 1
@@ -391,7 +389,7 @@ const components = [
   },
   {
     name: 'Slider',
-    tag: 'input',
+    type: 'input',
     props: {
       w: 1,
       my: 2,
@@ -404,7 +402,7 @@ const components = [
       cursor: 'pointer',
       color: 'inherit',
       borderRadius: px(99999),
-      backgroundColor: color(props)('gray', 2),
+      backgroundColor: color(props)('gray2'),
       appearance: 'none',
       '&::-webkit-slider-thumb': {
         width: px(16),
@@ -423,7 +421,7 @@ const components = [
 
   {
     name: 'Image',
-    tag: 'img',
+    type: 'img',
     props: {},
     style: {
       display: 'block',
@@ -433,7 +431,7 @@ const components = [
   },
   {
     name: 'Avatar',
-    tag: 'img',
+    type: 'img',
     props: {},
     style: props => ({
       display: 'inline-block',
@@ -448,7 +446,7 @@ const components = [
 
   {
     name: 'BackgroundImage',
-    tag: 'div',
+    type: 'div',
     props: {
       w: 1,
       // ratio: 3/4 // How does styled-components handle this??
@@ -469,7 +467,7 @@ const components = [
   // Layout
   {
     name: 'Container',
-    tag: 'div',
+    type: 'div',
     props: {
       px: 3,
       mx: 'auto'
@@ -484,7 +482,7 @@ const components = [
   },
   {
     name: 'Divider',
-    tag: 'hr',
+    type: 'hr',
     props: {
       my: 2
     },
@@ -496,7 +494,7 @@ const components = [
   },
   {
     name: 'Border',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => {
       const w = px(props.borderWidth || 1)
@@ -511,7 +509,7 @@ const components = [
       return Object.assign({
         borderWidth,
         borderStyle: 'solid',
-        borderColor: color(props)(props.color || 'gray', 2),
+        borderColor: color(props)(props.color || 'gray2'),
         color: 'inherit'
       }, directions)
     },
@@ -526,7 +524,7 @@ const components = [
   },
   {
     name: 'Media',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       display: 'flex',
@@ -536,19 +534,19 @@ const components = [
 
   {
     name: 'Card',
-    tag: 'div',
+    type: 'div',
     props: {
       bg: 'white'
     },
     style: props => ({
       overflow: 'hidden',
-      boxShadow: `inset 0 0 0 1px ${color(props)('gray', 2)}, 0 0 4px ${color(props)('gray', 2)}`,
+      boxShadow: `inset 0 0 0 1px ${color(props)('gray2')}, 0 0 4px ${color(props)('gray2')}`,
       borderRadius: px(props.theme.radius)
     })
   },
   {
     name: 'Banner',
-    tag: 'div',
+    type: 'div',
     props: {
       p: [ 3, 4 ]
     },
@@ -568,7 +566,7 @@ const components = [
   },
   {
     name: 'Panel',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       overflow: 'hidden',
@@ -579,26 +577,26 @@ const components = [
   },
   {
     name: 'PanelHeader',
-    tag: 'header',
+    type: 'header',
     props: {
       f: 2,
       p: 2,
     },
     style: props => ({
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       borderBottomWidth: px(1),
       borderBottomStyle: 'solid',
     })
   },
   {
     name: 'PanelFooter',
-    tag: 'footer',
+    type: 'footer',
     props: {
       f: 1,
       p: 2,
     },
     style: props => ({
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       borderTopWidth: px(1),
       borderTopStyle: 'solid',
     })
@@ -607,20 +605,20 @@ const components = [
   // UI
   {
     name: 'Progress',
-    tag: 'progress',
+    type: 'progress',
     props: {
       w: 1,
-      m: 0
+      m: 0,
+      bg: 'gray2'
     },
     style: props => ({
       display: 'block',
       height: px(idx('space.1', props.theme)),
-      backgroundColor: color(props)('gray', 2),
       borderRadius: px(props.theme.radius),
       overflow: 'hidden',
       appearance: 'none',
       '&::-webkit-progress-bar': {
-        backgroundColor: color(props)('gray', 2)
+        backgroundColor: color(props)(props.bg)
       },
       '&::-webkit-progress-value': {
         backgroundColor: color(props)(props.color)
@@ -632,7 +630,7 @@ const components = [
   },
   {
     name: 'Message',
-    tag: 'div',
+    type: 'div',
     props: {
       px: 3,
       py: 2,
@@ -640,12 +638,12 @@ const components = [
       bg: 'blue'
     },
     style: props => ({
-      fontWeight: idx('weights.1', props.theme)
+      fontWeight: bold(props)
     })
   },
   {
     name: 'Group',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => {
       const R = px(props.theme.radius || 4)
@@ -666,7 +664,7 @@ const components = [
 
   {
     name: 'Toolbar',
-    tag: 'div',
+    type: 'div',
     props: {
       px: 2,
       color: 'white',
@@ -680,7 +678,7 @@ const components = [
 
   {
     name: 'Badge',
-    tag: 'div',
+    type: 'div',
     props: {
       f: 0,
       p: 1,
@@ -689,7 +687,7 @@ const components = [
       bg: 'blue'
     },
     style: props => ({
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       display: 'inline-block',
       verticalAlign: 'middle',
       borderRadius: px(props.theme.radius)
@@ -697,7 +695,7 @@ const components = [
   },
   {
     name: 'Circle',
-    tag: 'Badge',
+    type: 'Badge',
     props: {
       color: 'white',
       bg: 'blue'
@@ -711,7 +709,7 @@ const components = [
   },
   {
     name: 'Overlay',
-    tag: 'div',
+    type: 'div',
     props: {
       p: 3,
       bg: 'white'
@@ -731,18 +729,18 @@ const components = [
 
   {
     name: 'Tabs',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       display: 'flex',
       borderBottomWidth: px(1),
       borderBottomStyle: 'solid',
-      borderColor: color(props)('gray', 2)
+      borderColor: color(props)('gray2')
     })
   },
   {
     name: 'TabItem',
-    tag: 'a',
+    type: 'a',
     props: {
       f: 1,
       mr: 3,
@@ -750,7 +748,7 @@ const components = [
     },
     style: props => ({
       textDecoration: 'none',
-      fontWeight: idx('weights.1', props.theme),
+      fontWeight: bold(props),
       color: props.active ? color(props)('blue') : 'inherit',
       borderBottomWidth: props.active ? 2 : 0,
       borderBottomStyle: 'solid',
@@ -765,7 +763,7 @@ const components = [
 
   {
     name: 'DotButton',
-    tag: 'button',
+    type: 'button',
     props: {
       m: 0,
     },
@@ -797,7 +795,7 @@ const components = [
 
   {
     name: 'Relative',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       position: 'relative',
@@ -806,7 +804,7 @@ const components = [
   },
   {
     name: 'Absolute',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       position: 'absolute',
@@ -826,7 +824,7 @@ const components = [
   },
   {
     name: 'Fixed',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       position: 'fixed',
@@ -846,7 +844,7 @@ const components = [
   },
   {
     name: 'Sticky',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => (`
       position: -webkit-sticky;
@@ -867,7 +865,7 @@ const components = [
   },
   {
     name: 'Drawer',
-    tag: 'Fixed',
+    type: 'Fixed',
     props: {
       bg: 'white',
       size: 320,
@@ -920,7 +918,7 @@ const components = [
 
   {
     name: 'Carousel',
-    tag: 'div',
+    type: 'div',
     props: {
     },
     style: props => ({
@@ -940,7 +938,7 @@ const components = [
   },
   {
     name: 'ScrollCarousel',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       width: '100%',
@@ -953,7 +951,7 @@ const components = [
   },
   {
     name: 'CarouselSlide',
-    tag: 'div',
+    type: 'div',
     props: {
       w: 1,
       p: 3
@@ -966,7 +964,7 @@ const components = [
 
   {
     name: 'Tooltip',
-    tag: 'div',
+    type: 'div',
     props: {
       color: 'white',
       bg: 'black'
@@ -1015,7 +1013,7 @@ const components = [
 
   {
     name: 'Switch',
-    tag: 'div',
+    type: 'div',
     props: {
       role: 'checkbox',
       color: 'blue'
@@ -1040,14 +1038,14 @@ const components = [
         transitionDuration: '.1s',
         transitionTimingFunction: 'ease-out',
         transform: props.checked ? `translateX(12px)` : `translateX(0)`,
-        backgroundColor: props.checked ? idx('colors.white', props.theme) : color(props)(props.color),
+        backgroundColor: props.checked ? color(props)('white') : color(props)(props.color),
       }
     })
   },
 
   {
     name: 'Close',
-    tag: 'ButtonTransparent',
+    type: 'ButtonTransparent',
     props: {
       p: 0,
       f: 3,
@@ -1062,7 +1060,7 @@ const components = [
 
   {
     name: 'Star',
-    tag: 'div',
+    type: 'div',
     props: {
       f: 3,
       color: 'yellow',
@@ -1087,7 +1085,7 @@ const components = [
 
   {
     name: 'Arrow',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       display: 'inline-block',
@@ -1109,7 +1107,7 @@ const components = [
 
   {
     name: 'Embed',
-    tag: 'div',
+    type: 'div',
     props: {},
     style: props => ({
       position: 'relative',
@@ -1131,7 +1129,7 @@ const components = [
 
   {
     name: 'Donut',
-    tag: DonutBase,
+    type: DonutBase,
     props: {
       color: 'blue',
       strokeWidth: 2,
