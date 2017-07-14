@@ -37,6 +37,7 @@ const components = [
     },
     style: props => ({
       display: 'inline-block',
+      verticalAlign: 'middle',
       fontFamily: 'inherit',
       fontWeight: bold(props),
       lineHeight: 1.25,
